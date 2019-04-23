@@ -89,3 +89,10 @@ let @p = '^v$hxaprint("pa: la, p'
 
 " center screen around cursor:
 "       zz
+
+command! MakeTags !ctags -R .
+" search for definition: ctrl+], ctrl + t to return
+" g + ctrl + ] : find re-occuring tags
+
+
+
