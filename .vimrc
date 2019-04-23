@@ -37,6 +37,13 @@ let g:pymode_options = 1
 
 
 
+" vim indent guides
+" toggle indent guide: 
+" <leader>ig
+Plugin 'nathanaelkane/vim-indent-guides'
+
+
+
 " vim git gutter
 Plugin 'airblade/vim-gitgutter'
 " set update time for git tracking to render the symbols for hunk
