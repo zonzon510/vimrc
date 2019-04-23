@@ -84,7 +84,7 @@ inoremap <leader>{ {}<left>
 inoremap <leader>( ()<left>
 
 " print for python with macro
-let @p = '^v$hxaprint("pa: la, p'
+let @p = '^v$hxiprint\(\"pla, p'
 
 
 " center screen around cursor:
