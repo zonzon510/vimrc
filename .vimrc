@@ -101,5 +101,6 @@ command! MakeTags !ctags -R .
 " search for definition: ctrl+], ctrl + t to return
 " g + ctrl + ] : find re-occuring tags
 
-
+" reload all open files
+" checkt[ime]
 
