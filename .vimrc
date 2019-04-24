@@ -76,7 +76,7 @@ set foldignore=
 
 " search / highlight settings 
 set hlsearch
-" set cursorline
+set cursorline
 set nowrap
 set number
 
