@@ -15,11 +15,11 @@ set encoding=utf-8
 
 
 " Python mode
-Plugin 'python-mode/python-mode'
+" Plugin 'python-mode/python-mode'
 " Enable Python mode
-let g:pymode = 0
+" let g:pymode = 0
 " Default python mode options
-let g:pymode_options = 1
+" let g:pymode_options = 1
 " Enable Python Folding
 " let g:pymode_folding = 0
 " let g:pymode_python = 'python3'
@@ -70,24 +70,11 @@ call vundle#end()
 filetype plugin indent on
 syntax on
 
-
-
-" fold settings (foldignore fixes python folding)
-set foldmethod=indent
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-set foldignore=
-
-
 " search / highlight settings 
 set hlsearch
 set cursorline
 set nowrap
 set number
-
-
-
 
 " automatic closing brackets
 inoremap <leader>" ""<left>
@@ -96,8 +83,6 @@ inoremap <leader>[ []<left>
 inoremap <leader>{ {}<left>
 inoremap <leader>( ()<left>
 
-" print for python with macro
-let @p = '^v$hxiprint\(\"pla, p'
 
 
 " center screen around cursor:
@@ -114,10 +99,6 @@ colorscheme monokai
 
 " get out of insert mode
 inoremap jk <Esc>
-
-
-" set breakpoints
-noremap <leader>b iimport ipdb; ipdb.set_trace() # BREAKPOINT<Esc>
 
 " set background to black
 hi Normal ctermbg=16
