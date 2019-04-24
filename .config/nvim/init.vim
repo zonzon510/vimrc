@@ -55,3 +55,7 @@ command! MakeTags !ctags -R .
 " fold color
 :hi Folded ctermbg=Black
 :hi Folded ctermfg=DarkGrey
+
+" search  highlight colors
+hi Search ctermbg=LightBlue
+hi Search ctermfg=Black
