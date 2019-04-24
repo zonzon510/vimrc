@@ -53,7 +53,10 @@ set updatetime=100
 "                       next / previous
 " move between hunks      ]c / [c
 
-
+Plugin 'jaxbot/semantic-highlight.vim'
+" semantic highlighting
+nnoremap <leader>s :SemanticHighlightToggle<cr>
+inoremap <leader>" ""<left>
 
 " color scheme
 Plugin 'BarretRen/vim-colorscheme'
@@ -109,3 +112,5 @@ command! MakeTags !ctags -R .
 
 colorscheme monokai
 
+
+inoremap jk <Esc>
