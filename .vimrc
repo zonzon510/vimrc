@@ -124,3 +124,7 @@ noremap <leader>b iimport ipdb; ipdb.set_trace() # BREAKPOINT<Esc>
 
 " set background to black
 hi Normal ctermbg=16
+
+" set comment color
+hi Comment ctermbg=black
+hi Comment ctermfg=lightblue
