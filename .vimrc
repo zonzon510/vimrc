@@ -56,7 +56,7 @@ set updatetime=100
 
 
 " color scheme
-Plugin 'tpope/vim-vividchalk'
+Plugin 'BarretRen/vim-colorscheme'
 
 call vundle#end()
 "run 
@@ -107,5 +107,5 @@ command! MakeTags !ctags -R .
 " reload all open files
 " checkt[ime]
 
-colorscheme vividchalk
+colorscheme monokai
 
