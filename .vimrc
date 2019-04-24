@@ -55,6 +55,9 @@ set updatetime=100
 
 
 
+" color scheme
+Plugin 'tpope/vim-vividchalk'
+
 call vundle#end()
 "run 
 "PluginUpdate
@@ -73,7 +76,7 @@ set foldignore=
 
 " search / highlight settings 
 set hlsearch
-set cursorline
+" set cursorline
 set nowrap
 set number
 
@@ -103,4 +106,6 @@ command! MakeTags !ctags -R .
 
 " reload all open files
 " checkt[ime]
+
+colorscheme vividchalk
 
