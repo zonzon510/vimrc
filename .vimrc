@@ -112,5 +112,10 @@ command! MakeTags !ctags -R .
 
 colorscheme monokai
 
-
+" get out of insert mode
 inoremap jk <Esc>
+
+
+" set breakpoints
+noremap <leader>b iimport ipdb; ipdb.set_trace() # BREAKPOINT<Esc>
+
