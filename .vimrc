@@ -119,3 +119,5 @@ inoremap jk <Esc>
 " set breakpoints
 noremap <leader>b iimport ipdb; ipdb.set_trace() # BREAKPOINT<Esc>
 
+" set background to black
+hi Normal ctermbg=16
