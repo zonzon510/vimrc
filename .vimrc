@@ -87,9 +87,6 @@ set nowrap
 set number
 
 
-" search  highlight colors
-hi Search ctermbg=LightBlue
-hi Search ctermfg=Black
 
 
 " automatic closing brackets
@@ -128,3 +125,7 @@ hi Normal ctermbg=16
 " set comment color
 hi Comment ctermbg=black
 hi Comment ctermfg=lightblue
+
+" search  highlight colors
+hi Search ctermbg=LightBlue
+hi Search ctermfg=Black
