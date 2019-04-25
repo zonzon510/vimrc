@@ -6,8 +6,14 @@ set softtabstop=4
 set expandtab
 set foldignore=
 
-" print for python with macro
-let @p = '^v$hxiprint\(\"pla, p'
-
 " set breakpoints
 noremap <leader>b iimport ipdb; ipdb.set_trace() # BREAKPOINT<Esc>
+
+" test
+" inoremap <buffer> ppp this_is_python
+
+
+"  python print command
+noremap <buffer> <leader>p ^v$hxaprint("pa"a, pa)^
+
+
