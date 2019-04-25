@@ -61,8 +61,19 @@ let g:semanticTermColors = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 2
 " let g:semanticTermColors = [1, 2, 3]
 " disable cached colors: this allows colors to persist across files
 let g:semanticUseCache = 0
+
 " color scheme
 Plugin 'BarretRen/vim-colorscheme'
+
+
+" HTML tag highlight
+Plugin 'gregsexton/MatchTag'
+" HTML navigation (without plugin)
+" move between matching tags:
+" 1. enter visual mode with v
+" a + t : whole tag 
+" i + t : inner tag select only
+" o: jump to opposite tag
 
 call vundle#end()
 "run 

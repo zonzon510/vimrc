@@ -1,10 +1,10 @@
 
 " fold settings (foldignore fixes python folding)
-set foldmethod=indent
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-set foldignore=
+setlocal foldmethod=indent
+setlocal shiftwidth=4
+setlocal softtabstop=4
+setlocal expandtab
+setlocal foldignore=
 
 " set breakpoints
 noremap <leader>b iimport ipdb; ipdb.set_trace() # BREAKPOINT<Esc>
