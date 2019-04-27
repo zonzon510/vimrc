@@ -79,6 +79,11 @@ Plugin 'gregsexton/MatchTag'
 
 " jedi autocompleteion for python
 Plugin 'davidhalter/jedi-vim'
+let g:jedi#popup_on_dot = 0
+
+" Plugin 'Valloric/YouCompleteMe'
+
+
 
 call vundle#end()
 "run 
