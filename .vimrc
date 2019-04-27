@@ -75,6 +75,11 @@ Plugin 'gregsexton/MatchTag'
 " i + t : inner tag select only
 " o: jump to opposite tag
 
+
+
+" jedi autocompleteion for python
+Plugin 'davidhalter/jedi-vim'
+
 call vundle#end()
 "run 
 "PluginUpdate
