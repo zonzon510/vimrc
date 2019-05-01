@@ -131,3 +131,8 @@ hi Comment ctermfg=lightblue
 " search  highlight colors
 hi Search ctermbg=LightBlue
 hi Search ctermfg=Black
+
+" search for string without regex
+vnoremap <leader>f yw/\V<C-r>"<Cr>
+
+
