@@ -103,6 +103,7 @@ inoremap <leader>' ''<left>
 inoremap <leader>[ []<left>
 inoremap <leader>{ {}<left>
 inoremap <leader>( ()<left>
+inoremap <leader>< <><left>
 
 
 
