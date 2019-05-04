@@ -136,4 +136,7 @@ hi Search ctermfg=Black
 " search for string without regex
 vnoremap <leader>f yw/\V<C-r>"<Cr>
 
+" add key for copying to clipboard
+" remember to install : vim-gtk first or it wont work
+vnoremap <leader>y "+y
 
