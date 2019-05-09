@@ -7,12 +7,6 @@
   go_left = <Primary>h
   go_right = <Primary>l
   go_up = <Primary>k
-  line_down = <Primary>e
-  line_up = <Primary>y
-  page_down = <Primary>f
-  page_down_half = <Primary>d
-  page_up = <Primary>b
-  page_up_half = <Primary>u
 [layouts]
   [[default]]
     [[[child1]]]
