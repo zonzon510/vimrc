@@ -1,9 +1,18 @@
 [global_config]
+  title_receive_bg_color = "#4e9a06"
+  title_transmit_bg_color = "#729fcf"
+  title_transmit_fg_color = "#eeeeec"
 [keybindings]
-  go_down = <Alt>J
-  go_left = <Alt>H
-  go_right = <Alt>L
-  go_up = <Alt>K
+  go_down = <Primary>j
+  go_left = <Primary>h
+  go_right = <Primary>l
+  go_up = <Primary>k
+  line_down = <Primary>e
+  line_up = <Primary>y
+  page_down = <Primary>f
+  page_down_half = <Primary>d
+  page_up = <Primary>b
+  page_up_half = <Primary>u
 [layouts]
   [[default]]
     [[[child1]]]
@@ -15,3 +24,4 @@
 [plugins]
 [profiles]
   [[default]]
+    cursor_color = "#aaaaaa"
