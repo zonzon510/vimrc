@@ -140,3 +140,17 @@ vnoremap <leader>f yw/\V<C-r>"<Cr>
 " remember to install : vim-gtk first or it wont work
 vnoremap <leader>y "+y
 
+" window switching
+nnoremap <leader>1 :1wincmd w<CR>
+nnoremap <leader>2 :2wincmd w<CR>
+nnoremap <leader>3 :3wincmd w<CR>
+nnoremap <leader>4 :4wincmd w<CR>
+nnoremap <leader>5 :5wincmd w<CR>
+nnoremap <leader>6 :6wincmd w<CR>
+nnoremap <leader>7 :7wincmd w<CR>
+nnoremap <leader>8 :8wincmd w<CR>
+nnoremap <leader>9 :9wincmd w<CR>
+" status line
+" set statusline=win:%{WindowNumber()}
+" call Pl#Theme#InsertSegment(win:%{WindowNumber()})
+" call Pl#Theme#InsertSegment('charcode', 'after', 'filetype')
