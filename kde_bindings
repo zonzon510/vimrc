@@ -28,7 +28,7 @@ run command on clipboard contents=Alt+Shift+F2
 
 [ksmserver][Global Shortcuts]
 Halt Without Confirmation=none
-Lock Session=Ctrl+Alt+L; Screensaver
+Lock Session=; Screensaver
 Log Out=none
 Log Out Without Confirmation=none
 Reboot Without Confirmation=none
@@ -81,9 +81,9 @@ Switch to Desktop 6=none
 Switch to Desktop 7=none
 Switch to Desktop 8=none
 Switch to Desktop 9=none
-Switch to Next Desktop=Ctrl+Alt+Right
+Switch to Next Desktop=Ctrl+Alt+L
 Switch to Next Screen=none
-Switch to Previous Desktop=Ctrl+Alt+Left
+Switch to Previous Desktop=Ctrl+Alt+H
 Switch to Previous Screen=none
 Switch to Screen 0=none
 Switch to Screen 1=none
