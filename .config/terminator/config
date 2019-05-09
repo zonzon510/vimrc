@@ -1,0 +1,17 @@
+[global_config]
+[keybindings]
+  go_down = <Alt>J
+  go_left = <Alt>H
+  go_right = <Alt>L
+  go_up = <Alt>K
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
