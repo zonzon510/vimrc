@@ -16,6 +16,7 @@ noremap <leader>b iimport ipdb; ipdb.set_trace() # BREAKPOINT<Esc>
 "  python print command
 noremap <buffer> <leader>p ^v$hxaprint("pa"a, pa)^
 
+set showbreak=->
 nnoremap <F10> <Esc>:w<CR>:!clear;python %<CR>
 
 

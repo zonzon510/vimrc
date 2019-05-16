@@ -154,3 +154,7 @@ nnoremap <leader>9 :9wincmd w<CR>
 " set statusline=win:%{WindowNumber()}
 " call Pl#Theme#InsertSegment(win:%{WindowNumber()})
 " call Pl#Theme#InsertSegment('charcode', 'after', 'filetype')
+"
+" toggle line wrapping 
+nnoremap <leader>w :set wrap! wrap?<CR>
+" 
