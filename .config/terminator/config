@@ -7,6 +7,10 @@
   go_left = <Primary>h
   go_right = <Primary>l
   go_up = <Primary>k
+  resize_down = <Primary><Shift>j
+  resize_left = <Primary><Shift>h
+  resize_right = <Primary><Shift>l
+  resize_up = <Primary><Shift>k
 [layouts]
   [[default]]
     [[[child1]]]
