@@ -163,3 +163,6 @@ nnoremap <leader>w :set wrap! wrap?<CR>
 
 " toggle nerdtree find
 nnoremap <leader>nf :NERDTreeFind<CR><c-w><c-p>
+
+" buffer
+nnoremap gb :ls<CR>:b<Space>

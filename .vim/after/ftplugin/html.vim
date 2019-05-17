@@ -1,6 +1,7 @@
 
 setlocal shiftwidth=2
 setlocal softtabstop=2
+setlocal foldmethod=indent
 
 "  comment
 vnoremap <buffer> <leader>c :s/^\(.*\)$/<!-- \1 -->/<Cr>:noh<Cr>
