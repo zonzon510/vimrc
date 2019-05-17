@@ -9,4 +9,7 @@ vnoremap <buffer> <leader>c :s/^\(.*\)$/<!-- \1 -->/<Cr>:noh<Cr>
 inoremap <buffer> <leader>t <Esc>bywi<<Esc>ea><><Esc>ha/<Esc>pF>i 
 
 
+" snippet
+nnoremap <buffer> <leader>html :-1read ~/.vim/snippet/start.html<CR>4jf>a
+
 
