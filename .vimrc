@@ -160,4 +160,6 @@ nnoremap <leader>9 :9wincmd w<CR>
 "
 " toggle line wrapping 
 nnoremap <leader>w :set wrap! wrap?<CR>
-" 
+
+" toggle nerdtree find
+nnoremap <leader>nf :NERDTreeFind<CR><c-w><c-p>
