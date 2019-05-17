@@ -84,6 +84,9 @@ let g:jedi#popup_on_dot = 0
 " Plugin 'Valloric/YouCompleteMe'
 
 
+" Nerdtree
+Plugin 'scrooloose/nerdtree'
+map <C-n> :NERDTreeToggle<CR>
 
 call vundle#end()
 "run 
