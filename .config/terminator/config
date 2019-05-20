@@ -3,14 +3,14 @@
   title_transmit_bg_color = "#729fcf"
   title_transmit_fg_color = "#eeeeec"
 [keybindings]
-  go_down = <Primary>j
-  go_left = <Primary>h
-  go_right = <Primary>l
-  go_up = <Primary>k
-  resize_down = <Primary><Shift>j
-  resize_left = <Primary><Shift>h
-  resize_right = <Primary><Shift>l
-  resize_up = <Primary><Shift>k
+  go_down = <Primary>Down
+  go_left = <Primary>Left
+  go_right = <Primary>Right
+  go_up = <Primary>Up
+  resize_down = <Primary><Shift>Down
+  resize_left = <Primary><Shift>Left
+  resize_right = <Primary><Shift>Right
+  resize_up = <Primary><Shift>Up
 [layouts]
   [[default]]
     [[[child1]]]
