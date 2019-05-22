@@ -166,3 +166,7 @@ nnoremap <leader>nf :NERDTreeFind<CR><c-w><c-p>
 
 " buffer
 nnoremap gb :ls<CR>:b<Space>
+
+" auto enter with colors
+autocmd BufEnter *.py :SemanticHighlight
+autocmd BufEnter *.js :SemanticHighlight
