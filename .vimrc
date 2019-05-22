@@ -170,3 +170,5 @@ nnoremap gb :ls<CR>:b<Space>
 " auto enter with colors
 autocmd BufEnter *.py :SemanticHighlight
 autocmd BufEnter *.js :SemanticHighlight
+autocmd BufEnter *.cpp :SemanticHighlight
+autocmd BufEnter *.h :SemanticHighlight
