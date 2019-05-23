@@ -85,6 +85,17 @@ Plugin 'Valloric/YouCompleteMe'
 let g:ycm_auto_trigger = 0
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
+" Plugin 'vim-syntastic/syntastic'
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0 
+
+" error checking with pylint
+Plugin 'w0rp/ale'
 
 " Nerdtree
 Plugin 'scrooloose/nerdtree'
