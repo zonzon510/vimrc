@@ -78,10 +78,12 @@ Plugin 'gregsexton/MatchTag'
 
 
 " jedi autocompleteion for python
-Plugin 'davidhalter/jedi-vim'
-let g:jedi#popup_on_dot = 0
+" Plugin 'davidhalter/jedi-vim'
+" let g:jedi#popup_on_dot = 0
 
-" Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
+let g:ycm_auto_trigger = 0
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
 
 " Nerdtree
