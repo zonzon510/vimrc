@@ -7,7 +7,7 @@ setlocal expandtab
 setlocal foldignore=
 
 " set breakpoints
-noremap <leader>b iimport ipdb; ipdb.set_trace() # BREAKPOINT<Esc>
+noremap <buffer> <leader>b iimport ipdb; ipdb.set_trace() # BREAKPOINT<Esc>
 
 " test
 " inoremap <buffer> ppp this_is_python
