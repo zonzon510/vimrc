@@ -11,6 +11,7 @@ augroup my_javascript
     au BufWinEnter <buffer> let foldlevelstart=1
     au BufWinEnter <buffer> let javaScript_fold=1
     au BufWinEnter <buffer> hi Folded ctermfg=LightBlue
+    au BufWinEnter <buffer> e
 augroup END
 
 let b:undo_ftplugin = get(b:, 'undo_ftplugin', 'exe')
