@@ -19,6 +19,11 @@ inoremap <buffer> <leader>t <Esc>wbywi<<Esc>ea><><Esc>ha/<Esc>pF>i
 " create beginning of jinja logic
 inoremap <buffer> <leader>j {%  %}<Esc>3ha
 
+" comment jinja logic statement (not whole line)
+nnoremap <buffer> <leader>jc i{#<Esc>l%a#}<Esc>
+" uncomment jinja logic statement (not whole line)
+nnoremap <buffer> <leader>juc xx%lxx
+
 " snippet
 nnoremap <buffer> <leader>html :-1read ~/.vim/snippet/start.html<CR>4jf>a
 
