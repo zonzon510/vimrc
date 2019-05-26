@@ -7,6 +7,11 @@ vnoremap <buffer> <leader>c :s/^\(.*\)$/<!--\1-->/<Cr>:noh<Cr>
 " uncomment
 vnoremap <buffer> <leader>uc :s/<!--\\|-->//g<Cr>:noh<Cr>
 
+" jinja comment
+vnoremap <buffer> <leader>jc :s/^\(.*\)$/{#\1#}/<Cr>:noh<Cr>
+" jinja uncomment
+vnoremap <buffer> <leader>juc :s/{#\\|#}//g<Cr>:noh<Cr>
+
 
 " create a tag while typing with <leader> t
 inoremap <buffer> <leader>t <Esc>wbywi<<Esc>ea><><Esc>ha/<Esc>pF>i 
