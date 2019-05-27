@@ -185,3 +185,7 @@ autocmd BufEnter *.py :SemanticHighlight
 autocmd BufEnter *.js :SemanticHighlight
 autocmd BufEnter *.cpp :SemanticHighlight
 autocmd BufEnter *.h :SemanticHighlight
+
+" break indent level matching
+set breakindent
+set display +=lastline
