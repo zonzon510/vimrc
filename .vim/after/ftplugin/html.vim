@@ -28,6 +28,11 @@ nnoremap <buffer> <leader>juc xx%lxx
 nnoremap <buffer> <leader>html :-1read ~/.vim/snippet/start.html<CR>4jf>a
 
 
+"remove all tabs/ indents at beginning of lines
+" and remove all blank lines
+nnoremap <buffer> <leader>com :g/^\s*$/d<CR>:%le<CR>:noh<CR>
+
+
 augroup my_html
     au!
     au BufWinEnter <buffer> setlocal foldmethod=indent
