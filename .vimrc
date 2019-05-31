@@ -133,6 +133,14 @@ command! MakeTags !ctags -R .
 " reload all open files
 " checkt[ime]
 
+" indicate trailing white space
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+au InsertLeave * match ExtraWhitespace /\s\+$/
+
+" moving indentation easier
+vnoremap < <gv
+vnoremap > >gv
+
 colorscheme monokai
 
 " get out of insert mode
