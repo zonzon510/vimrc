@@ -5,4 +5,4 @@ nnoremap j gj
 nnoremap k gk
 
 " snippet
-nnoremap <buffer> <leader>html :-1read ~/.vim/snippet/meeting.tex<CR>
+nnoremap <buffer> <leader>meeting :-1read ~/.vim/snippet/meeting.tex<CR>

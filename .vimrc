@@ -197,3 +197,6 @@ autocmd BufEnter *.h :SemanticHighlight
 " break indent level matching
 set breakindent
 set display +=lastline
+
+" set default latex filetype
+let g:tex_flavor = "latex"
