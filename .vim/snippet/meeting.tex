@@ -1,5 +1,9 @@
 \documentclass{beamer}
 \usepackage{graphicx}
+\usepackage[absolute, overlay]{textpos}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
 
 \title{Weekly Meeting}
 \author{Jonathon White}
@@ -19,17 +23,20 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{image}
-\includegraphics[height=5.5cm]{intensity.png}
-% \includegraphics[height=\textheight]{intensity.png}
-\end{frame}
-
-\begin{frame}
+\frametitle{coefficients then fields}
 \begin{columns}
 \column{.5\textwidth}
-column1
+\includegraphics[trim={2cm 0 0 0},height=8.5cm]{/home/jonathon/newton_data/tensorboard_graph/train_coefs_then_fields/csv/fig.png}
 \column{.5\textwidth}
-colum2n
+
+\begin{textblock*}{5cm}(7cm,2cm)
+\begin{equation*}
+C = \frac{1}{1}
+\end{equation*}
+\end{textblock*}
+
+
+\includegraphics[trim={2cm 0 0 0}, height=6cm]{/home/jonathon/newton_data/retrieval/train_coefs_then_fieldsmeasured_retrieval_while_training/100.png}
 \end{columns}
 \end{frame}
 
