@@ -12,7 +12,7 @@ noremap <buffer> <leader>b iimport ipdb; ipdb.set_trace() # BREAKPOINT<Esc>
 noremap <buffer> <leader>p ^v$hxaprint("pa"a, pa)^
 
 set showbreak=->
-nnoremap <F10> <Esc>:w<CR>:!clear;python %<CR>
+nnoremap <buffer> <F10> <Esc>:w<CR>:!clear;python %<CR>
 
 " move to line with same indentation
 nnoremap <buffer> <leader>, :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%<' . line('.') . 'l\S', 'be')<CR>
