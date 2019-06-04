@@ -33,7 +33,7 @@ set encoding=utf-8
 
 
 " VIM Fugutive
-" Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 
 
 
