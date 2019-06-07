@@ -200,3 +200,5 @@ set display +=lastline
 
 " set default latex filetype
 let g:tex_flavor = "latex"
+" incsearch
+set incsearch
