@@ -196,6 +196,7 @@ autocmd BufEnter *.h :SemanticHighlight
 
 " break indent level matching
 set breakindent
+set showbreak=->
 set display +=lastline
 
 " set default latex filetype
