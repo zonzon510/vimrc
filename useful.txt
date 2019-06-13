@@ -1,0 +1,9 @@
+--- find ----
+find . -name "thing.py"
+
+--- find then perform action ----
+find . -name "*.html" -type f | less
+find . -name "*.html" -type f -delete
+
+--- grep recursive -----
+grep -r --include "*.txt" "pattern" .
