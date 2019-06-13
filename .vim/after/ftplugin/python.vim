@@ -2,7 +2,7 @@
 " fold settings (foldignore fixes python folding)
 
 " set breakpoints
-noremap <buffer> <leader>b iimport ipdb; ipdb.set_trace() # BREAKPOINT<Esc>
+inoremap <buffer> <leader>break import ipdb; ipdb.set_trace() # BREAKPOINT<CR>print("BREAKPOINT")<Esc>
 
 " test
 " inoremap <buffer> ppp this_is_python
