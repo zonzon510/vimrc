@@ -7,6 +7,7 @@ augroup my_php
     au BufWinEnter <buffer> let foldlevelstart=1
     au BufWinEnter <buffer> let php_folding=2
     au BufWinEnter <buffer> hi Folded ctermfg=Green
+    au BufWinEnter <buffer> setlocal expandtab
     au BufWinEnter <buffer> e
     " au BufWinEnter <buffer> SemanticHighlight
 augroup END
