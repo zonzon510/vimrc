@@ -203,3 +203,29 @@ set display +=lastline
 let g:tex_flavor = "latex"
 " incsearch
 set incsearch
+
+" move up one indentation level
+fun! UpByIndent()
+	normal! m'
+	norm! ^
+	let start_col = col(".")
+	let col = start_col
+	while col >= start_col
+		norm! k^
+		if getline(".") =~# '^\s*$'
+			let col = start_col
+		elseif col(".") <= 1
+			return
+		else
+			let col = col(".")
+		endif
+	endwhile
+endfun
+nnoremap <c-p> :call UpByIndent()<cr>
+
+" move to line with same indentation
+nnoremap  <leader>, :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%<' . line('.') . 'l\S', 'be')<CR>
+nnoremap  <leader>. :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%>' . line('.') . 'l\S', 'e')<CR>
+
+" jump to next/previous method:
+" ]m / [m

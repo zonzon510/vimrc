@@ -17,6 +17,7 @@ augroup my_cpp
    au BufWinEnter <buffer> setlocal foldmethod=syntax
    au BufWinEnter <buffer> setlocal shiftwidth=2
    au BufWinEnter <buffer> setlocal softtabstop=2
+   au BufWinEnter <buffer> setlocal expandtab
 augroup END
 
 let b:undo_ftplugin = get(b:, 'undo_ftplugin', 'exe')
