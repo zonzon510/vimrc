@@ -229,3 +229,5 @@ nnoremap  <leader>. :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%>' 
 
 " jump to next/previous method:
 " ]m / [m
+
+let g:NERDTreeNodeDelimiter = "\u00a0"
