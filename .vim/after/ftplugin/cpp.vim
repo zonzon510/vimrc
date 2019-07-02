@@ -1,6 +1,8 @@
 
-" test
-" inoremap <buffer> ppp this_is_cpp
+" comment
+vnoremap <buffer> <leader>c :s/\(^\s*\)\@<=\S.*/\/\/ &<CR> :noh<CR>
+" uncomment
+vnoremap <buffer> <leader>uc :s/\/\/ //g<Cr>:noh<Cr>
 
 noremap <buffer> <leader>p ^v$hxastd::cout << pa << std::endl;
 
