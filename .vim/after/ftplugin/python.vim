@@ -1,3 +1,7 @@
+" comment
+vnoremap <buffer> <leader>c :s/\(^\s*\)\@<=\S.*/# &<CR> :noh<CR>
+" uncomment
+vnoremap <buffer> <leader>uc :s/# //g<Cr>:noh<Cr>
 
 " fold settings (foldignore fixes python folding)
 
