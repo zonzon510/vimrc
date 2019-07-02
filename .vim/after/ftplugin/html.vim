@@ -8,7 +8,7 @@ vnoremap <buffer> <leader>c :s/\(^\s*\)\@<=\S.*/<!--&--><CR> :noh<CR>
 vnoremap <buffer> <leader>uc :s/<!--\\|-->//g<Cr>:noh<Cr>
 
 " jinja comment
-vnoremap <buffer> <leader>jc :s/^\(.*\)$/{#\1#}/<Cr>:noh<Cr>
+vnoremap <buffer> <leader>jc :s/\(^\s*\)\@<=\S.*/{#&#}<CR> :noh<CR>
 " jinja uncomment
 vnoremap <buffer> <leader>juc :s/{#\\|#}//g<Cr>:noh<Cr>
 
