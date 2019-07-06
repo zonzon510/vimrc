@@ -231,3 +231,6 @@ nnoremap  <leader>. :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%>' 
 " ]m / [m
 
 let g:NERDTreeNodeDelimiter = "\u00a0"
+
+" command for toggleing line numbers
+nnoremap  <leader>nu :set invnumber<CR>
