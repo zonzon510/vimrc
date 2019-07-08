@@ -111,7 +111,7 @@ syntax on
 set hlsearch
 set cursorline
 set nowrap
-set number
+" set number
 
 " automatic closing brackets
 inoremap <leader>" ""<left>
