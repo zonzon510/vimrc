@@ -234,3 +234,7 @@ let g:NERDTreeNodeDelimiter = "\u00a0"
 
 " command for toggleing line numbers
 nnoremap  <leader>nu :set invnumber<CR>
+
+" in the current buffer window
+" show the file in nerdtree
+nnoremap <leader>cp :let @" = expand("%")<CR>:e <C-R>"<C-F>dT/<CR>/<C-R>"\><CR>
