@@ -1,0 +1,17 @@
+[1]
+Description=remove title bar
+noborder=true
+noborderrule=2
+wmclass=firefox|terminator
+wmclasscomplete=false
+wmclassmatch=3
+
+[General]
+XftAntialias[$d]
+XftHintStyle[$d]
+XftSubPixel[$d]
+count=1
+
+[KDE]
+LookAndFeelPackage[$d]
+SingleClick[$d]
