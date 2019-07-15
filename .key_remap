@@ -1,0 +1,7 @@
+to remap caps lock to control key:
+
+-- find the keycode for caps lock
+	run 'xev' and press key, get key code
+
+-- run xmodmap ~/myxmodremap
+
