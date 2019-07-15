@@ -238,3 +238,10 @@ nnoremap  <leader>nu :set invnumber<CR>
 " in the current buffer window
 " show the file in nerdtree
 nnoremap <leader>cp :let @" = expand("%")<CR>:e <C-R>"<C-F>dT/<CR>/<C-R>"\><CR>
+
+
+" quickfix jump list
+nnoremap [q :cprev <CR>
+nnoremap ]q :cnext <CR>
+nnoremap [Q :cfirst <CR>
+nnoremap ]Q :clast <CR>
