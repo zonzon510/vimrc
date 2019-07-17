@@ -250,3 +250,6 @@ nnoremap ]Q :clast <CR>
 
 " all files:
 " :vimgrep /pattern/gj **/*
+
+" when saving session, dont save options
+set sessionoptions-=options
