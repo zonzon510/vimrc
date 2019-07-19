@@ -16,9 +16,11 @@
 
 \begin{frame}
 \frametitle{title of frame}
--bullet point 1\\
--bullet point 2\\
--bullet point 3\\
+\begin{itemize}
+	\item{point 1}
+	\item{point 2}
+	\item{point 3}
+\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -26,12 +28,16 @@
 %\begin{textblock*}{width}(xpos, ypos)
 \begin{textblock*}{5cm}(1cm,1.3cm)
 %\includegraphics[trim={left bottom right top}, height=6cm]{}
-\includegraphics[trim=0cm 0cm 0cm 2.5cm, clip, height=9cm]{./image.png}
+% \includegraphics[trim=0cm 0cm 0cm 2.5cm, clip, height=9cm]{./image.png}
 \end{textblock*}
 \begin{textblock*}{5cm}(8cm,3cm)
-	-Dense Layer: 512 Neurons\\
-	-Dropout Probability: 20\%\\
-	-120k Training Samples\\
+
+\begin{itemize}
+	\item{Dense Layer: 512 Neurons}
+	\item{Dropout Probability: 20}
+	\item{120k Training Samples}
+\end{itemize}
+
 \end{textblock*}
 \end{frame}
 
