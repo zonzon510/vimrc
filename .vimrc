@@ -157,8 +157,11 @@ hi Comment ctermfg=lightblue
 hi Search ctermbg=LightBlue
 hi Search ctermfg=Black
 
-" search for string without regex
-vnoremap <leader>f yw/\V<C-r>"<Cr>
+" search for highlighted string without regex
+vnoremap <leader>f yb/\V<C-r>"<Cr>
+
+" search for word under cursor but dont jump to next result
+nnoremap <leader>f viwy:let @/='\<<C-R>"\>'<CR>:set hlsearch<CR>
 
 " add key for copying to clipboard
 " remember to install : vim-gtk first or it wont work
@@ -253,3 +256,6 @@ nnoremap ]Q :clast <CR>
 
 " when saving session, dont save options
 set sessionoptions-=options
+
+
+
