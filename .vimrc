@@ -162,7 +162,7 @@ vnoremap <leader>f yb/\V<C-r>"<Cr>
 
 " search for word under cursor but dont jump to next result
 " nnoremap <leader>f viwy:let @/='\<<C-R>"\>'<CR>:set hlsearch<CR>
-nnoremap <leader>f viwyb/<C-R>"<CR>
+nnoremap <leader>f viwyb/\<<C-R>"\><CR>
 
 " add key for copying to clipboard
 " remember to install : vim-gtk first or it wont work
