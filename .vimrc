@@ -144,7 +144,7 @@ vnoremap > >gv
 colorscheme monokai
 
 " get out of insert mode
-inoremap jk <Esc>
+" inoremap jk <Esc>
 
 " set background to black
 hi Normal ctermbg=16
@@ -155,6 +155,7 @@ hi Comment ctermfg=lightblue
 
 " search  highlight colors
 hi Search ctermbg=LightBlue
+" hi Search ctermbg=164
 hi Search ctermfg=Black
 
 " search for highlighted string without regex
