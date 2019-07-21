@@ -114,12 +114,12 @@ set nowrap
 " set number
 
 " automatic closing brackets
-inoremap <leader>" ""<left>
-inoremap <leader>' ''<left>
-inoremap <leader>[ []<left>
-inoremap <leader>{ {}<left>
-inoremap <leader>( ()<left>
-inoremap <leader>< <><left>
+inoremap ;" ""<left>
+inoremap ;' ''<left>
+inoremap ;[ []<left>
+inoremap ;{ {}<left>
+inoremap ;( ()<left>
+inoremap ;< <><left>
 
 
 
