@@ -9,6 +9,7 @@ do
 	if [ $avail -lt $threshold ]
 	then
 		notify-send "exceeded memory limit"
+		echo "killing firefox"
 		killall firefox
 	fi
 

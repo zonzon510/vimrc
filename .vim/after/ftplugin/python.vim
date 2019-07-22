@@ -6,11 +6,7 @@ vnoremap <buffer> <leader>uc :s/# //g<Cr>:noh<Cr>
 " fold settings (foldignore fixes python folding)
 
 " set breakpoints
-inoremap <buffer> <leader>break import ipdb; ipdb.set_trace() # BREAKPOINT<CR>print("BREAKPOINT")<Esc>
-
-" test
-" inoremap <buffer> ppp this_is_python
-
+inoremap <buffer> ;break import ipdb; ipdb.set_trace() # BREAKPOINT<CR>print("BREAKPOINT")<Esc>
 
 "  python print command
 noremap <buffer> <leader>p ^v$hxaprint("pa"a, pa)^
