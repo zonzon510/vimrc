@@ -101,6 +101,12 @@ Plugin 'scrooloose/nerdtree'
 map <C-n> :NERDTreeToggle<CR>
 
 call vundle#end()
+
+" set leader key to space
+let mapleader=" "
+nnoremap <SPACE> <Nop>
+vnoremap <SPACE> <Nop>
+
 "run 
 "PluginUpdate
 filetype plugin indent on
