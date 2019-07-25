@@ -176,6 +176,9 @@ nnoremap <leader>af viwyb/<C-R>/\\|\<<C-R>"\><CR>
 " same thing in visual mode
 vnoremap <leader>af yb/<C-R>/\\|\V<C-r>"<CR>
 
+" remove most recently added seach item
+nnoremap <leader>rf /<C-R>/<C-F>F\|hd$<CR>
+
 " add key for copying to clipboard
 " remember to install : vim-gtk first or it wont work
 vnoremap <leader>y "+y
