@@ -177,7 +177,8 @@ nnoremap <leader>af viwyb/<C-R>/\\|\<<C-R>"\><CR>
 vnoremap <leader>af yb/<C-R>/\\|\V<C-r>"<CR>
 
 " remove most recently added seach item
-nnoremap <leader>rf /<C-R>/<C-F>F\|hd$<CR>
+nnoremap <leader>rf :let @/ = '<C-R>/<C-F>F\|hd$a'<ESC><CR>
+
 
 " add key for copying to clipboard
 " remember to install : vim-gtk first or it wont work
