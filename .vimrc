@@ -170,6 +170,12 @@ vnoremap <leader>f yb/\V<C-r>"<Cr>
 " nnoremap <leader>f viwy:let @/='\<<C-R>"\>'<CR>:set hlsearch<CR>
 nnoremap <leader>f viwyb/\<<C-R>"\><CR>
 
+" add a word to to search, searching for multiple words
+nnoremap <leader>af viwyb/<C-R>/\\|\<<C-R>"\><CR>
+
+" same thing in visual mode
+vnoremap <leader>af yb/<C-R>/\\|\V<C-r>"<CR>
+
 " add key for copying to clipboard
 " remember to install : vim-gtk first or it wont work
 vnoremap <leader>y "+y
