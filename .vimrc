@@ -275,4 +275,12 @@ nnoremap ]Q :clast <CR>
 set sessionoptions-=options
 
 
+" grep
+nnoremap <leader>gr yiw:grep -rIw "<C-R>"" * <CR><CR>
+
+vnoremap <leader>gr y:grep -rI "<C-R>"" * <CR><CR>
+
+" close split without resizing windows
+set noea
+
 
