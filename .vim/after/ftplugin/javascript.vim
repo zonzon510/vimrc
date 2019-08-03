@@ -6,6 +6,9 @@ vnoremap <buffer> <leader>c :s/\(^\s*\)\@<=\S.*/\/\/ &<CR> :noh<CR>
 " uncomment
 vnoremap <buffer> <leader>uc :s/\/\/ //g<Cr>:noh<Cr>
 
+" tags
+inoremap <buffer> ;t <Esc>wbywi<<Esc>ea><><Esc>ha/<Esc>pF>i
+
 augroup my_javascript
     au!
     au BufWinEnter <buffer> setlocal foldmethod=indent
