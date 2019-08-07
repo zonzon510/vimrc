@@ -283,4 +283,6 @@ vnoremap <leader>gr y:grep -rI "<C-R>"" * <CR><CR>
 " close split without resizing windows
 set noea
 
-
+" left and right keys in command mode
+cmap HH <left>
+cmap LL <right>
