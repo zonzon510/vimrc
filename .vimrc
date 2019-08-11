@@ -35,6 +35,9 @@ set encoding=utf-8
 " VIM Fugutive
 Plugin 'tpope/vim-fugitive'
 
+" vim surround
+Plugin 'tpope/vim-surround'
+
 
 
 " vim indent guides
