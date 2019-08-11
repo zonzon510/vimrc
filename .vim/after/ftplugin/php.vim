@@ -2,6 +2,9 @@
 vnoremap <buffer> <leader>c :s/\(^\s*\)\@<=\S.*/\/\/ &<CR> :noh<CR>
 " uncomment
 vnoremap <buffer> <leader>uc :s/\/\/ //g<Cr>:noh<Cr>
+"print to error log
+nnoremap <buffer> <leader>p ^d$aerror_log(print_r(<C-R>", true));<Esc>
+
 
 augroup my_php
     au!
