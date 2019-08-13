@@ -180,7 +180,8 @@ nnoremap <leader>af viwyb/<C-R>/\\|\<<C-R>"\><CR>
 vnoremap <leader>af yb/<C-R>/\\|\V<C-r>"<CR>
 
 " remove most recently added seach item
-nnoremap <leader>rf :let @/ = '<C-R>/<C-F>F\|hd$a'<ESC><CR>
+" nnoremap <leader>rf :let @/ = '<C-R>/<C-F>F\|hd$a'<ESC><CR>
+nnoremap <leader>rf msHmt/<C-P><C-F>F\|hd$<CR>`tzt's
 
 
 " add key for copying to clipboard
