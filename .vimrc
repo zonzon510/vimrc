@@ -289,3 +289,6 @@ set noea
 " left and right keys in command mode
 cmap HH <left>
 cmap LL <right>
+
+" set search to previously searched pattern
+nnoremap <leader>sp msHmt/<C-p><C-p><CR>'tzt's
