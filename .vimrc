@@ -181,7 +181,7 @@ vnoremap <leader>af yb/<C-R>/\\|\V<C-r>"<CR>
 
 " remove most recently added seach item
 " nnoremap <leader>rf :let @/ = '<C-R>/<C-F>F\|hd$a'<ESC><CR>
-nnoremap <leader>rf msHmt/<C-P><C-F>F\|hd$<CR>`tzt's
+nnoremap <leader>rf msHmt/<C-P><C-F>F\|hd$<CR>`tzt`s
 
 
 " add key for copying to clipboard
@@ -280,9 +280,9 @@ set sessionoptions-=options
 
 
 " grep-
-nnoremap <leader>gr yiw:grep -rIw "<C-R>"" * <CR><CR>
+nnoremap <leader>gr yiwmsHmt:grep -rIw "<C-R>"" * <CR><CR><C-o>`tzt`s
 
-vnoremap <leader>gr y:grep -rI "<C-R>"" * <CR><CR>
+vnoremap <leader>gr ymsHmt:grep -rI "<C-R>"" * <CR><CR><C-o>`tzt`s
 
 " close split without resizing windows
 set noea
