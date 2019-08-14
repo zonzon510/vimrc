@@ -299,3 +299,5 @@ nnoremap <leader>sp msHmt/<C-p><C-p><CR>'tzt's
 " diffthis
 " disable:
 " diffoff!
+"
+nnoremap gc :copen 
