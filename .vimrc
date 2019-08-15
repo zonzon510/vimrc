@@ -58,7 +58,6 @@ set updatetime=100
 
 Plugin 'jaxbot/semantic-highlight.vim'
 " semantic highlighting
-nnoremap <leader>s :SemanticHighlightToggle<cr>
 let g:semanticTermColors = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 21, 57, 93, 129, 165, 201, 46, 82, 118, 154, 190, 226, 51, 87, 123, 159, 195, 231]
 " let g:semanticTermColors = [1, 2, 3]
 " disable cached colors: this allows colors to persist across files
@@ -109,6 +108,9 @@ call vundle#end()
 let mapleader=" "
 nnoremap <SPACE> <Nop>
 vnoremap <SPACE> <Nop>
+
+" toggle semantic highlighting
+nnoremap <leader>s :SemanticHighlightToggle<cr>
 
 "run 
 "PluginUpdate
@@ -207,16 +209,16 @@ nnoremap <leader>9 :9wincmd w<CR>
 nnoremap <leader>w :set wrap! wrap?<CR>
 
 " toggle nerdtree find
-nnoremap <leader>nf :NERDTreeFind<CR><c-w><c-p>
+nnoremap <leader>nf :NERDTreeFind<CR>
 
 " buffer
 nnoremap gb :ls<CR>:b<Space>
 
 " auto enter with colors
-autocmd BufEnter *.py :SemanticHighlight
-autocmd BufEnter *.js :SemanticHighlight
-autocmd BufEnter *.cpp :SemanticHighlight
-autocmd BufEnter *.h :SemanticHighlight
+" autocmd BufEnter *.py :SemanticHighlight
+" autocmd BufEnter *.js :SemanticHighlight
+" autocmd BufEnter *.cpp :SemanticHighlight
+" autocmd BufEnter *.h :SemanticHighlight
 
 " break indent level matching
 set breakindent
