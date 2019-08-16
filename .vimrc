@@ -145,8 +145,9 @@ command! MakeTags !ctags -R .
 " checkt[ime]
 
 " indicate trailing white space
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-au InsertLeave * match ExtraWhitespace /\s\+$/
+" autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+" au InsertLeave * match ExtraWhitespace /\s\+$/
+" this is broken right now
 
 " moving indentation easier
 vnoremap < <gv
