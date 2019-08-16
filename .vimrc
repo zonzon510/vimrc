@@ -110,7 +110,8 @@ nnoremap <SPACE> <Nop>
 vnoremap <SPACE> <Nop>
 
 " toggle semantic highlighting
-nnoremap <leader>s :SemanticHighlightToggle<cr>
+nnoremap <leader>ss :SemanticHighlightToggle<cr>
+nnoremap <leader>so :SemanticHighlight<cr>
 
 "run 
 "PluginUpdate
