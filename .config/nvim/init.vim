@@ -8,6 +8,17 @@ tnoremap <A-j> <C-\><C-N><C-w>j
 tnoremap <A-k> <C-\><C-N><C-w>k
 tnoremap <A-l> <C-\><C-N><C-w>l
 tnoremap <A-n> <C-\><C-N>
+
+" terminal
+" move to previous window
+tnoremap <C-w>p <C-\><C-N><C-w><C-p>
+tnoremap <C-w><C-p> <C-\><C-N><C-w><C-p>
+
+" terminal
+" switch to normal mode
+tnoremap <C-w>N <C-\><C-N>
+
+
 inoremap <A-h> <C-\><C-N><C-w>h
 inoremap <A-j> <C-\><C-N><C-w>j
 inoremap <A-k> <C-\><C-N><C-w>k
