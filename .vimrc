@@ -414,6 +414,10 @@ nnoremap <leader>gr yiwmsHmt:grep -rIw "<C-R>"" * <CR><CR><C-o>`tzt`s
 
 vnoremap <leader>gr ymsHmt:grep -rI "<C-R>"" * <CR><CR><C-o>`tzt`s
 
+nnoremap <leader>gg yiwmsHmt:grep -rIw "<C-R>"" *
+
+vnoremap <leader>gg ymsHmt:grep -rI "<C-R>"" *
+
 " close split without resizing windows
 set noea
 
