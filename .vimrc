@@ -169,8 +169,9 @@ set t_Co=256
 "colors:
 
 " indicate trailing white space
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-au InsertLeave * match ExtraWhitespace /\s\+$/ 
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace / \+$/
+au InsertLeave * match ExtraWhitespace /\s\+$/
 
 hi Cursor ctermfg=235 ctermbg=231 cterm=NONE guifg=#272822 guibg=#f8f8f0 gui=NONE
 hi Visual ctermfg=NONE ctermbg=59 cterm=NONE guifg=NONE guibg=#49483e gui=NONE
