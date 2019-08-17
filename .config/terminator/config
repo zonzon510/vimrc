@@ -7,6 +7,7 @@
   go_left = <Primary>Left
   go_right = <Primary>Right
   go_up = <Primary>Up
+  layout_launcher = None
   resize_down = <Primary><Shift>Down
   resize_left = <Primary><Shift>Left
   resize_right = <Primary><Shift>Right

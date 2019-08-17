@@ -98,6 +98,10 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 " error checking with pylint
 Plugin 'w0rp/ale'
 
+
+" gdb
+Plugin 'sakhnik/nvim-gdb'
+
 " Nerdtree
 Plugin 'scrooloose/nerdtree'
 map <C-n> :NERDTreeToggle<CR>
@@ -144,9 +148,6 @@ command! MakeTags !ctags -R .
 " reload all open files
 " checkt[ime]
 
-" indicate trailing white space
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-au InsertLeave * match ExtraWhitespace /\s\+$/
 
 " moving indentation easier
 vnoremap < <gv
@@ -166,6 +167,10 @@ endif
 set t_Co=256
 " let g:colors_name = "monokai"
 "colors:
+
+" indicate trailing white space
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+au InsertLeave * match ExtraWhitespace /\s\+$/ 
 
 hi Cursor ctermfg=235 ctermbg=231 cterm=NONE guifg=#272822 guibg=#f8f8f0 gui=NONE
 hi Visual ctermfg=NONE ctermbg=59 cterm=NONE guifg=NONE guibg=#49483e gui=NONE
