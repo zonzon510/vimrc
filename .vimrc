@@ -439,7 +439,6 @@ fun! MyGrepSilent(sargs, pattern)
 	let s:set_semantic = 0
 	if exists('b:semanticOn')
 		if b:semanticOn == 1
-			echo "semantic is on"
 			let s:set_semantic = 1
 		endif
 	endif
