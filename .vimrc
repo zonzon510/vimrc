@@ -410,13 +410,27 @@ set sessionoptions-=options
 
 
 " grep-
-nnoremap <leader>gr yiwmsHmt:grep -rIw "<C-R>"" * <CR><CR><C-o>`tzt`s
+fun! MyGrep(sargs, pattern)
+	let s:lines = readfile('.grepignore')
+	let s:files = ''
+	for s:line in s:lines
+		let s:files = s:files . s:line . ","
+	endfor
 
-vnoremap <leader>gr ymsHmt:grep -rI "<C-R>"" * <CR><CR><C-o>`tzt`s
+	let s:commandstr = ':grep '.a:sargs.' --exclude-dir={' . s:files.'} '."'".a:pattern."' *"
+	" type keys
+	call feedkeys(s:commandstr)
+	" execute immediately
+	" :execute s:commandstr
+endfun
+nnoremap <leader>gg yiw:call MyGrep('-rIw', "<C-R>"")<cr>
 
-nnoremap <leader>gg yiwmsHmt:grep -rIw "<C-R>"" *
+vnoremap <leader>gg y:call MyGrep('-rI', "<C-R>"")<cr>
 
-vnoremap <leader>gg ymsHmt:grep -rI "<C-R>"" *
+" nnoremap <leader>gr yiwmsHmt:grep -rIw "<C-R>"" * <CR><CR><C-o>`tzt`s
+
+" vnoremap <leader>gr ymsHmt:grep -rI "<C-R>"" * <CR><CR><C-o>`tzt`s
+
 
 " close split without resizing windows
 set noea
