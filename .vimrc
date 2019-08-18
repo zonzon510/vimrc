@@ -116,7 +116,7 @@ vnoremap <SPACE> <Nop>
 
 " toggle semantic highlighting
 nnoremap <leader>ss :SemanticHighlightToggle<cr>
-nnoremap <leader>so :SemanticHighlight<cr>
+" nnoremap <leader>so :SemanticHighlight<cr>
 
 "run 
 "PluginUpdate
@@ -435,6 +435,15 @@ endfun
 
 
 fun! MyGrepSilent(sargs, pattern)
+	" check if semantic highlighting is set
+	let s:set_semantic = 0
+	if exists('b:semanticOn')
+		if b:semanticOn == 1
+			echo "semantic is on"
+			let s:set_semantic = 1
+		endif
+	endif
+
 	" if ignore directories dont exist, create them
 	:execute "silent !touch ./.grepignoredir > /dev/null 2>&1"
 	:execute "silent !touch ./.grepignorefile > /dev/null 2>&1"
@@ -459,7 +468,9 @@ fun! MyGrepSilent(sargs, pattern)
 	" return to the original position
 	:execute "normal! \<C-o>`tzt`s"
 	" turn on semantic highlight
-	:execute ":SemanticHighlight"
+	if s:set_semantic == 1
+		:execute ":SemanticHighlight"
+	endif
 
 endfun
 
