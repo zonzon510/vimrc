@@ -411,13 +411,19 @@ set sessionoptions-=options
 
 " grep-
 fun! MyGrep(sargs, pattern)
-	let s:lines = readfile('.grepignore')
-	let s:files = ''
+	let s:lines = readfile('.grepignoredir')
+	let s:dirs_ignore = ''
 	for s:line in s:lines
-		let s:files = s:files . s:line . ","
+		let s:dirs_ignore = s:dirs_ignore . s:line . ","
 	endfor
 
-	let s:commandstr = ':grep '.a:sargs.' --exclude-dir={' . s:files.'} '."'".a:pattern."' *"
+	let s:lines = readfile('.grepignorefile')
+	let s:files_ignore = ''
+	for s:line in s:lines
+		let s:files_ignore = s:files_ignore . s:line . ","
+	endfor
+
+	let s:commandstr = ':grep '.a:sargs.' --exclude={'.s:files_ignore.'} --exclude-dir={' . s:dirs_ignore.'} '."'".a:pattern."' *"
 	" type keys
 	call feedkeys(s:commandstr)
 	" execute immediately
