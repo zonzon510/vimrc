@@ -411,6 +411,9 @@ set sessionoptions-=options
 
 " grep-
 fun! MyGrep(sargs, pattern)
+	" if ignore directories dont exist, create them
+	:execute "silent !touch ./.grepignoredir > /dev/null 2>&1"
+	:execute "silent !touch ./.grepignorefile > /dev/null 2>&1"
 	let s:lines = readfile('.grepignoredir')
 	let s:dirs_ignore = ''
 	for s:line in s:lines
