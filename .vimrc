@@ -458,6 +458,9 @@ fun! MyGrepSilent(sargs, pattern)
 	:execute s:commandstr
 	" return to the original position
 	:execute "normal! \<C-o>`tzt`s"
+	" turn on semantic highlight
+	:execute ":SemanticHighlight"
+
 endfun
 
 nnoremap <leader>gg yiw:call MyGrep('-rIw', "<C-R>"")<cr>
