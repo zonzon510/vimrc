@@ -432,14 +432,41 @@ fun! MyGrep(sargs, pattern)
 	" execute immediately
 	" :execute s:commandstr
 endfun
+
+
+fun! MyGrepSilent(sargs, pattern)
+	" if ignore directories dont exist, create them
+	:execute "silent !touch ./.grepignoredir > /dev/null 2>&1"
+	:execute "silent !touch ./.grepignorefile > /dev/null 2>&1"
+	let s:lines = readfile('.grepignoredir')
+	let s:dirs_ignore = ''
+	for s:line in s:lines
+		let s:dirs_ignore = s:dirs_ignore . s:line . ","
+	endfor
+
+	let s:lines = readfile('.grepignorefile')
+	let s:files_ignore = ''
+	for s:line in s:lines
+		let s:files_ignore = s:files_ignore . s:line . ","
+	endfor
+
+	let s:commandstr = ':silent grep '.a:sargs.' --exclude={'.s:files_ignore.'} --exclude-dir={' . s:dirs_ignore.'} '."'".a:pattern."' *"
+
+	" set marks for current screen position
+	:execute "normal! msHmt"
+	" call grep
+	:execute s:commandstr
+	" return to the original position
+	:execute "normal! \<C-o>`tzt`s"
+endfun
+
 nnoremap <leader>gg yiw:call MyGrep('-rIw', "<C-R>"")<cr>
 
 vnoremap <leader>gg y:call MyGrep('-rI', "<C-R>"")<cr>
 
-" nnoremap <leader>gr yiwmsHmt:grep -rIw "<C-R>"" * <CR><CR><C-o>`tzt`s
+nnoremap <leader>gr yiw:call MyGrepSilent('-rIw', "<C-R>"")<cr>
 
-" vnoremap <leader>gr ymsHmt:grep -rI "<C-R>"" * <CR><CR><C-o>`tzt`s
-
+vnoremap <leader>gr y:call MyGrepSilent('-rI', "<C-R>"")<cr>
 
 " close split without resizing windows
 set noea
