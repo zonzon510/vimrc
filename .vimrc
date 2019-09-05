@@ -375,7 +375,7 @@ fun! UpByIndent()
 		endif
 	endwhile
 endfun
-nnoremap <c-p> :call UpByIndent()<cr>
+nmap <c-p> :call UpByIndent()<cr>
 
 " move to line with same indentation
 nnoremap <c-k> m`:call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%<' . line('.') . 'l\S', 'be')<CR>
