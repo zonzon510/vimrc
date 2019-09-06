@@ -4,7 +4,10 @@ vnoremap <buffer> <leader>c :s/\(^\s*\)\@<=\S.*/\/\/ &<CR> :noh<CR>
 " uncomment
 vnoremap <buffer> <leader>uc :s/\/\/ //g<Cr>:noh<Cr>
 
-noremap <buffer> <leader>p ^v$hxastd::cout << pa << std::endl;
+" noremap <buffer> <leader>p ^v$hxastd::cout << pa << std::endl;
+nnoremap <buffer> <leader>p ^vg_xastd::cout << "<C-r>"" << " => " << <C-r>" << std::endl;<ESC>
+
+
 
 " get type with ycm
 noremap <buffer> <leader>k :YcmCompleter GetType<CR>
@@ -13,8 +16,9 @@ noremap <buffer> <leader>k :YcmCompleter GetType<CR>
 nmap <buffer> <c-p> [{
 
 
-nnoremap <F10> <Esc>:w<CR>:!clear;g++ % -o output.out; ./output.out<CR>
-nnoremap <F9> <Esc>:w<CR>:!clear;g++ % -g -o output.out<CR>
+" nnoremap <F10> <Esc>:w<CR>:!clear;g++ % -o output.out; ./output.out<CR>
+" nnoremap <F9> <Esc>:w<CR>:!clear;g++ % -g -o output.out<CR>
+nnoremap <F10> :!cmake --build . <CR>
 
 
 augroup my_cpp

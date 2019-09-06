@@ -86,6 +86,7 @@ Plugin 'gregsexton/MatchTag'
 Plugin 'Valloric/YouCompleteMe'
 let g:ycm_auto_trigger = 0
 let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_show_diagnostics_ui = 0
 
 " Plugin 'vim-syntastic/syntastic'
 " set statusline+=%#warningmsg#
@@ -113,6 +114,13 @@ call vundle#end()
 let mapleader=" "
 nnoremap <SPACE> <Nop>
 vnoremap <SPACE> <Nop>
+
+" toggle ale linting
+nmap <leader>l :ALEToggle <CR>
+" ale highlight colors
+highlight ALEWarning ctermbg=NONE cterm=inverse
+highlight ALEError ctermbg=NONE cterm=inverse
+" this isnt working for some reason
 
 " toggle semantic highlighting
 nnoremap <leader>ss :SemanticHighlightToggle<cr>
