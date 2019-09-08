@@ -4,8 +4,8 @@ vnoremap <buffer> <leader>c :s/\(^\s*\)\@<=\S.*/\/\/ &<CR> :noh<CR>
 " uncomment
 vnoremap <buffer> <leader>uc :s/\/\/ //g<Cr>:noh<Cr>
 
-" noremap <buffer> <leader>p ^v$hxastd::cout << pa << std::endl;
-nnoremap <buffer> <leader>p ^vg_xastd::cout << "<C-r>"" << " => " << <C-r>" << std::endl;<ESC>
+noremap <buffer> <leader>pp ^v$hxastd::cout << pa << std::endl;
+nnoremap <buffer> <leader>pv ^vg_xastd::cout << "<C-r>"" << " => " << <C-r>" << std::endl;<ESC>
 
 
 
