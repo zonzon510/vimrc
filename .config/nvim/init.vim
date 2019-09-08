@@ -48,3 +48,6 @@ nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
 
+" quick ctrl+E / Y
+nnoremap <C-A-e> 5<C-e>
+nnoremap <C-A-y> 5<C-y>
