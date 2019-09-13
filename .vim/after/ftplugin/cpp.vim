@@ -29,6 +29,8 @@ inoremap <buffer> <space><space> <Esc>:call JumptoNext("/", "<++>")<cr>"_c4l
 inoremap <buffer> ;for for(<++>;<++>;<++>){<cr><++><cr>}<ESC>:call JumptoNext("?", "for")<cr> :call JumptoNext("/", "<++>")<cr>"_c4l
 " while loop
 inoremap <buffer> ;while while(<++>){<cr><++><cr>}<ESC> :call JumptoNext("?", "while")<cr> :call JumptoNext("/", "<++>")<cr>"_c4l
+" close bracket
+inoremap <buffer> ;<space> <Esc>A;<Esc>
 
 
 

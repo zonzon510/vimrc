@@ -9,6 +9,9 @@ vnoremap <buffer> <leader>uc :s/\/\/ //g<Cr>:noh<Cr>
 " tags
 inoremap <buffer> ;t <Esc>wbywi<<Esc>ea><><Esc>ha/<Esc>pF>i
 
+" move up by bracket
+nmap <buffer> <c-p> [{
+
 augroup my_javascript
     au!
     au BufWinEnter <buffer> setlocal foldmethod=indent
