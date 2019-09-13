@@ -7,24 +7,6 @@ vnoremap <buffer> <leader>uc :s/\/\/ //g<Cr>:noh<Cr>
 noremap <buffer> <leader>pp ^v$hxastd::cout << pa << std::endl;
 nnoremap <buffer> <leader>pv ^vg_xastd::cout << "<C-r>"" << " => " << <C-r>" << std::endl;<ESC>
 
-
-
-fun! JumptoNext(direction, jump_to)
-	" save old search
-	let old = @/
-
-	" jump to next <++>
-	" let cmdstring = a:direction."<++>\<cr>"
-	let cmdstring = a:direction.a:jump_to."\<cr>"
-	:execute "normal! ".cmdstring
-
-	" restore search
-	call histdel('/', -1)
-	let @/ = old
-endfun
-
-" jump points
-inoremap <buffer> <space><space> <Esc>:call JumptoNext("/", "<++>")<cr>"_c4l
 " for loop
 inoremap <buffer> ;for for(<++>;<++>;<++>){<cr><++><cr>}<ESC>:call JumptoNext("?", "for")<cr> :call JumptoNext("/", "<++>")<cr>"_c4l
 " while loop

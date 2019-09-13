@@ -506,3 +506,20 @@ nnoremap <leader>sp msHmt/<C-p><C-p><CR>'tzt's
 " diffoff!
 "
 nnoremap gc :copen 
+
+fun! JumptoNext(direction, jump_to)
+	" save old search
+	let old = @/
+
+	" jump to next <++>
+	" let cmdstring = a:direction."<++>\<cr>"
+	let cmdstring = a:direction.a:jump_to."\<cr>"
+	:execute "normal! ".cmdstring
+
+	" restore search
+	call histdel('/', -1)
+	let @/ = old
+endfun
+
+" jump points
+inoremap <space><space> <Esc>:call JumptoNext("/", "<++>")<cr>"_c4l
