@@ -304,22 +304,23 @@ hi Comment ctermfg=lightblue
 " hi Search ctermbg=164
 " hi Search ctermfg=Black
 
+" ---------------------------------------
+" add and remove items from search patterns
+" ---------------------------------------
 " search for highlighted string without regex
 vnoremap <leader>f yb/\V<C-r>"<Cr>
-
 " search for word under cursor but dont jump to next result
 " nnoremap <leader>f viwy:let @/='\<<C-R>"\>'<CR>:set hlsearch<CR>
 nnoremap <leader>f viwyb/\<<C-R>"\><CR>
-
 " add a word to to search, searching for multiple words
 nnoremap <leader>af viwyb/<C-R>/\\|\<<C-R>"\><CR>
-
 " same thing in visual mode
 vnoremap <leader>af yb/<C-R>/\\|\V<C-r>"<CR>
-
 " remove most recently added seach item
 " nnoremap <leader>rf :let @/ = '<C-R>/<C-F>F\|hd$a'<ESC><CR>
 nnoremap <leader>rf msHmt/<C-P><C-F>F\|hd$<CR>`tzt`s
+" set search to previously searched pattern
+nnoremap <leader>sp msHmt/<C-p><C-p><CR>`tzt`s
 
 
 " add key for copying to clipboard
@@ -495,9 +496,6 @@ set noea
 " left and right keys in command mode
 cmap HH <left>
 cmap LL <right>
-
-" set search to previously searched pattern
-nnoremap <leader>sp msHmt/<C-p><C-p><CR>`tzt`s
 
 " diff mode
 " enable diff mode
