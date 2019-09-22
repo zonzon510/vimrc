@@ -4,7 +4,7 @@ noremap <buffer> <leader>p ^v$hxaconsole.log("pa", pa);
 " comment
 vnoremap <buffer> <leader>c :s/\(^\s*\)\@<=\S.*/\/\/ &<CR> :noh<CR>
 " uncomment
-vnoremap <buffer> <leader>uc :s/\/\/ //g<Cr>:noh<Cr>
+vnoremap <buffer> <leader>uc :s/\/\/ //<Cr>:noh<Cr>
 
 " tags
 inoremap <buffer> ;t <Esc>wbywi<<Esc>ea><><Esc>ha/<Esc>pF>i
