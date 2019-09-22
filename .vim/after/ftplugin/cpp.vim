@@ -13,6 +13,7 @@ inoremap <buffer> ;for for(<++>;<++>;<++>){<cr><++><cr>}<ESC>:call JumptoNext("?
 inoremap <buffer> ;while while(<++>){<cr><++><cr>}<ESC> :call JumptoNext("?", "while")<cr> :call JumptoNext("/", "<++>")<cr>"_c4l
 " close bracket
 inoremap <buffer> ;; <Esc>A;<Esc>
+inoremap <buffer> ;def <Esc>maa<++> <++>(<++>){<cr><++><cr>}<ESC>`ac4l
 
 
 
