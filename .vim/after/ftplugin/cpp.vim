@@ -1,8 +1,27 @@
+fun! CppComment()
+	" save old search
+	let old = @/
+	" comment
+	:execute ':s/\(^\s*\)\@<=\S.*/\/\/ &'
+	" restore search
+	call histdel('/', -1)
+	let @/ = old
+endfun
+
+fun! CppUnComment()
+	" save old search
+	let old = @/
+	" uncomment
+	:execute ":s".'/\/\/ //'
+	" restore search
+	call histdel('/', -1)
+	let @/ = old
+endfun
 
 " comment
-vnoremap <buffer> <leader>c :s/\(^\s*\)\@<=\S.*/\/\/ &<CR> :noh<CR>
+vnoremap <buffer> <leader>c :call CppComment()<CR>
 " uncomment
-vnoremap <buffer> <leader>uc :s/\/\/ //<Cr>:noh<Cr>
+vnoremap <buffer> <leader>uc :call CppUnComment()<Cr>
 
 noremap <buffer> <leader>pp ^v$hxastd::cout << pa << std::endl;
 nnoremap <buffer> <leader>pv ^vg_xastd::cout << "<C-r>"" << " => " << <C-r>" << std::endl;<ESC>
