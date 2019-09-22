@@ -12,6 +12,9 @@ inoremap <buffer> ;t <Esc>wbywi<<Esc>ea><><Esc>ha/<Esc>pF>i
 " move up by bracket
 nmap <buffer> <c-p> [{
 
+" close bracket
+inoremap <buffer> ;; <Esc>A;<Esc>
+
 augroup my_javascript
     au!
     au BufWinEnter <buffer> setlocal foldmethod=indent
