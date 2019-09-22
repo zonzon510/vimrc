@@ -497,7 +497,7 @@ cmap HH <left>
 cmap LL <right>
 
 " set search to previously searched pattern
-nnoremap <leader>sp msHmt/<C-p><C-p><CR>'tzt's
+nnoremap <leader>sp msHmt/<C-p><C-p><CR>`tzt`s
 
 " diff mode
 " enable diff mode
