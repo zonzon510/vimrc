@@ -1,7 +1,27 @@
+fun! PythonComment()
+	" save old search
+	let old = @/
+	" comment
+	:execute ':s/\(^\s*\)\@<=\S.*/# &'
+	" restore search
+	call histdel('/', -1)
+	let @/ = old
+endfun
+
+fun! PythonUnComment()
+	" save old search
+	let old = @/
+	" uncomment
+	:execute ":s".'/# //'
+	" restore search
+	call histdel('/', -1)
+	let @/ = old
+endfun
+
 " comment
-vnoremap <buffer> <leader>c :s/\(^\s*\)\@<=\S.*/# &<CR> :noh<CR>
+vnoremap <buffer> <leader>c :call PythonComment()<CR>
 " uncomment
-vnoremap <buffer> <leader>uc :s/# //<Cr>:noh<Cr>
+vnoremap <buffer> <leader>uc :call PythonUnComment()<CR>
 
 " fold settings (foldignore fixes python folding)
 
