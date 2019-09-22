@@ -208,7 +208,7 @@ hi SignColumn ctermfg=NONE ctermbg=16 cterm=NONE guifg=NONE guibg=#3c3d37 gui=NO
 hi Normal ctermfg=195 ctermbg=16 cterm=NONE guifg=#f8f8f2 guibg=#272822 gui=NONE
 hi Boolean ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
 hi Character ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
-hi Comment ctermfg=242 ctermbg=NONE cterm=NONE guifg=#75715e guibg=NONE gui=NONE
+hi Comment ctermfg=lightblue ctermbg=black cterm=NONE guifg=#75715e guibg=NONE gui=NONE
 hi Conditional ctermfg=226 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
 hi Constant ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
 hi Define ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
@@ -296,9 +296,6 @@ hi cssBraces ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
 " hi Normal ctermbg=16
 
 " set comment color
-hi Comment ctermbg=black
-hi Comment ctermfg=lightblue
-
 " search  highlight colors
 " hi Search ctermbg=LightBlue
 " hi Search ctermbg=164
