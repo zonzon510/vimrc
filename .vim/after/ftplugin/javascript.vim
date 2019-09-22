@@ -31,6 +31,7 @@ inoremap <buffer> ;t <Esc>wbywi<<Esc>ea><><Esc>ha/<Esc>pF>i
 
 " move up by bracket
 nmap <buffer> <c-p> [{
+vmap <buffer> <c-p> [{
 
 " close bracket
 inoremap <buffer> ;; <Esc>A;<Esc>
