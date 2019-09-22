@@ -50,9 +50,10 @@ nnoremap <F10> :!cmake --build . <CR>
 
 augroup my_cpp
    au!
-   au BufWinEnter <buffer> setlocal foldmethod=syntax
+   au BufWinEnter <buffer> setlocal foldmethod=indent
    au BufWinEnter <buffer> setlocal shiftwidth=2
    au BufWinEnter <buffer> setlocal softtabstop=2
+   au BufWinEnter <buffer> let foldlevelstart=1
    au BufWinEnter <buffer> setlocal expandtab
 augroup END
 
