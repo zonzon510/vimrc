@@ -2,7 +2,7 @@ fun! CppComment()
 	" save old search
 	let old = @/
 	" comment
-	:execute ':s/\(^\s*\)\@<=\S.*/\/\/ &'
+	:silent! execute ':s/\(^\s*\)\@<=\S.*/\/\/ &'
 	" restore search
 	call histdel('/', -1)
 	let @/ = old
@@ -12,7 +12,7 @@ fun! CppUnComment()
 	" save old search
 	let old = @/
 	" uncomment
-	:execute ":s".'/\/\/ //'
+	:silent! execute ":s".'/\/\/ //'
 	" restore search
 	call histdel('/', -1)
 	let @/ = old

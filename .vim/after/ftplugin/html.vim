@@ -2,7 +2,7 @@ fun! HtmlComment()
 	" save old search
 	let old = @/
 	" comment the html code
-	:execute ':s/\(^\s*\)\@<=\S.*/<!--&-->'
+	:silent! execute ':s/\(^\s*\)\@<=\S.*/<!--&-->'
 	" restore search
 	call histdel('/', -1)
 	let @/ = old
@@ -12,14 +12,14 @@ fun! HtmlUnComment()
 	" save old search
 	let old = @/
 	" uncomment
-	:execute ":s".'/<!--//g'
+	:silent! execute ":s".'/<!--//g'
 	" restore search
 	call histdel('/', -1)
 	let @/ = old
 
 	" save old search
 	let old = @/
-	:execute ":s".'/-->//g'
+	:silent! execute ":s".'/-->//g'
 	" restore search
 	call histdel('/', -1)
 	let @/ = old
@@ -29,7 +29,7 @@ fun! HtmlJinjaComment()
 	" save old search
 	let old = @/
 	" comment jinja
-	:execute ":s".'/\(^\s*\)\@<=\S.*/{#&#}'
+	:silent! execute ":s".'/\(^\s*\)\@<=\S.*/{#&#}'
 	" restore search
 	call histdel('/', -1)
 	let @/ = old
@@ -39,7 +39,7 @@ fun! HtmlJinjaUnComment()
 	" save old search
 	let old = @/
 	" uncomment jinja
-	:execute ":s".'/{#//g'
+	:silent! execute ":s".'/{#//g'
 	" restore search
 	call histdel('/', -1)
 	let @/ = old
@@ -47,7 +47,7 @@ fun! HtmlJinjaUnComment()
 	" save old search
 	let old = @/
 	" uncomment jinja
-	:execute ":s".'/#}//g'
+	:silent! execute ":s".'/#}//g'
 	" restore search
 	call histdel('/', -1)
 	let @/ = old
