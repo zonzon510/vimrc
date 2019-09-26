@@ -375,12 +375,13 @@ fun! UpByIndent()
 		if getline(".") =~# '^\s*$'
 			let col = start_col
 		elseif col(".") <= 1
-			norm! g_
+			norm! $
 			return
 		else
 			let col = col(".")
 		endif
 	endwhile
+	norm! $
 endfun
 nmap <c-p> :call UpByIndent()<cr>
 
@@ -519,3 +520,27 @@ endfun
 
 " jump points
 inoremap <space><space> <Esc>:call JumptoNext("/", "<++>")<cr>"_c4l
+
+fun! SplitViewMethodOpen()
+	:execute ":split"
+	" "call UpByIndent()
+	" " ! ignores mappings
+	:execute ":normal [m"
+	:execute "normal! 1\<C-W>_"
+	:execute "normal! zz"
+	:execute ":normal \<c-w>p"
+endfun
+
+fun! SplitViewMethodClose()
+	:execute ":normal \<c-w>k"
+	if winheight(0) == 1
+		" this is a view opened by method function
+		:execute ":q"
+		return
+	endif
+endfun
+
+" open method in single line split
+nnoremap <leader>mo :call SplitViewMethodOpen()<cr>
+" close method
+nnoremap <leader>mc :call SplitViewMethodClose()<cr>
