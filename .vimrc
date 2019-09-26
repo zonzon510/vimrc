@@ -375,6 +375,7 @@ fun! UpByIndent()
 		if getline(".") =~# '^\s*$'
 			let col = start_col
 		elseif col(".") <= 1
+			norm! g_
 			return
 		else
 			let col = col(".")
