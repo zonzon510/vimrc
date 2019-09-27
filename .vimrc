@@ -544,3 +544,6 @@ endfun
 nnoremap <leader>mo :call SplitViewMethodOpen()<cr>
 " close method
 nnoremap <leader>mc :call SplitViewMethodClose()<cr>
+
+" set ctrl + c identica l to ctrl+[
+inoremap <c-c> <Esc>
