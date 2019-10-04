@@ -51,3 +51,7 @@ nnoremap <A-l> <C-w>l
 " quick ctrl+E / Y
 nnoremap <C-A-e> 5<C-e>
 nnoremap <C-A-y> 5<C-y>
+
+
+" rerun terminal command
+tnoremap <A-r> <ESC>k<CR>

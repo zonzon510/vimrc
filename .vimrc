@@ -366,7 +366,17 @@ set incsearch
 
 " move up one indentation level
 fun! UpByIndent()
+
+	" mark the current position
 	normal! m'
+
+	" if the column is blank, find the first non blank column moving upward
+	if col("$") == 1
+		while col("$") == 1
+			normal! k
+		endwhile
+	endif
+
 	norm! ^
 	let start_col = col(".")
 	let col = start_col
@@ -547,3 +557,4 @@ nnoremap <leader>mc :call SplitViewMethodClose()<cr>
 
 " set ctrl + c identica l to ctrl+[
 inoremap <c-c> <Esc>
+inoremap <c-k> <c-c>
