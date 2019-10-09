@@ -348,11 +348,31 @@ nnoremap <leader>nf :NERDTreeFind<CR>
 " buffer
 nnoremap gb :ls<CR>:b<Space>
 
+
+fun! CheckEnableSemanticHighLight()
+
+	" first see if semantic color is already on
+	if exists('b:semanticOn')
+		" semantic highlight is already on
+		return
+	else
+		" check how many lines the file has
+		if line('$') < 1000
+			" enable semantic highlight
+			:execute ":SemanticHighlight"
+		endif
+	endif
+
+
+endfun
+
 " auto enter with colors
-" autocmd BufEnter *.py :SemanticHighlight
-" autocmd BufEnter *.js :SemanticHighlight
-" autocmd BufEnter *.cpp :SemanticHighlight
-" autocmd BufEnter *.h :SemanticHighlight
+autocmd bufenter *.py :call CheckEnableSemanticHighLight()
+autocmd bufenter *.js :call CheckEnableSemanticHighLight()
+autocmd bufenter *.cpp :call CheckEnableSemanticHighLight()
+autocmd bufenter *.c :call CheckEnableSemanticHighLight()
+autocmd bufenter *.h :call CheckEnableSemanticHighLight()
+autocmd BufEnter *.py :call CheckEnableSemanticHighLight()
 
 " break indent level matching
 set breakindent
