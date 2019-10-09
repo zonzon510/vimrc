@@ -393,7 +393,7 @@ fun! UpByIndent()
 	" if the column is blank, find the first non blank column moving upward
 	if col("$") == 1
 		while col("$") == 1
-			normal! k
+			normal! j
 		endwhile
 	endif
 
@@ -416,8 +416,39 @@ endfun
 nmap <c-p> :call UpByIndent()<cr>
 
 " move to line with same indentation
-nnoremap <c-k> m`:call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%<' . line('.') . 'l\S', 'be')<CR>
-nnoremap  <c-j> m`:call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%>' . line('.') . 'l\S', 'e')<CR>
+
+fun! MoveBySameLevel(direction)
+	normal! m`
+
+	" if cursor is on a blank line
+	if col("$") == 1
+		while col("$") == 1
+			if a:direction == "up"
+				normal! k
+			else
+				normal! j
+			endif
+		endwhile
+	else
+	" if the cursor is on a line with text
+
+		if a:direction == "down"
+			:execute search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%>' . line('.') . 'l\S', 'e')
+
+		elseif a:direction == "up"
+			:execute search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%<' . line('.') . 'l\S', 'be')
+		endif
+
+	endif
+
+
+
+endfun
+
+
+nnoremap <c-k> :call MoveBySameLevel("up")<cr>
+nnoremap  <c-j> :call MoveBySameLevel("down")<cr>
+
 
 " jump to next/previous method:
 " ]m / [m
