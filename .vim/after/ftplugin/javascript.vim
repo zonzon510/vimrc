@@ -41,7 +41,7 @@ augroup my_javascript
     au BufWinEnter <buffer> setlocal foldmethod=indent
     au BufWinEnter <buffer> setlocal shiftwidth=2
     au BufWinEnter <buffer> setlocal softtabstop=2
-    au BufWinEnter <buffer> let foldlevelstart=1
+    " au BufWinEnter <buffer> let foldlevelstart=1
     " au BufWinEnter <buffer> let javaScript_fold=1
     " au BufWinEnter <buffer> hi Folded ctermfg=LightBlue
     " au BufWinEnter <buffer> e
