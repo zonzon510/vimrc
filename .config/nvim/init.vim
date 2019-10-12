@@ -52,6 +52,10 @@ nnoremap <A-l> <C-w>l
 nnoremap <C-A-e> 5<C-e>
 nnoremap <C-A-y> 5<C-y>
 
+" quick move
+nnoremap <A-k> 5k
+nnoremap <A-j> 5j
+
 
 " rerun terminal command
 tnoremap <A-r> <ESC>k<CR>
