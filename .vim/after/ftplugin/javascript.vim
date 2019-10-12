@@ -19,7 +19,8 @@ fun! JavaScriptUnComment()
 endfun
 
 "print
-noremap <buffer> <leader>p ^v$hxaconsole.log("pa", pa);
+noremap <buffer> <leader>pv ^v$hxaconsole.log("pa", pa);
+noremap <buffer> <leader>pp ^v$hxaconsole.log(pa);
 
 " comment
 vnoremap <buffer> <leader>c :call JavaScriptComment()<CR>
