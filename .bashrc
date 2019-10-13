@@ -146,3 +146,4 @@ set -o vi
 export PATH=/usr/local/cuda-9.0/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 export PATH=$PATH":$HOME/bin"
+export PATH=$HOME/nvim${PATH:+:${PATH}}
