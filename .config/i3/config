@@ -154,3 +154,7 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
+
+# alt key: Mod1
+bindsym Mod1+Control+h workspace prev
+bindsym Mod1+Control+l workspace next
