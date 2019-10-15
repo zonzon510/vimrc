@@ -189,3 +189,18 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# # to get brightness controls to work:
+# sudo nvim /etc/X11/xorg.conf
+# # add the lines:
+# Section "Device"
+# Identifier  "Card0"
+# Driver      "intel"
+# Option      "Backlight"  "NAME OF THE FOLDER"
+# EndSection
+
+# window screen capture:
+# scrot
+
+# terminal wifi connections:
+# nmtui
