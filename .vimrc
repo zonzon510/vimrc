@@ -121,6 +121,7 @@ vnoremap <SPACE> <Nop>
 
 " toggle auto save
 nmap <leader>as :AutoSaveToggle<cr>
+let g:auto_save = 1
 
 " toggle ale linting
 nmap <leader>l :ALEToggle <CR>
