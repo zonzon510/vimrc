@@ -168,3 +168,15 @@ bar {
 # alt key: Mod1
 bindsym Mod1+Control+h workspace prev
 bindsym Mod1+Control+l workspace next
+
+# popup windows go to float
+# for_window [window_role="pop-up"]                       floating enable
+# for_window [window_role="bubble"]                       floating enable
+# for_window [window_role="task_dialog"]                  floating enable
+# for_window [window_role="Preferences"]                  floating enable
+# for_window [window_type="dialog"]                       floating enable
+# for_window [window_type="menu"] 			floating enable
+# for_window [title="Figure *"] floating enable
+
+# enable floating in matplotlib figures
+for_window [title="Figure *"] floating enable
