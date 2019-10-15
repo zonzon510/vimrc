@@ -106,6 +106,9 @@ Plugin 'sakhnik/nvim-gdb'
 
 " Nerdtree
 Plugin 'scrooloose/nerdtree'
+
+" auto save file
+Plugin 'vim-scripts/vim-auto-save'
 map <C-n> :NERDTreeToggle<CR>
 
 call vundle#end()
@@ -114,6 +117,10 @@ call vundle#end()
 let mapleader=" "
 nnoremap <SPACE> <Nop>
 vnoremap <SPACE> <Nop>
+
+
+" toggle auto save
+nmap <leader>as :AutoSaveToggle<cr>
 
 " toggle ale linting
 nmap <leader>l :ALEToggle <CR>
