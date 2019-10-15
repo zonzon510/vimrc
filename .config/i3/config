@@ -204,3 +204,6 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 
 # terminal wifi connections:
 # nmtui
+
+# background
+exec --no-startup-id feh --bg-scale /home/zom/wallpaper.jpg
