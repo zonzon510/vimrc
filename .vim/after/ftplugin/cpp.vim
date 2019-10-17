@@ -46,6 +46,7 @@ nmap <buffer> <c-p> [{
 " nnoremap <F10> <Esc>:w<CR>:!clear;g++ % -o output.out; ./output.out<CR>
 " nnoremap <F9> <Esc>:w<CR>:!clear;g++ % -g -o output.out<CR>
 nnoremap <F10> :!cmake --build . <CR>
+set formatoptions-=cro
 
 
 augroup my_cpp

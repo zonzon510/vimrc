@@ -29,10 +29,12 @@ vnoremap <buffer> <leader>uc :call PythonUnComment()<CR>
 inoremap <buffer> ;break import ipdb; ipdb.set_trace() # BREAKPOINT<CR>print("BREAKPOINT")<Esc>
 
 "  python print command
-noremap <buffer> <leader>p ^v$hxaprint("pa =>"a, pa)^
+noremap <buffer> <leader>pv ^v$hxaprint("pa =>"a, pa)^
+noremap <buffer> <leader>pp Iprint(<Esc>A)<Esc>
 nnoremap <buffer> <leader>e oexit()<Esc>
 inoremap <buffer> ;e exit()<Esc>
 
+set formatoptions-=cro
 set showbreak=->
 nnoremap <buffer> <F10> <Esc>:w<CR>:!clear;python %<CR>
 

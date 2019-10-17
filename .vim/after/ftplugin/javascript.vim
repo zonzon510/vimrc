@@ -36,6 +36,7 @@ vmap <buffer> <c-p> [{
 
 " close bracket
 inoremap <buffer> ;; <Esc>A;<Esc>
+set formatoptions-=cro
 
 augroup my_javascript
     au!
