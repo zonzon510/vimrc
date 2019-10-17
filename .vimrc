@@ -107,8 +107,6 @@ Plugin 'sakhnik/nvim-gdb'
 " Nerdtree
 Plugin 'scrooloose/nerdtree'
 
-" auto save file
-Plugin 'vim-scripts/vim-auto-save'
 map <C-n> :NERDTreeToggle<CR>
 
 call vundle#end()
@@ -117,11 +115,6 @@ call vundle#end()
 let mapleader=" "
 nnoremap <SPACE> <Nop>
 vnoremap <SPACE> <Nop>
-
-
-" toggle auto save
-nmap <leader>as :AutoSaveToggle<cr>
-let g:auto_save = 1
 
 " toggle ale linting
 nmap <leader>l :ALEToggle <CR>
@@ -619,3 +612,12 @@ inoremap <c-c> <Esc>
 inoremap <c-k> <c-c>
 
 set foldlevelstart=20
+
+fun! BufferSave()
+	" save the file if it was modified
+	if &modified == 1
+		:execute ":w"
+	endif
+endfun
+
+autocmd BufLeave * :call BufferSave()
