@@ -621,3 +621,7 @@ fun! BufferSave()
 endfun
 
 autocmd BufLeave * :call BufferSave()
+
+" checktime shortcut
+nnoremap <leader>ch :checktime<CR>
+
