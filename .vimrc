@@ -189,7 +189,7 @@ hi CursorLine ctermfg=NONE ctermbg=237 cterm=NONE
 hi CursorColumn ctermfg=NONE ctermbg=237 cterm=NONE
 hi ColorColumn ctermfg=NONE ctermbg=237 cterm=NONE
 " line number
-hi LineNr ctermfg=255 ctermbg=16 cterm=NONE
+hi LineNr ctermfg=255 ctermbg=NONE cterm=NONE
 " vertical split
 hi VertSplit ctermfg=241 ctermbg=16 cterm=NONE
 " matching parenthesiis
@@ -200,16 +200,16 @@ hi Pmenu ctermfg=NONE ctermbg=NONE cterm=NONE
 hi PmenuSel ctermfg=NONE ctermbg=59 cterm=NONE
 hi IncSearch ctermfg=235 ctermbg=186 cterm=NONE
 " highlight color
-hi Search ctermfg=NONE ctermbg=NONE cterm=inverse
+hi Search ctermfg=NONE ctermbg=16 cterm=inverse
 hi Directory ctermfg=141 ctermbg=NONE cterm=NONE
 hi Folded ctermfg=242 ctermbg=235 cterm=NONE
 " column in vertical split
-hi SignColumn ctermfg=NONE ctermbg=16 cterm=NONE
+hi SignColumn ctermfg=NONE ctermbg=red cterm=NONE
 " normal text
-hi Normal ctermfg=195 ctermbg=16 cterm=NONE
+hi Normal ctermfg=195 ctermbg=NONE cterm=NONE
 hi Boolean ctermfg=141 ctermbg=NONE cterm=NONE
 hi Character ctermfg=141 ctermbg=NONE cterm=NONE
-hi Comment ctermfg=lightblue ctermbg=black cterm=NONE
+hi Comment ctermfg=lightblue ctermbg=NONE cterm=NONE
 hi Conditional ctermfg=226 ctermbg=NONE cterm=NONE
 hi Constant ctermfg=NONE ctermbg=NONE cterm=NONE
 hi Define ctermfg=197 ctermbg=NONE cterm=NONE
@@ -224,7 +224,10 @@ hi Function ctermfg=40 ctermbg=NONE cterm=NONE
 hi Identifier ctermfg=81 ctermbg=NONE cterm=NONE
 hi Keyword ctermfg=197 ctermbg=NONE cterm=NONE
 hi Label ctermfg=186 ctermbg=NONE cterm=NONE
-hi NonText ctermfg=59 ctermbg=236 cterm=NONE
+
+" the area after the last line
+hi NonText ctermfg=NONE ctermbg=NONE cterm=NONE
+
 hi Number ctermfg=141 ctermbg=NONE cterm=NONE
 hi Operator ctermfg=197 ctermbg=NONE cterm=NONE
 " python imports PreProc
