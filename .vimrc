@@ -124,7 +124,7 @@ highlight ALEError ctermbg=NONE cterm=inverse
 " this isnt working for some reason
 
 " toggle semantic highlighting
-nnoremap <leader>c :SemanticHighlight<cr>
+nnoremap <leader>c :SemanticHighlightToggle<cr>
 " nnoremap <leader>so :SemanticHighlight<cr>
 
 "run 
@@ -363,7 +363,7 @@ fun! CheckEnableSemanticHighLight()
 		" check how many lines the file has
 		if line('$') < 1000
 			" enable semantic highlight
-			:execute ":SemanticHighlightToggle"
+			:execute ":SemanticHighlight"
 		endif
 	endif
 
@@ -626,24 +626,5 @@ endfun
 autocmd BufLeave * :call BufferSave()
 
 " checktime shortcut
-fun! UpdateFiles()
-	let s:enable = 0
+nnoremap <leader>ch :checktime<CR>
 
-	" see if color is currently enabled
-	if exists('b:semanticOn')
-		if b:semanticOn == 1
-			" semantic highlight is already on
-			let s:enable = 1
-		endif
-	endif
-
-	:execute ":checktime"
-
-	if s:enable == 1
-		:execute ":SemanticHighlight"
-	endif
-	" :call CheckEnableSemanticHighLight()
-endfun
-
-nnoremap <leader>ch :call UpdateFiles()<cr>
-" nnoremap <leader>ch :checktime<CR>:SemanticHighlight<cr>
