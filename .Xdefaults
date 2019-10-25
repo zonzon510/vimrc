@@ -1,0 +1,14 @@
+URxvt.background: #000000
+URxvt.foreground: #ffffff
+URxvt.scrollBar: false
+URxvt.letterSpace:-2
+URxvt.transparent: true
+URxvt.shading: 20
+
+!--- font ---!
+! URxvt.font: xft:monospace:size=11
+! URxvt.font: xft:Ubuntu Mono:pixelsize=14,style=regular
+URxvt.font: xft:Ubuntu Mono:size=13,style=regular
+
+! --- cursor --- !
+URxvt.cursorColor: #ffffff
