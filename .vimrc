@@ -616,7 +616,7 @@ set foldlevelstart=20
 fun! BufferSave()
 	" save the file if it was modified
 	if &modified == 1
-		:execute ":w"
+		:silent! execute ":w"
 	endif
 endfun
 
