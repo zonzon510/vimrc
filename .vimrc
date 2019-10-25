@@ -361,7 +361,7 @@ fun! CheckEnableSemanticHighLight()
 		return
 	else
 		" check how many lines the file has
-		if line('$') < 1000
+		if line('$') < 4000
 			" enable semantic highlight
 			:execute ":SemanticHighlight"
 		endif
