@@ -360,7 +360,7 @@ fun! CheckEnableSemanticHighLight()
 		" check how many lines the file has
 		if line('$') < 1000
 			" enable semantic highlight
-			:execute ":SemanticHighlight"
+			:execute ":SemanticHighlightToggle"
 		endif
 	endif
 
@@ -624,9 +624,23 @@ autocmd BufLeave * :call BufferSave()
 
 " checktime shortcut
 fun! UpdateFiles()
+	let s:enable = 0
+
+	" see if color is currently enabled
+	if exists('b:semanticOn')
+		if b:semanticOn == 1
+			" semantic highlight is already on
+			let s:enable = 1
+		endif
+	endif
+
 	:execute ":checktime"
-	:call CheckEnableSemanticHighLight()
+
+	if s:enable == 1
+		:execute ":SemanticHighlight"
+	endif
+	" :call CheckEnableSemanticHighLight()
 endfun
 
-nnoremap <leader>ch :call UpdateFiles()
+nnoremap <leader>ch :call UpdateFiles()<cr>
 " nnoremap <leader>ch :checktime<CR>:SemanticHighlight<cr>
