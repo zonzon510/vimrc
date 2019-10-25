@@ -124,7 +124,7 @@ highlight ALEError ctermbg=NONE cterm=inverse
 " this isnt working for some reason
 
 " toggle semantic highlighting
-nnoremap <leader>ss :SemanticHighlightToggle<cr>
+nnoremap <leader>c :SemanticHighlight<cr>
 " nnoremap <leader>so :SemanticHighlight<cr>
 
 "run 
