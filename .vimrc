@@ -202,7 +202,7 @@ hi IncSearch ctermfg=235 ctermbg=186 cterm=NONE
 " highlight color
 hi Search ctermfg=NONE ctermbg=16 cterm=inverse
 hi Directory ctermfg=141 ctermbg=NONE cterm=NONE
-hi Folded ctermfg=242 ctermbg=235 cterm=NONE
+hi Folded ctermfg=242 ctermbg=NONE cterm=NONE
 " column in vertical split
 hi SignColumn ctermfg=NONE ctermbg=red cterm=NONE
 " normal text
