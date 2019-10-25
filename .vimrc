@@ -623,5 +623,10 @@ endfun
 autocmd BufLeave * :call BufferSave()
 
 " checktime shortcut
-nnoremap <leader>ch :checktime<CR>
+fun! UpdateFiles()
+	:execute ":checktime"
+	:call CheckEnableSemanticHighLight()
+endfun
 
+nnoremap <leader>ch :call UpdateFiles()
+" nnoremap <leader>ch :checktime<CR>:SemanticHighlight<cr>
