@@ -185,7 +185,7 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 
 hi Cursor ctermfg=235 ctermbg=231 cterm=NONE
 hi Visual ctermfg=NONE ctermbg=59 cterm=NONE
-hi CursorLine ctermfg=NONE ctermbg=16 cterm=NONE
+hi CursorLine ctermfg=NONE ctermbg=236 cterm=NONE
 hi CursorColumn ctermfg=NONE ctermbg=237 cterm=NONE
 hi ColorColumn ctermfg=NONE ctermbg=237 cterm=NONE
 " line number
