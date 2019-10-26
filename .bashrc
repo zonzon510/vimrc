@@ -150,3 +150,5 @@ export PATH=$HOME/nvim${PATH:+:${PATH}}
 
 alias vi=nvim
 alias vim=nvim
+
+export RANGER_LOAD_DEFAULT_RC=false
