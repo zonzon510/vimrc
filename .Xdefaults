@@ -12,3 +12,9 @@ URxvt.font: xft:Ubuntu Mono:size=13,style=regular
 
 ! --- cursor --- !
 URxvt.cursorColor: #ffffff
+
+
+! --- color --- !
+! blue
+! *.color4: #2587cc
+*.color12: #2ca2f5

@@ -59,7 +59,7 @@ set updatetime=100
 
 Plugin 'jaxbot/semantic-highlight.vim'
 " semantic highlighting
-let g:semanticTermColors = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 21, 57, 93, 129, 165, 201, 46, 82, 118, 154, 190, 226, 51, 87, 123, 159, 195, 231]
+let g:semanticTermColors = [1, 2, 3, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15]
 " let g:semanticTermColors = [1, 2, 3]
 " disable cached colors: this allows colors to persist across files
 " let g:semanticUseCache = 0
