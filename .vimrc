@@ -104,10 +104,6 @@ Plugin 'w0rp/ale'
 " gdb
 Plugin 'sakhnik/nvim-gdb'
 
-" Nerdtree
-Plugin 'scrooloose/nerdtree'
-
-map <C-n> :NERDTreeToggle<CR>
 
 call vundle#end()
 
@@ -346,8 +342,6 @@ nnoremap <leader>9 :9wincmd w<CR>
 " toggle line wrapping 
 nnoremap <leader>w :set wrap! wrap?<CR>
 
-" toggle nerdtree find
-nnoremap <leader>nf :NERDTreeFind<CR>
 
 " buffer
 nnoremap gb :ls<CR>:b<Space>
@@ -457,13 +451,12 @@ nnoremap  <c-j> :call MoveBySameLevel("down")<cr>
 " jump to next/previous method:
 " ]m / [m
 
-let g:NERDTreeNodeDelimiter = "\u00a0"
 
 " command for toggleing line numbers
 nnoremap  <leader>nu :set invnumber<CR>
 
 " in the current buffer window
-" show the file in nerdtree
+" show the file in file explorer
 nnoremap <leader>cp :let @" = expand("%")<CR>:e <C-R>"<C-F>dT/<CR>/<C-R>"\><CR>
 
 
@@ -628,3 +621,8 @@ autocmd BufLeave * :call BufferSave()
 " checktime shortcut
 nnoremap <leader>ch :checktime<CR>
 
+
+nnoremap <leader>t :term<CR>
+nnoremap <leader>q :bd!<CR>
+
+nnoremap <leader>mk :mksession! Save.vim<CR>
