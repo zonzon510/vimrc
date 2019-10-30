@@ -374,7 +374,7 @@ autocmd BufEnter *.py :call CheckEnableSemanticHighLight()
 
 " break indent level matching
 set breakindent
-set showbreak=->
+set showbreak=>>
 set display +=lastline
 
 " set default latex filetype
