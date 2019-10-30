@@ -21,6 +21,8 @@ inoremap ;incl \includegraphics[trim=0cm 0cm 0cm 0cm, clip, height=<++>cm]{<++>}
 " itemize
 inoremap ;item \begin{itemize}<CR>\end{itemize}<Esc>O\item{}<Esc>i
 
+set makeprg=pdflatex\ %
+compiler tex
 
 
 augroup my_tex
