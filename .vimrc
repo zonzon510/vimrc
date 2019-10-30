@@ -626,3 +626,6 @@ nnoremap <leader>t :term<CR>
 nnoremap <leader>q :bd!<CR>
 
 nnoremap <leader>mk :mksession! Save.vim<CR>
+
+" send stack trace to quickfix
+vnoremap <leader>q :cgetbuffer<CR>
