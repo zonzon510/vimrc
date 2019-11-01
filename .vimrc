@@ -627,5 +627,28 @@ nnoremap <leader>q :bd!<CR>
 
 nnoremap <leader>mk :mksession! Save.vim<CR>
 
+
+fun! QuickFixBufferListedOnly()
+	let qfitems = getqflist()
+
+	for i in qfitems
+		if i['valid'] == 1
+			" check if buffer is listed
+			" (already has been opened)
+			if buflisted(i['bufnr']) == 0
+				" echo i
+				" echo bufname(i['bufnr'])
+				let i['text'] = bufname(i['bufnr']).' '.i['lnum'].' '.i['text']
+				let i['bufnr'] = 0
+				let i['lnum'] = 0
+				let i['valid'] = 0
+			endif
+		endif
+	endfor
+
+	call setqflist(qfitems, 'r')
+endfun
+
 " send stack trace to quickfix
-vnoremap <leader>q :cgetbuffer<CR>
+vnoremap <leader>qq :cgetbuffer<CR>
+vnoremap <leader>qv :cgetbuffer<CR> :call QuickFixBufferListedOnly()<CR>
