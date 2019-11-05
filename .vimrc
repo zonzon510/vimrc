@@ -455,9 +455,6 @@ nnoremap  <c-j> :call MoveBySameLevel("down")<cr>
 " command for toggleing line numbers
 nnoremap  <leader>nu :set invnumber<CR>
 
-" in the current buffer window
-" show the file in file explorer
-nnoremap <leader>cp :let @" = expand("%")<CR>:e <C-R>"<C-F>dT/<CR>/<C-R>"\><CR>
 
 
 " quickfix jump list
@@ -576,6 +573,15 @@ fun! JumptoNext(direction, jump_to)
 	let @/ = old
 endfun
 
+fun! OpenFileBrowser()
+	let current_dir = expand("%:p:h")
+	let file_name = expand("%:t")
+	:execute ":e ".current_dir
+	:call JumptoNext("/", "\\V".file_name)
+endfun
+
+nnoremap <leader>cp :call OpenFileBrowser()<CR>
+
 " jump points
 inoremap <space><space> <Esc>:call JumptoNext("/", "<++>")<cr>"_c4l
 
@@ -622,7 +628,16 @@ autocmd BufLeave * :call BufferSave()
 nnoremap <leader>ch :checktime<CR>
 
 
-nnoremap <leader>t :term<CR>
+
+fun! OpenTerm()
+	let current_dir = expand("%:p:h")
+	:execute ":term"
+	call feedkeys("acd ".current_dir."\<CR>")
+	call feedkeys("clear"."\<CR>")
+endfun
+
+nnoremap <leader>t :call OpenTerm()<CR>
+" nnoremap <leader>t :term<CR>
 nnoremap <leader>q :bd!<CR>
 
 nnoremap <leader>mk :mksession! Save.vim<CR>
