@@ -66,6 +66,7 @@ fun! RunBuffer()
 	" echo stridx("term", bufname("%"))
 	if stridx(bufname("%"),"term") == -1 && exists("g:run_buffer_number")
 		" set marks for current screen position
+		:execute ":w"
 		:execute "normal! msHmt"
 
 		" switch to buffer
@@ -85,9 +86,36 @@ fun! RunBuffer()
 
 
 endfun
+fun! GetQFFromBuffer()
+
+	" echo stridx("term", bufname("%"))
+	if stridx(bufname("%"),"term") == -1 && exists("g:run_buffer_number")
+		" set marks for current screen position
+		:execute ":w"
+		:execute "normal! msHmt"
+
+		" switch to buffer
+		:execute ":b ".g:run_buffer_number
+		" run the last command
+		:execute "normal! G$"
+		:execute "normal! ?zompc"."\<CR>"
+		:execute "normal! V"
+		:execute "normal! ?zompc"."\<CR>"
+		call feedkeys(":cgetbuffer"."\<CR>")
+
+		" return to original position
+		call feedkeys(":b#\<CR>")
+		" call feedkeys("")
+		call feedkeys("`tzt`s")
+		call QuickFixBufferListedOnly()
+	endif
+
+
+endfun
 
 fun! SetRunBuffer()
 	let g:run_buffer_number = bufnr('%')
 endfun
 
 nnoremap <A-r> :call RunBuffer()<CR>
+nnoremap <leader>qq :call GetQFFromBuffer()<CR>
