@@ -65,6 +65,15 @@ fun! RunBuffer()
 
 	" echo stridx("term", bufname("%"))
 	if stridx(bufname("%"),"term") == -1 && exists("g:run_buffer_number")
+
+		" check if semantic highlighting is set
+		let s:set_semantic = 0
+		if exists('b:semanticOn')
+			if b:semanticOn == 1
+				let s:set_semantic = 1
+			endif
+		endif
+
 		" set marks for current screen position
 		:execute ":w"
 		:execute "normal! msHmt"
@@ -82,6 +91,11 @@ fun! RunBuffer()
 		call feedkeys("\<C-o>")
 		call feedkeys("")
 		call feedkeys("`tzt`s")
+
+		if s:set_semantic == 1
+			" :execute ":SemanticHighlight"
+			call feedkeys(":SemanticHighlight\<CR>")
+		endif
 	endif
 
 
@@ -90,6 +104,15 @@ fun! GetQFFromBuffer()
 
 	" echo stridx("term", bufname("%"))
 	if stridx(bufname("%"),"term") == -1 && exists("g:run_buffer_number")
+
+		" check if semantic highlighting is set
+		let s:set_semantic = 0
+		if exists('b:semanticOn')
+			if b:semanticOn == 1
+				let s:set_semantic = 1
+			endif
+		endif
+
 		" set marks for current screen position
 		:execute ":w"
 		:execute "normal! msHmt"
@@ -108,6 +131,12 @@ fun! GetQFFromBuffer()
 		" call feedkeys("")
 		call feedkeys("`tzt`s")
 		call feedkeys(":call QuickFixBufferListedOnly()\<CR>")
+
+		if s:set_semantic == 1
+			" :execute ":SemanticHighlight"
+			call feedkeys(":SemanticHighlight\<CR>")
+		endif
+
 	endif
 
 
