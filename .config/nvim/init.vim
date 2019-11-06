@@ -58,4 +58,36 @@ nnoremap <C-A-y> 5<C-y>
 
 
 " rerun terminal command
-tnoremap <A-r> <ESC>k<CR>
+tnoremap <A-r> <ESC>k<CR><C-\><C-N> :call SetRunBuffer()<CR>a
+
+" terminal for running last command
+fun! RunBuffer()
+
+	" echo stridx("term", bufname("%"))
+	if stridx(bufname("%"),"term") == -1 && exists("g:run_buffer_number")
+		" set marks for current screen position
+		:execute "normal! msHmt"
+
+		" switch to buffer
+		:execute ":b ".g:run_buffer_number
+		" run the last command
+		call feedkeys("a")
+		call feedkeys("\<ESC>"."k"."\<CR>")
+
+		" go to normal mode
+		call feedkeys("\<C-\>"."\<C-N>")
+
+		" return to original position
+		call feedkeys("\<C-o>")
+		call feedkeys("")
+		call feedkeys("`tzt`s")
+	endif
+
+
+endfun
+
+fun! SetRunBuffer()
+	let g:run_buffer_number = bufnr('%')
+endfun
+
+nnoremap <A-r> :call RunBuffer()<CR>

@@ -667,3 +667,6 @@ endfun
 " send stack trace to quickfix
 vnoremap <leader>qq :cgetbuffer<CR>
 vnoremap <leader>qv :cgetbuffer<CR> :call QuickFixBufferListedOnly()<CR>
+
+" redraw screen:
+" <C-L>
