@@ -107,7 +107,7 @@ fun! GetQFFromBuffer()
 		call feedkeys(":b#\<CR>")
 		" call feedkeys("")
 		call feedkeys("`tzt`s")
-		call QuickFixBufferListedOnly()
+		call feedkeys(":call QuickFixBufferListedOnly()\<CR>")
 	endif
 
 
