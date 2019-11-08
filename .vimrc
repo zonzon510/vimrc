@@ -640,7 +640,7 @@ nnoremap <leader>t :call OpenTerm()<CR>
 " nnoremap <leader>t :term<CR>
 nnoremap <leader>q :bd!<CR>
 
-nnoremap <leader>mk :mksession! Save.vim<CR>
+nnoremap <leader>mk :mksession! .save.vim<CR>
 
 
 fun! QuickFixBufferListedOnly()
@@ -670,3 +670,5 @@ vnoremap <leader>qv :cgetbuffer<CR> :call QuickFixBufferListedOnly()<CR>
 
 " redraw screen:
 " <C-L>
+"
+autocmd BufWrite * :mksession! .autosave.vim
