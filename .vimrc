@@ -641,7 +641,6 @@ endfun
 
 nnoremap <leader>t :call OpenTerm()<CR>
 " nnoremap <leader>t :term<CR>
-nnoremap <leader>q :bd!<CR>
 
 nnoremap <leader>mk :mksession! .save.vim<CR>
 
@@ -670,7 +669,7 @@ endfun
 " send stack trace to quickfix
 vnoremap <leader>qq :cgetbuffer<CR>
 vnoremap <leader>qv :cgetbuffer<CR> :call QuickFixBufferListedOnly()<CR>
-vnoremap <leader>qb :call QuickFixBufferListedOnly()<CR>
+nnoremap <leader>qb :call QuickFixBufferListedOnly()<CR>
 
 " redraw screen:
 " <C-L>
