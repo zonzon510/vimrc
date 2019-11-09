@@ -56,10 +56,6 @@ nnoremap <C-A-y> 5<C-y>
 " nnoremap <A-k> 5k
 " nnoremap <A-j> 5j
 
-
-" rerun terminal command
-tnoremap <A-r> <ESC>k<CR><C-\><C-N> :call SetRunBuffer()<CR>a
-
 " terminal for running last command
 fun! RunBuffer()
 
@@ -146,6 +142,9 @@ fun! SetRunBuffer()
 	let g:run_buffer_number = bufnr('%')
 endfun
 
+" rerun terminal command
+tnoremap <A-r> <ESC>k<CR><C-\><C-N> :call SetRunBuffer()<CR>a
+
 nnoremap <A-r> :call RunBuffer()<CR>
 nnoremap <leader>qq :call GetQFFromBuffer()<CR>
 nnoremap <A-w> :w<cr>
@@ -155,6 +154,6 @@ nnoremap <A-C-j> 5j
 nnoremap <A-C-k> 5k
 inoremap <A-o> <Esc>
 " run Make
-nnoremap <A-m> :Make<CR>
+nnoremap <A-m> :w<CR>:Make<CR>
 " run Make silent
-nnoremap <A-C-m> :Make!<CR>
+nnoremap <A-C-m> :w<CR>:Make!<CR>
