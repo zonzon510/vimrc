@@ -152,3 +152,8 @@ nnoremap <A-w> :w<cr>
 nnoremap <A-c> :SemanticHighlightToggle<cr>
 nnoremap <A-C-j> 5j
 nnoremap <A-C-k> 5k
+inoremap <A-o> <Esc>
+" run Make
+nnoremap <A-m> :Make<CR>
+" run Make silent
+nnoremap <A-C-m> :Make!<CR>

@@ -38,6 +38,9 @@ set formatoptions-=cro
 set showbreak=->
 nnoremap <buffer> <F10> <Esc>:w<CR>:!clear;python %<CR>
 
+" set compiler
+autocmd BufEnter *.py :compiler python
+
 augroup my_python
     au!
     au BufWinEnter <buffer> setlocal foldmethod=indent

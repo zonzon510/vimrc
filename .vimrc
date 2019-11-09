@@ -104,6 +104,9 @@ Plugin 'w0rp/ale'
 " gdb
 Plugin 'sakhnik/nvim-gdb'
 
+" vim dispatch
+Plugin 'tpope/vim-dispatch'
+
 
 call vundle#end()
 
@@ -667,6 +670,7 @@ endfun
 " send stack trace to quickfix
 vnoremap <leader>qq :cgetbuffer<CR>
 vnoremap <leader>qv :cgetbuffer<CR> :call QuickFixBufferListedOnly()<CR>
+vnoremap <leader>qb :call QuickFixBufferListedOnly()<CR>
 
 " redraw screen:
 " <C-L>
