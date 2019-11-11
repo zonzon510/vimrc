@@ -38,6 +38,23 @@ set formatoptions-=cro
 set showbreak=->
 nnoremap <buffer> <F10> <Esc>:w<CR>:!clear;python %<CR>
 
+
+" run current file in split
+fun! RunPythonInSplit()
+	let current_file = expand("%")
+	echo current_file
+	:execute ":split"
+	:execute "normal! 5\<C-W>_"
+	:execute ":term"
+	call OpenTerm()
+	call SetRunBuffer()
+	call feedkeys("python"." ".current_file."\<CR>")
+
+endfun
+
+nnoremap <buffer>  <leader>r :call RunPythonInSplit()<CR>
+
+
 " set compiler
 autocmd BufEnter *.py :compiler python
 
