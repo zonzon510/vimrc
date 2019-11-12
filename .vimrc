@@ -675,3 +675,27 @@ nnoremap <leader>qb :call QuickFixBufferListedOnly()<CR>
 " <C-L>
 "
 autocmd BufWrite * :mksession! .autosave.vim
+
+
+fun! QFSigns()
+	" clear all qf signs
+	call sign_unplace('qfsign_group')
+	let qfitems = getqflist()
+
+	let index = 0
+	for i in qfitems
+		if i['valid'] == 1
+			echo i['bufnr']
+			echo i['lnum']
+			call sign_place(index, 'qfsign_group', 'qfsign', bufname(i['bufnr']), {'lnum':i['lnum'], 'priority':11})
+			let index = index + 1
+		endif
+	endfor
+
+	" call setqflist(qfitems, 'r')
+
+endfun
+
+call sign_define('qfsign', {"text" : "q>",})
+
+autocmd QuickfixCmdPost make call QFSigns()
