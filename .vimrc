@@ -685,8 +685,6 @@ fun! QFSigns()
 	let index = 0
 	for i in qfitems
 		if i['valid'] == 1
-			echo i['bufnr']
-			echo i['lnum']
 			call sign_place(index, 'qfsign_group', 'qfsign', bufname(i['bufnr']), {'lnum':i['lnum'], 'priority':11})
 			let index = index + 1
 		endif
@@ -696,6 +694,16 @@ fun! QFSigns()
 
 endfun
 
+
+fun! ProcessQF()
+	" add quickfix signs
+	call QuickFixBufferListedOnly()
+	call QFSigns()
+
+
+endfun
+
 call sign_define('qfsign', {"text" : "q>",})
 
-autocmd QuickfixCmdPost make call QFSigns()
+autocmd QuickfixCmdPost make call ProcessQF()
+autocmd QuickfixCmdPost cgetfile call ProcessQF()
