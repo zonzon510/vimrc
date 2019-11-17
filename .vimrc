@@ -12,6 +12,12 @@ Plugin 'Lokaltog/vim-powerline'
 set laststatus=2
 set encoding=utf-8
 
+Plugin 'majutsushi/tagbar'
+nmap <F8> :TagbarToggle<CR>
+" 
+" Plugin 'vim-airline/vim-airline'
+" nmap <F8> :TagbarToggle<CR>
+
 
 
 " Python mode
@@ -667,7 +673,7 @@ fun! QuickFixBufferListedOnly()
 endfun
 
 " send stack trace to quickfix
-vnoremap <leader>qq :cgetbuffer<CR>
+vnoremap <leader>qq :cgetbuffer<CR> :call ProcessQF()<CR>
 vnoremap <leader>qv :cgetbuffer<CR> :call QuickFixBufferListedOnly()<CR>
 nnoremap <leader>qb :call QuickFixBufferListedOnly()<CR>
 
