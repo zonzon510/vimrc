@@ -207,6 +207,6 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 # nmtui
 
 # background
-exec --no-startup-id feh --bg-scale /home/zom/wallpaper.jpg
+exec --no-startup-id feh --bg-scale /home/$USER/wallpaper.jpg
 exec --no-startup-id autokey
 exec --no-startup-id dropbox start
