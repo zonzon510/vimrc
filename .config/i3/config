@@ -210,3 +210,6 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 exec --no-startup-id feh --bg-scale /home/$USER/wallpaper.jpg
 exec --no-startup-id autokey
 exec --no-startup-id dropbox start
+
+# move mouse off screen
+bindsym $mod+m exec xdotool mousemove_relative 0 3000
