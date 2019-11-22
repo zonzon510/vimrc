@@ -213,3 +213,7 @@ exec --no-startup-id dropbox start
 
 # move mouse off screen
 bindsym $mod+m exec xdotool mousemove_relative 0 3000
+
+# scsreenshot shortcut
+bindsym --release $mod+p exec scrot -s
+# bindsym $mod+p exec xdotool mousemove_relative 0 10
