@@ -619,7 +619,7 @@ nnoremap <leader>mo :call SplitViewMethodOpen()<cr>
 nnoremap <leader>mc :call SplitViewMethodClose()<cr>
 
 " set ctrl + c identica l to ctrl+[
-inoremap <c-c> <Esc>
+" inoremap <c-c> <Esc>
 inoremap <c-k> <c-c>
 
 set foldlevelstart=20
