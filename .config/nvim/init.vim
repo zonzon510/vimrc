@@ -158,3 +158,7 @@ nnoremap <A-m> :w<CR>:Make<CR>
 " run Make silent
 nnoremap <A-C-m> :w<CR>:Make!<CR>
 nmap <A-t> :TagbarToggle<CR>
+
+" switch tabs
+nnoremap <A-C-g> gT
+nnoremap <A-g> gt
