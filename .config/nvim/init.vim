@@ -148,7 +148,7 @@ tnoremap <A-r> <ESC>k<CR><C-\><C-N> :call SetRunBuffer()<CR>a
 nnoremap <A-r> :call RunBuffer()<CR>
 nnoremap <leader>qq :call GetQFFromBuffer()<CR>
 nnoremap <A-w> :w<cr>
-nnoremap <A-q> :bd!<CR>
+" nnoremap <A-q> :bd!<CR>
 nnoremap <A-c> :SemanticHighlightToggle<cr>
 nnoremap <A-C-j> 5j
 nnoremap <A-C-k> 5k
