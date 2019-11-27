@@ -94,6 +94,18 @@ let g:ycm_auto_trigger = 0
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_show_diagnostics_ui = 0
 
+" Plugin 'vim-scripts/OmniCppComplete'
+" " OmniCppComplete
+" let OmniCpp_NamespaceSearch = 1
+" let OmniCpp_GlobalScopeSearch = 1
+" let OmniCpp_ShowAccess = 1
+" let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+" let OmniCpp_MayCompleteDot = 1 " autocomplete after .
+" let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
+" let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
+" let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+
+
 " Plugin 'vim-syntastic/syntastic'
 " set statusline+=%#warningmsg#
 " set statusline+=%{SyntasticStatuslineFlag()}
@@ -157,6 +169,7 @@ inoremap ;< <><left>
 "       zz
 
 command! MakeTags !ctags -R .
+" command! MakeTags !ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .
 " search for definition: ctrl+], ctrl + t to return
 " g + ctrl + ] : find re-occuring tags
 
