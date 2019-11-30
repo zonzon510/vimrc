@@ -162,3 +162,6 @@ nmap <A-t> :TagbarToggle<CR>
 " switch tabs
 nnoremap <A-C-g> gT
 nnoremap <A-g> gt
+
+" insert mode on enter terminal
+autocmd bufenter * if &buftype == 'terminal' | :startinsert | endif
