@@ -46,6 +46,19 @@ nmap <buffer> <c-p> [{
 " nnoremap <F10> <Esc>:w<CR>:!clear;g++ % -o output.out; ./output.out<CR>
 " nnoremap <F9> <Esc>:w<CR>:!clear;g++ % -g -o output.out<CR>
 nnoremap <F10> :!cmake --build . <CR>
+
+fun! SwitchHeader()
+	let current_dir = expand("%:p:h")
+	let file_name = expand("%:t")
+	if split(file_name, '\.')[1] == 'h'
+		:execute ":e ".current_dir.'/'.split(file_name, '\.')[0].'.cpp'
+	else
+		:execute ":e ".current_dir.'/'.split(file_name, '\.')[0].'.h'
+	endif
+endfun
+
+" switch to header header file
+nnoremap <buffer> <leader>sh :call SwitchHeader()<CR>
 set formatoptions-=cro
 
 

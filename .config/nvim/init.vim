@@ -164,4 +164,4 @@ nnoremap <A-C-g> gT
 nnoremap <A-g> gt
 
 " insert mode on enter terminal
-autocmd bufenter * if &buftype == 'terminal' | :startinsert | endif
+" autocmd bufenter * if &buftype == 'terminal' | :startinsert | endif
