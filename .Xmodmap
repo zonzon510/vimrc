@@ -5,3 +5,7 @@ keysym Caps_Lock = Control_L
 add Lock = Caps_Lock
 add Control = Control_L
 keycode 108 = Shift_L
+
+! for german keyboard
+keycode 94 = Shift_L
+keycode 135 = Shift_L
