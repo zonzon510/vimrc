@@ -492,18 +492,90 @@ hi cssBraces ctermfg=NONE ctermbg=NONE cterm=NONE
 let mapleader=" "
 
 " # # # # # # # # # # # # # # # # # # # # # # # #
-"
+" #   N O R M A L  M O D E  M A P P I N G S     #
 " # # # # # # # # # # # # # # # # # # # # # # # #
 
+" move up one indentation level
+nmap <c-p> :call UpByIndent()<cr>
+" space key doesnt do anything
 nnoremap <SPACE> <Nop>
-vnoremap <SPACE> <Nop>
-
+" buffer
+nnoremap gb :ls<CR>:b<Space>
+" move to line with same indentation
+nnoremap <c-k> :call MoveBySameLevel("up")<cr>
+" move to line with same indentation
+nnoremap  <c-j> :call MoveBySameLevel("down")<cr>
+" quickfix jump list
+nnoremap [q :cprev <CR>
+nnoremap ]q :cnext <CR>
+nnoremap [Q :cfirst <CR>
+nnoremap ]Q :clast <CR>
+" open quickfix menu
+nnoremap gc :copen 
+" add a word to to search, searching for multiple words
+nnoremap <leader>af viwyb/<C-R>/\\|\<<C-R>"\><CR>
+" remove most recently added seach item
+nnoremap <leader>rf msHmt/<C-P><C-F>F\|hd$<CR>`tzt`s
+" grep
+nnoremap <leader>gg yiw:call MyGrep('-rIw', "<C-R>"")<cr>
+" grep
+nnoremap <leader>gr yiw:call MyGrepSilent('-rIw', "<C-R>"")<cr>
+" open file browser at folder of current file
+nnoremap <leader>cp :call OpenFileBrowser()<CR>
+" open method in single line split
+nnoremap <leader>mo :call SplitViewMethodOpen()<cr>
+" close method
+nnoremap <leader>mc :call SplitViewMethodClose()<cr>
+" checktime shortcut
+nnoremap <leader>ch :checktime<CR>
+" open a terminal
+nnoremap <leader>t :call OpenTerm()<CR>
+" save session
+nnoremap <leader>mk :mksession! .save.vim<CR>
+" filter quickfix results to include only files in a buffer
+nnoremap <leader>qb :call QuickFixBufferListedOnly()<CR>
+" delete all terminal buffers
+nnoremap <leader>kat :call KillTerminals()<cr>
 " toggle ale linting
-nmap <leader>l :ALEToggle <CR>
-
+nnoremap <leader>l :ALEToggle <CR>
+" command for toggleing line numbers
+nnoremap  <leader>nu :set invnumber<CR>
+" toggle line wrapping
+nnoremap <leader>w :set wrap! wrap?<CR>
 " toggle semantic highlighting
 nnoremap <leader>c :SemanticHighlightToggle<cr>
-" nnoremap <leader>so :SemanticHighlight<cr>
+" set search to previously searched pattern
+nnoremap <leader>sp msHmt/<C-p><C-p><CR>`tzt`s
+
+
+" # # # # # # # # # # # # # # # # # # # # # # # #
+" #   V I S U A L  M O D E  M A P P I N G S     #
+" # # # # # # # # # # # # # # # # # # # # # # # #
+
+" space key does nothing
+vnoremap <SPACE> <Nop>
+" moving indentation easier
+vnoremap < <gv
+vnoremap > >gv
+" search for highlighted string without regex
+vnoremap <leader>f yb/\V<C-r>"<Cr>
+" add word to search pattern
+vnoremap <leader>af yb/<C-R>/\\|\V<C-r>"<CR>
+" add key for copying to clipboard
+" remember to install : vim-gtk first or it wont work
+vnoremap <leader>y "+y
+" grep
+vnoremap <leader>gg y:call MyGrep('-rI', "<C-R>"")<cr>
+" grep
+vnoremap <leader>gr y:call MyGrepSilent('-rI', "<C-R>"")<cr>
+" send stack trace to quickfix
+vnoremap <leader>qq :cgetbuffer<CR> :call ProcessQF()<CR>
+" get the stack trace, only filter QuickFixBufferListedOnly
+vnoremap <leader>qv :cgetbuffer<CR> :call QuickFixBufferListedOnly()<CR>
+
+" # # # # # # # # # # # # # # # # # # # # # # # #
+" #   I N S E R T  M O D E  M A P P I N G S     #
+" # # # # # # # # # # # # # # # # # # # # # # # #
 
 " automatic closing brackets
 inoremap ;" ""<left>
@@ -512,112 +584,23 @@ inoremap ;[ []<left>
 inoremap ;{ {}<left>
 inoremap ;( ()<left>
 inoremap ;< <><left>
+" jump points
+inoremap <space><space> <Esc>:call JumptoNext("/", "")<cr>"_c4l
+" set ctrl + c identica l to ctrl+[
+" inoremap <c-c> <Esc>
+" exit insert mode
+inoremap <c-k> <c-c>
 
-" moving indentation easier
-vnoremap < <gv
-vnoremap > >gv
-" ---------------------------------------
-" add and remove items from search patterns
-" ---------------------------------------
-" search for highlighted string without regex
-vnoremap <leader>f yb/\V<C-r>"<Cr>
-" search for word under cursor but dont jump to next result
-" nnoremap <leader>f viwy:let @/='\<<C-R>"\>'<CR>:set hlsearch<CR>
-nnoremap <leader>f viwyb/\<<C-R>"\><CR>
-" add a word to to search, searching for multiple words
-nnoremap <leader>af viwyb/<C-R>/\\|\<<C-R>"\><CR>
-" same thing in visual mode
-vnoremap <leader>af yb/<C-R>/\\|\V<C-r>"<CR>
-" remove most recently added seach item
-" nnoremap <leader>rf :let @/ = '<C-R>/<C-F>F\|hd$a'<ESC><CR>
-nnoremap <leader>rf msHmt/<C-P><C-F>F\|hd$<CR>`tzt`s
-" set search to previously searched pattern
-nnoremap <leader>sp msHmt/<C-p><C-p><CR>`tzt`s
-
-
-" add key for copying to clipboard
-" remember to install : vim-gtk first or it wont work
-vnoremap <leader>y "+y
-
-" window switching
-nnoremap <leader>1 :1wincmd w<CR>
-nnoremap <leader>2 :2wincmd w<CR>
-nnoremap <leader>3 :3wincmd w<CR>
-nnoremap <leader>4 :4wincmd w<CR>
-nnoremap <leader>5 :5wincmd w<CR>
-nnoremap <leader>6 :6wincmd w<CR>
-nnoremap <leader>7 :7wincmd w<CR>
-nnoremap <leader>8 :8wincmd w<CR>
-nnoremap <leader>9 :9wincmd w<CR>
-" status line
-" set statusline=win:%{WindowNumber()}
-" call Pl#Theme#InsertSegment(win:%{WindowNumber()})
-" call Pl#Theme#InsertSegment('charcode', 'after', 'filetype')
-"
-" toggle line wrapping 
-nnoremap <leader>w :set wrap! wrap?<CR>
-
-" buffer
-nnoremap gb :ls<CR>:b<Space>
-
-" move up one indentation level
-nmap <c-p> :call UpByIndent()<cr>
-
-" move to line with same indentation
-nnoremap <c-k> :call MoveBySameLevel("up")<cr>
-nnoremap  <c-j> :call MoveBySameLevel("down")<cr>
-" command for toggleing line numbers
-
-nnoremap  <leader>nu :set invnumber<CR>
-
-" quickfix jump list
-nnoremap [q :cprev <CR>
-nnoremap ]q :cnext <CR>
-nnoremap [Q :cfirst <CR>
-nnoremap ]Q :clast <CR>
-
-nnoremap <leader>gg yiw:call MyGrep('-rIw', "<C-R>"")<cr>
-
-vnoremap <leader>gg y:call MyGrep('-rI', "<C-R>"")<cr>
-
-nnoremap <leader>gr yiw:call MyGrepSilent('-rIw', "<C-R>"")<cr>
-
-vnoremap <leader>gr y:call MyGrepSilent('-rI', "<C-R>"")<cr>
-
+" # # # # # # # # # # # # # # # # # # # # # # # # #
+" #   C O M M A N D  M O D E  M A P P I N G S     #
+" # # # # # # # # # # # # # # # # # # # # # # # # #
 
 " left and right keys in command mode
 cmap HH <left>
 cmap LL <right>
 
-nnoremap gc :copen 
 
-nnoremap <leader>cp :call OpenFileBrowser()<CR>
 
-" jump points
-inoremap <space><space> <Esc>:call JumptoNext("/", "<++>")<cr>"_c4l
 
-" open method in single line split
-nnoremap <leader>mo :call SplitViewMethodOpen()<cr>
-" close method
-nnoremap <leader>mc :call SplitViewMethodClose()<cr>
 
-" set ctrl + c identica l to ctrl+[
-" inoremap <c-c> <Esc>
-inoremap <c-k> <c-c>
-
-" checktime shortcut
-nnoremap <leader>ch :checktime<CR>
-
-nnoremap <leader>t :call OpenTerm()<CR>
-" nnoremap <leader>t :term<CR>
-
-nnoremap <leader>mk :mksession! .save.vim<CR>
-
-" send stack trace to quickfix
-vnoremap <leader>qq :cgetbuffer<CR> :call ProcessQF()<CR>
-vnoremap <leader>qv :cgetbuffer<CR> :call QuickFixBufferListedOnly()<CR>
-nnoremap <leader>qb :call QuickFixBufferListedOnly()<CR>
-
-" delete all terminal buffers
-nnoremap <leader>kat :call KillTerminals()<cr>
 
