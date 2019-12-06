@@ -6,7 +6,6 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
-
 " powerline
 Plugin 'Lokaltog/vim-powerline'
 set laststatus=2
@@ -17,42 +16,16 @@ nmap <F8> :TagbarToggle<CR>
 " 
 " Plugin 'vim-airline/vim-airline'
 " nmap <F8> :TagbarToggle<CR>
-
-
-
-" Python mode
-" Plugin 'python-mode/python-mode'
-" Enable Python mode
-" let g:pymode = 0
-" Default python mode options
-" let g:pymode_options = 1
-" Enable Python Folding
-" let g:pymode_folding = 0
-" let g:pymode_python = 'python3'
-" let g:pymode_enable_shortcuts = 1
-" let g:pymode_rope_goto_def_newwin = "vnew"
-" let g:pymode_rope_extended_complete = 1
-" let g:pymode_breakpoint = 0
-" let g:pymode_syntax = 1
-" let g:pymode_syntax_builtin_objs = 0
-" let g:pymode_syntax_builtin_funcs = 0
-"
-
-
 " VIM Fugutive
 Plugin 'tpope/vim-fugitive'
 
 " vim surround
 Plugin 'tpope/vim-surround'
 
-
-
 " vim indent guides
 " toggle indent guide: 
 " <leader>ig
 Plugin 'nathanaelkane/vim-indent-guides'
-
-
 
 " vim git gutter
 Plugin 'airblade/vim-gitgutter'
@@ -66,28 +39,10 @@ set updatetime=100
 Plugin 'jaxbot/semantic-highlight.vim'
 " semantic highlighting
 let g:semanticTermColors = [1, 2, 3, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15]
-" let g:semanticTermColors = [1, 2, 3]
-" disable cached colors: this allows colors to persist across files
-" let g:semanticUseCache = 0
-
-" color scheme
-" Plugin 'BarretRen/vim-colorscheme'
-
 
 " HTML tag highlight
 Plugin 'gregsexton/MatchTag'
 " HTML navigation (without plugin)
-" move between matching tags:
-" 1. enter visual mode with v
-" a + t : whole tag 
-" i + t : inner tag select only
-" o: jump to opposite tag
-
-
-
-" jedi autocompleteion for python
-" Plugin 'davidhalter/jedi-vim'
-" let g:jedi#popup_on_dot = 0
 
 Plugin 'Valloric/YouCompleteMe'
 let g:ycm_auto_trigger = 0
@@ -106,15 +61,6 @@ let g:ycm_show_diagnostics_ui = 0
 " let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 
 
-" Plugin 'vim-syntastic/syntastic'
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0 
-
 " error checking with pylint
 Plugin 'w0rp/ale'
 
@@ -128,78 +74,312 @@ Plugin 'tpope/vim-dispatch'
 
 call vundle#end()
 
-" set leader key to space
-let mapleader=" "
-nnoremap <SPACE> <Nop>
-vnoremap <SPACE> <Nop>
+" define functions
+fun! CheckEnableSemanticHighLight()
 
-" toggle ale linting
-nmap <leader>l :ALEToggle <CR>
-" ale highlight colors
-highlight ALEWarning ctermbg=NONE cterm=inverse
-highlight ALEError ctermbg=NONE cterm=inverse
-" this isnt working for some reason
+	" first see if semantic color is already on
+	if exists('b:semanticOn')
+		" semantic highlight is already on
+		return
+	else
+		" check how many lines the file has
+		if line('$') < 4000
+			" enable semantic highlight
+			:execute ":SemanticHighlight"
+		endif
+	endif
 
-" toggle semantic highlighting
-nnoremap <leader>c :SemanticHighlightToggle<cr>
-" nnoremap <leader>so :SemanticHighlight<cr>
+
+endfun
+fun! UpByIndent()
+
+	" mark the current position
+	normal! m'
+
+	" if the column is blank, find the first non blank column moving upward
+	if col("$") == 1
+		while col("$") == 1
+			normal! j
+		endwhile
+	endif
+
+	norm! ^
+	let start_col = col(".")
+	let col = start_col
+	while col >= start_col
+		norm! k^
+		if getline(".") =~# '^\s*$'
+			let col = start_col
+		elseif col(".") <= 1
+			norm! $
+			return
+		else
+			let col = col(".")
+		endif
+	endwhile
+	norm! $
+endfun
+fun! MoveBySameLevel(direction)
+	normal! m`
+
+	" if cursor is on a blank line
+	if col("$") == 1
+		while col("$") == 1
+			if a:direction == "up"
+				normal! k
+			else
+				normal! j
+			endif
+		endwhile
+	else
+	" if the cursor is on a line with text
+
+		if a:direction == "down"
+			:execute search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%>' . line('.') . 'l\S', 'e')
+
+		elseif a:direction == "up"
+			:execute search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%<' . line('.') . 'l\S', 'be')
+		endif
+
+	endif
+
+
+
+endfun
+fun! MyGrep(sargs, pattern)
+	" if ignore directories dont exist, create them
+	:execute "silent !touch ./.grepignoredir > /dev/null 2>&1"
+	:execute "silent !touch ./.grepignorefile > /dev/null 2>&1"
+	let s:lines = readfile('.grepignoredir')
+	let s:dirs_ignore = ''
+	for s:line in s:lines
+		let s:dirs_ignore = s:dirs_ignore . s:line . ","
+	endfor
+
+	let s:lines = readfile('.grepignorefile')
+	let s:files_ignore = ''
+	for s:line in s:lines
+		let s:files_ignore = s:files_ignore . s:line . ","
+	endfor
+
+	let s:commandstr = ':grep '.a:sargs.' --exclude={'.s:files_ignore.'} --exclude-dir={' . s:dirs_ignore.'} '."'".a:pattern."' *"
+	" type keys
+	call feedkeys(s:commandstr)
+	" execute immediately
+	" :execute s:commandstr
+endfun
+fun! MyGrepSilent(sargs, pattern)
+	" check if semantic highlighting is set
+	let s:set_semantic = 0
+	if exists('b:semanticOn')
+		if b:semanticOn == 1
+			let s:set_semantic = 1
+		endif
+	endif
+
+	" if ignore directories dont exist, create them
+	:execute "silent !touch ./.grepignoredir > /dev/null 2>&1"
+	:execute "silent !touch ./.grepignorefile > /dev/null 2>&1"
+	let s:lines = readfile('.grepignoredir')
+	let s:dirs_ignore = ''
+	for s:line in s:lines
+		let s:dirs_ignore = s:dirs_ignore . s:line . ","
+	endfor
+
+	let s:lines = readfile('.grepignorefile')
+	let s:files_ignore = ''
+	for s:line in s:lines
+		let s:files_ignore = s:files_ignore . s:line . ","
+	endfor
+
+	let s:commandstr = ':silent grep '.a:sargs.' --exclude={'.s:files_ignore.'} --exclude-dir={' . s:dirs_ignore.'} '."'".a:pattern."' *"
+
+	" set marks for current screen position
+	:execute "normal! msHmt"
+	" call grep
+	:execute s:commandstr
+	" return to the original position
+	:execute "normal! \<C-o>`tzt`s"
+	" turn on semantic highlight
+	if s:set_semantic == 1
+		:execute ":SemanticHighlight"
+	endif
+
+endfun
+fun! JumptoNext(direction, jump_to)
+	" save old search
+	let old = @/
+
+	" jump to next <++>
+	" let cmdstring = a:direction."<++>\<cr>"
+	let cmdstring = a:direction.a:jump_to."\<cr>"
+	:execute "normal! ".cmdstring
+
+	" restore search
+	call histdel('/', -1)
+	let @/ = old
+endfun
+fun! OpenFileBrowser()
+	let current_dir = expand("%:p:h")
+	let file_name = expand("%:t")
+	:execute ":e ".current_dir
+	:call JumptoNext("/", "\\V".file_name)
+endfun
+fun! SplitViewMethodOpen()
+	:execute ":split"
+	" "call UpByIndent()
+	" " ! ignores mappings
+	:execute ":normal [m"
+	:execute "normal! 1\<C-W>_"
+	:execute "normal! zz"
+	:execute ":normal \<c-w>p"
+endfun
+fun! SplitViewMethodClose()
+	:execute ":normal \<c-w>k"
+	if winheight(0) == 1
+		" this is a view opened by method function
+		:execute ":q"
+		return
+	endif
+endfun
+fun! BufferSave()
+	" save the file if it was modified
+	if &modified == 1
+		:silent! execute ":w"
+	endif
+endfun
+fun! OpenTerm()
+	let current_dir = expand("%:p:h")
+	:execute ":term"
+	call feedkeys("acd ".current_dir."\<CR>")
+	call feedkeys("clear"."\<CR>")
+endfun
+fun! QuickFixBufferListedOnly()
+	let qfitems = getqflist()
+
+	for i in qfitems
+		if i['valid'] == 1
+			" check if buffer is listed
+			" (already has been opened)
+			if buflisted(i['bufnr']) == 0
+				" echo i
+				" echo bufname(i['bufnr'])
+				let i['text'] = bufname(i['bufnr']).' '.i['lnum'].' '.i['text']
+				let i['bufnr'] = 0
+				let i['lnum'] = 0
+				let i['valid'] = 0
+			endif
+		endif
+	endfor
+
+	call setqflist(qfitems, 'r')
+endfun
+fun! QFSigns()
+	" clear all qf signs
+	call sign_unplace('qfsign_group')
+	let qfitems = getqflist()
+
+	let index = 0
+	for i in qfitems
+		if i['valid'] == 1
+			call sign_place(index, 'qfsign_group', 'qfsign', bufname(i['bufnr']), {'lnum':i['lnum'], 'priority':11})
+			let index = index + 1
+		endif
+	endfor
+
+	" call setqflist(qfitems, 'r')
+
+endfun
+fun! ProcessQF()
+	" add quickfix signs
+	call QuickFixBufferListedOnly()
+	call QFSigns()
+
+
+endfun
+fun! KillTerminals()
+	" kill all open terminal buffers
+	let buffers = filter(range(1, bufnr('$')), 'bufexists(v:val)')
+	for i in buffers
+		if stridx(bufname(i), "term\:") == 0
+			:silent! execute ":bd! ".i
+		endif
+	endfor
+
+endfun
 
 "run 
 "PluginUpdate
 filetype plugin indent on
 syntax on
 
+" ale highlight colors
+highlight ALEWarning ctermbg=NONE cterm=inverse
+highlight ALEError ctermbg=NONE cterm=inverse
+" this isnt working for some reason
+
 " search / highlight settings 
 set hlsearch
 set cursorline
 set nowrap
-" set number
-
-" automatic closing brackets
-inoremap ;" ""<left>
-inoremap ;' ''<left>
-inoremap ;[ []<left>
-inoremap ;{ {}<left>
-inoremap ;( ()<left>
-inoremap ;< <><left>
-
-
-
-" center screen around cursor:
-"       zz
 
 command! MakeTags !ctags -R .
 " command! MakeTags !ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .
-" search for definition: ctrl+], ctrl + t to return
-" g + ctrl + ] : find re-occuring tags
-
-" reload all open files
-" checkt[ime]
-
-
-" moving indentation easier
-vnoremap < <gv
-vnoremap > >gv
-
-" colorscheme monokai
-" Vim color file
-" Converted from Textmate theme Monokai using Coloration v0.3.2 (http://github.com/sickill/coloration)
+" set leader key to space
 
 set background=dark
 highlight clear
+
 
 if exists("syntax_on")
   syntax reset
 endif
 
+" autocommands
+" auto enter with colors
+autocmd bufenter *.py :call CheckEnableSemanticHighLight()
+autocmd bufenter *.js :call CheckEnableSemanticHighLight()
+autocmd bufenter *.cpp :call CheckEnableSemanticHighLight()
+autocmd bufenter *.c :call CheckEnableSemanticHighLight()
+autocmd bufenter *.h :call CheckEnableSemanticHighLight()
+autocmd BufEnter *.py :call CheckEnableSemanticHighLight()
+
+autocmd BufLeave * :call BufferSave()
+autocmd BufWrite * :mksession! .autosave.vim
+
+autocmd QuickfixCmdPost make call ProcessQF()
+autocmd QuickfixCmdPost cgetfile call ProcessQF()
+
+au InsertLeave * match ExtraWhitespace /\s\+$/
+
+" break indent level matching
+set breakindent
+set showbreak=>>
+set display +=lastline
+
+" set default latex filetype
+let g:tex_flavor = "latex"
+" incsearch
+set incsearch
 set t_Co=256
+
+" when saving session, dont save options
+set sessionoptions-=options
+
+" close split without resizing windows
+set noea
+set foldlevelstart=20
+
+" define quickfix signs
+call sign_define('qfsign', {"text" : "q>",})
+
 " let g:colors_name = "monokai"
 "colors:
 
 " indicate trailing white space
 highlight ExtraWhitespace ctermbg=red
 match ExtraWhitespace / \+$/
-au InsertLeave * match ExtraWhitespace /\s\+$/
+
 
 hi Cursor ctermfg=235 ctermbg=231 cterm=NONE
 hi Visual ctermfg=NONE ctermbg=59 cterm=NONE
@@ -242,10 +422,8 @@ hi Function ctermfg=40 ctermbg=NONE cterm=NONE
 hi Identifier ctermfg=81 ctermbg=NONE cterm=NONE
 hi Keyword ctermfg=197 ctermbg=NONE cterm=NONE
 hi Label ctermfg=186 ctermbg=NONE cterm=NONE
-
 " the area after the last line
 hi NonText ctermfg=NONE ctermbg=NONE cterm=NONE
-
 hi Number ctermfg=141 ctermbg=NONE cterm=NONE
 hi Operator ctermfg=197 ctermbg=NONE cterm=NONE
 " python imports PreProc
@@ -311,18 +489,33 @@ hi cssValueLength ctermfg=141 ctermbg=NONE cterm=NONE
 hi cssCommonAttr ctermfg=81 ctermbg=NONE cterm=NONE
 hi cssBraces ctermfg=NONE ctermbg=NONE cterm=NONE
 
-" get out of insert mode
-" inoremap jk <Esc>
+let mapleader=" "
 
-" set background to black
-" hi Normal ctermbg=16
+" # # # # # # # # # # # # # # # # # # # # # # # #
+"
+" # # # # # # # # # # # # # # # # # # # # # # # #
 
-" set comment color
-" search  highlight colors
-" hi Search ctermbg=LightBlue
-" hi Search ctermbg=164
-" hi Search ctermfg=Black
+nnoremap <SPACE> <Nop>
+vnoremap <SPACE> <Nop>
 
+" toggle ale linting
+nmap <leader>l :ALEToggle <CR>
+
+" toggle semantic highlighting
+nnoremap <leader>c :SemanticHighlightToggle<cr>
+" nnoremap <leader>so :SemanticHighlight<cr>
+
+" automatic closing brackets
+inoremap ;" ""<left>
+inoremap ;' ''<left>
+inoremap ;[ []<left>
+inoremap ;{ {}<left>
+inoremap ;( ()<left>
+inoremap ;< <><left>
+
+" moving indentation easier
+vnoremap < <gv
+vnoremap > >gv
 " ---------------------------------------
 " add and remove items from search patterns
 " ---------------------------------------
@@ -364,199 +557,24 @@ nnoremap <leader>9 :9wincmd w<CR>
 " toggle line wrapping 
 nnoremap <leader>w :set wrap! wrap?<CR>
 
-
 " buffer
 nnoremap gb :ls<CR>:b<Space>
 
-
-fun! CheckEnableSemanticHighLight()
-
-	" first see if semantic color is already on
-	if exists('b:semanticOn')
-		" semantic highlight is already on
-		return
-	else
-		" check how many lines the file has
-		if line('$') < 4000
-			" enable semantic highlight
-			:execute ":SemanticHighlight"
-		endif
-	endif
-
-
-endfun
-
-" auto enter with colors
-autocmd bufenter *.py :call CheckEnableSemanticHighLight()
-autocmd bufenter *.js :call CheckEnableSemanticHighLight()
-autocmd bufenter *.cpp :call CheckEnableSemanticHighLight()
-autocmd bufenter *.c :call CheckEnableSemanticHighLight()
-autocmd bufenter *.h :call CheckEnableSemanticHighLight()
-autocmd BufEnter *.py :call CheckEnableSemanticHighLight()
-
-" break indent level matching
-set breakindent
-set showbreak=>>
-set display +=lastline
-
-" set default latex filetype
-let g:tex_flavor = "latex"
-" incsearch
-set incsearch
-
 " move up one indentation level
-fun! UpByIndent()
-
-	" mark the current position
-	normal! m'
-
-	" if the column is blank, find the first non blank column moving upward
-	if col("$") == 1
-		while col("$") == 1
-			normal! j
-		endwhile
-	endif
-
-	norm! ^
-	let start_col = col(".")
-	let col = start_col
-	while col >= start_col
-		norm! k^
-		if getline(".") =~# '^\s*$'
-			let col = start_col
-		elseif col(".") <= 1
-			norm! $
-			return
-		else
-			let col = col(".")
-		endif
-	endwhile
-	norm! $
-endfun
 nmap <c-p> :call UpByIndent()<cr>
 
 " move to line with same indentation
-
-fun! MoveBySameLevel(direction)
-	normal! m`
-
-	" if cursor is on a blank line
-	if col("$") == 1
-		while col("$") == 1
-			if a:direction == "up"
-				normal! k
-			else
-				normal! j
-			endif
-		endwhile
-	else
-	" if the cursor is on a line with text
-
-		if a:direction == "down"
-			:execute search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%>' . line('.') . 'l\S', 'e')
-
-		elseif a:direction == "up"
-			:execute search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%<' . line('.') . 'l\S', 'be')
-		endif
-
-	endif
-
-
-
-endfun
-
-
 nnoremap <c-k> :call MoveBySameLevel("up")<cr>
 nnoremap  <c-j> :call MoveBySameLevel("down")<cr>
-
-
-" jump to next/previous method:
-" ]m / [m
-
-
 " command for toggleing line numbers
+
 nnoremap  <leader>nu :set invnumber<CR>
-
-
 
 " quickfix jump list
 nnoremap [q :cprev <CR>
 nnoremap ]q :cnext <CR>
 nnoremap [Q :cfirst <CR>
 nnoremap ]Q :clast <CR>
-" vimgrep -recursive
-" :vimgrep /pattern/gj **/*.py
-
-" all files:
-" :vimgrep /pattern/gj **/*
-
-" when saving session, dont save options
-set sessionoptions-=options
-
-
-" grep-
-fun! MyGrep(sargs, pattern)
-	" if ignore directories dont exist, create them
-	:execute "silent !touch ./.grepignoredir > /dev/null 2>&1"
-	:execute "silent !touch ./.grepignorefile > /dev/null 2>&1"
-	let s:lines = readfile('.grepignoredir')
-	let s:dirs_ignore = ''
-	for s:line in s:lines
-		let s:dirs_ignore = s:dirs_ignore . s:line . ","
-	endfor
-
-	let s:lines = readfile('.grepignorefile')
-	let s:files_ignore = ''
-	for s:line in s:lines
-		let s:files_ignore = s:files_ignore . s:line . ","
-	endfor
-
-	let s:commandstr = ':grep '.a:sargs.' --exclude={'.s:files_ignore.'} --exclude-dir={' . s:dirs_ignore.'} '."'".a:pattern."' *"
-	" type keys
-	call feedkeys(s:commandstr)
-	" execute immediately
-	" :execute s:commandstr
-endfun
-
-
-fun! MyGrepSilent(sargs, pattern)
-	" check if semantic highlighting is set
-	let s:set_semantic = 0
-	if exists('b:semanticOn')
-		if b:semanticOn == 1
-			let s:set_semantic = 1
-		endif
-	endif
-
-	" if ignore directories dont exist, create them
-	:execute "silent !touch ./.grepignoredir > /dev/null 2>&1"
-	:execute "silent !touch ./.grepignorefile > /dev/null 2>&1"
-	let s:lines = readfile('.grepignoredir')
-	let s:dirs_ignore = ''
-	for s:line in s:lines
-		let s:dirs_ignore = s:dirs_ignore . s:line . ","
-	endfor
-
-	let s:lines = readfile('.grepignorefile')
-	let s:files_ignore = ''
-	for s:line in s:lines
-		let s:files_ignore = s:files_ignore . s:line . ","
-	endfor
-
-	let s:commandstr = ':silent grep '.a:sargs.' --exclude={'.s:files_ignore.'} --exclude-dir={' . s:dirs_ignore.'} '."'".a:pattern."' *"
-
-	" set marks for current screen position
-	:execute "normal! msHmt"
-	" call grep
-	:execute s:commandstr
-	" return to the original position
-	:execute "normal! \<C-o>`tzt`s"
-	" turn on semantic highlight
-	if s:set_semantic == 1
-		:execute ":SemanticHighlight"
-	endif
-
-endfun
 
 nnoremap <leader>gg yiw:call MyGrep('-rIw', "<C-R>"")<cr>
 
@@ -566,65 +584,17 @@ nnoremap <leader>gr yiw:call MyGrepSilent('-rIw', "<C-R>"")<cr>
 
 vnoremap <leader>gr y:call MyGrepSilent('-rI', "<C-R>"")<cr>
 
-" close split without resizing windows
-set noea
 
 " left and right keys in command mode
 cmap HH <left>
 cmap LL <right>
 
-" diff mode
-" enable diff mode
-" diffthis
-" disable:
-" diffoff!
-"
 nnoremap gc :copen 
-
-fun! JumptoNext(direction, jump_to)
-	" save old search
-	let old = @/
-
-	" jump to next <++>
-	" let cmdstring = a:direction."<++>\<cr>"
-	let cmdstring = a:direction.a:jump_to."\<cr>"
-	:execute "normal! ".cmdstring
-
-	" restore search
-	call histdel('/', -1)
-	let @/ = old
-endfun
-
-fun! OpenFileBrowser()
-	let current_dir = expand("%:p:h")
-	let file_name = expand("%:t")
-	:execute ":e ".current_dir
-	:call JumptoNext("/", "\\V".file_name)
-endfun
 
 nnoremap <leader>cp :call OpenFileBrowser()<CR>
 
 " jump points
 inoremap <space><space> <Esc>:call JumptoNext("/", "<++>")<cr>"_c4l
-
-fun! SplitViewMethodOpen()
-	:execute ":split"
-	" "call UpByIndent()
-	" " ! ignores mappings
-	:execute ":normal [m"
-	:execute "normal! 1\<C-W>_"
-	:execute "normal! zz"
-	:execute ":normal \<c-w>p"
-endfun
-
-fun! SplitViewMethodClose()
-	:execute ":normal \<c-w>k"
-	if winheight(0) == 1
-		" this is a view opened by method function
-		:execute ":q"
-		return
-	endif
-endfun
 
 " open method in single line split
 nnoremap <leader>mo :call SplitViewMethodOpen()<cr>
@@ -635,108 +605,18 @@ nnoremap <leader>mc :call SplitViewMethodClose()<cr>
 " inoremap <c-c> <Esc>
 inoremap <c-k> <c-c>
 
-set foldlevelstart=20
-
-fun! BufferSave()
-	" save the file if it was modified
-	if &modified == 1
-		:silent! execute ":w"
-	endif
-endfun
-
-autocmd BufLeave * :call BufferSave()
-
 " checktime shortcut
 nnoremap <leader>ch :checktime<CR>
-
-
-
-fun! OpenTerm()
-	let current_dir = expand("%:p:h")
-	:execute ":term"
-	call feedkeys("acd ".current_dir."\<CR>")
-	call feedkeys("clear"."\<CR>")
-endfun
 
 nnoremap <leader>t :call OpenTerm()<CR>
 " nnoremap <leader>t :term<CR>
 
 nnoremap <leader>mk :mksession! .save.vim<CR>
 
-
-fun! QuickFixBufferListedOnly()
-	let qfitems = getqflist()
-
-	for i in qfitems
-		if i['valid'] == 1
-			" check if buffer is listed
-			" (already has been opened)
-			if buflisted(i['bufnr']) == 0
-				" echo i
-				" echo bufname(i['bufnr'])
-				let i['text'] = bufname(i['bufnr']).' '.i['lnum'].' '.i['text']
-				let i['bufnr'] = 0
-				let i['lnum'] = 0
-				let i['valid'] = 0
-			endif
-		endif
-	endfor
-
-	call setqflist(qfitems, 'r')
-endfun
-
 " send stack trace to quickfix
 vnoremap <leader>qq :cgetbuffer<CR> :call ProcessQF()<CR>
 vnoremap <leader>qv :cgetbuffer<CR> :call QuickFixBufferListedOnly()<CR>
 nnoremap <leader>qb :call QuickFixBufferListedOnly()<CR>
-
-" redraw screen:
-" <C-L>
-"
-autocmd BufWrite * :mksession! .autosave.vim
-
-
-fun! QFSigns()
-	" clear all qf signs
-	call sign_unplace('qfsign_group')
-	let qfitems = getqflist()
-
-	let index = 0
-	for i in qfitems
-		if i['valid'] == 1
-			call sign_place(index, 'qfsign_group', 'qfsign', bufname(i['bufnr']), {'lnum':i['lnum'], 'priority':11})
-			let index = index + 1
-		endif
-	endfor
-
-	" call setqflist(qfitems, 'r')
-
-endfun
-
-
-fun! ProcessQF()
-	" add quickfix signs
-	call QuickFixBufferListedOnly()
-	call QFSigns()
-
-
-endfun
-
-call sign_define('qfsign', {"text" : "q>",})
-
-autocmd QuickfixCmdPost make call ProcessQF()
-autocmd QuickfixCmdPost cgetfile call ProcessQF()
-
-fun! KillTerminals()
-	" kill all open terminal buffers
-	let buffers = filter(range(1, bufnr('$')), 'bufexists(v:val)')
-	for i in buffers
-		if stridx(bufname(i), "term\:") == 0
-			:silent! execute ":bd! ".i
-		endif
-	endfor
-
-endfun
 
 " delete all terminal buffers
 nnoremap <leader>kat :call KillTerminals()<cr>
