@@ -31,6 +31,7 @@ inoremap <buffer> ;break import ipdb; ipdb.set_trace() # BREAKPOINT<CR>print("BR
 "  python print command
 noremap <buffer> <leader>pv ^v$hxaprint("pa =>"a, pa)^
 noremap <buffer> <leader>pp Iprint(<Esc>A)<Esc>
+noremap <buffer> <leader>pns Inp.shape(<Esc>A)<Esc>^v$hxaprint("<Esc>pa => ",<Esc>pa)<Esc>
 nnoremap <buffer> <leader>e oexit()<Esc>
 inoremap <buffer> ;e exit()<Esc>
 
