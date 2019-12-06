@@ -726,3 +726,18 @@ call sign_define('qfsign', {"text" : "q>",})
 
 autocmd QuickfixCmdPost make call ProcessQF()
 autocmd QuickfixCmdPost cgetfile call ProcessQF()
+
+fun! KillTerminals()
+	" kill all open terminal buffers
+	let buffers = filter(range(1, bufnr('$')), 'bufexists(v:val)')
+	for i in buffers
+		if stridx(bufname(i), "term\:") == 0
+			:silent! execute ":bd! ".i
+		endif
+	endfor
+
+endfun
+
+" delete all terminal buffers
+nnoremap <leader>kat :call KillTerminals()<cr>
+
