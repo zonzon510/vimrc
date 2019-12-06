@@ -497,7 +497,7 @@ let mapleader=" "
 
 " move up one indentation level
 nmap <c-p> :call UpByIndent()<cr>
-" space key doesnt do anything
+" find
 nnoremap <SPACE> <Nop>
 " buffer
 nnoremap gb :ls<CR>:b<Space>
@@ -513,6 +513,8 @@ nnoremap ]Q :clast <CR>
 " open quickfix menu
 nnoremap gc :copen 
 " add a word to to search, searching for multiple words
+nnoremap <leader>f viwyb/\<<C-R>"\><CR>
+" space key doesnt do anything
 nnoremap <leader>af viwyb/<C-R>/\\|\<<C-R>"\><CR>
 " remove most recently added seach item
 nnoremap <leader>rf msHmt/<C-P><C-F>F\|hd$<CR>`tzt`s
