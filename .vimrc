@@ -519,7 +519,7 @@ nnoremap <leader>af viwyb/<C-R>/\\|\<<C-R>"\><CR>
 " remove most recently added seach item
 nnoremap <leader>rf msHmt/<C-P><C-F>F\|hd$<CR>`tzt`s
 " grep
-nnoremap <leader>gg yiw:call MyGrep('-rIw', "<C-R>"")<cr>
+nnoremap <leader>gg yiw:call MyGrep('-rIi', "<C-R>"")<cr>
 " grep
 nnoremap <leader>gr yiw:call MyGrepSilent('-rIw', "<C-R>"")<cr>
 " open file browser at folder of current file

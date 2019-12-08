@@ -53,9 +53,25 @@ else
 		let current_dir = expand("%:p:h")
 		let file_name = expand("%:t")
 		if split(file_name, '\.')[1] == 'h'
-			:execute ":e ".current_dir.'/'.split(file_name, '\.')[0].'.cpp'
+			let other_file_name = current_dir.'/'.split(file_name, '\.')[0].'.cpp'
+			if filereadable(other_file_name)
+				:execute ":e ".other_file_name
+			else
+				let other_file_name = substitute(other_file_name, "Public", "Private", "")
+				:execute ":e ".other_file_name
+			endif
+
 		else
-			:execute ":e ".current_dir.'/'.split(file_name, '\.')[0].'.h'
+			let other_file_name = current_dir.'/'.split(file_name, '\.')[0].'.h'
+			if filereadable(other_file_name)
+				" command string
+				:execute ":e ".other_file_name
+			else
+				let other_file_name = substitute(other_file_name, "Private", "Public", "")
+				:execute ":e ".other_file_name
+
+			endif
+
 		endif
 	endfun
 endif
