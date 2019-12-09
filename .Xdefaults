@@ -17,4 +17,5 @@ URxvt.cursorColor: #ffffff
 ! --- color --- !
 ! blue
 ! *.color4: #2587cc
+*.color4: #2ca2f5
 *.color12: #2ca2f5
