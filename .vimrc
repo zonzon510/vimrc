@@ -167,6 +167,7 @@ fun! MyGrep(sargs, pattern)
 	call feedkeys(s:commandstr)
 	" execute immediately
 	" :execute s:commandstr
+	call feedkeys("\<c-f>"."0ci'")
 endfun
 fun! MyGrepSilent(sargs, pattern)
 	" check if semantic highlighting is set
