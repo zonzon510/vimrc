@@ -511,6 +511,8 @@ nnoremap [q :cprev <CR>
 nnoremap ]q :cnext <CR>
 nnoremap [Q :cfirst <CR>
 nnoremap ]Q :clast <CR>
+nnoremap <C-u> 5<C-y>
+nnoremap <C-d> 5<C-e>
 " open quickfix menu
 nnoremap gc :copen 
 " add a word to to search, searching for multiple words
