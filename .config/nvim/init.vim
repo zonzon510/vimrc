@@ -49,8 +49,8 @@ tnoremap <C-w>N <C-\><C-N>
 
 
 " quick ctrl+E / Y
-nnoremap <C-A-e> 5<C-e>
-nnoremap <C-A-y> 5<C-y>
+" nnoremap <C-A-e> 5<C-e>
+" nnoremap <C-A-y> 5<C-y>
 
 " " quick move
 " nnoremap <A-k> 5k
