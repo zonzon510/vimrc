@@ -62,7 +62,7 @@ let g:ycm_show_diagnostics_ui = 0
 
 
 " error checking with pylint
-" Plugin 'w0rp/ale'
+Plugin 'w0rp/ale'
 
 
 " gdb
