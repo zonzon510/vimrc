@@ -549,6 +549,10 @@ nnoremap <leader>w :set wrap! wrap?<CR>
 nnoremap <leader>c :SemanticHighlightToggle<cr>
 " set search to previously searched pattern
 nnoremap <leader>sp msHmt/<C-p><C-p><CR>`tzt`s
+" case insensitive search
+nnoremap <leader>ss /\c
+" case sensitive search
+nnoremap <leader>S /
 
 
 " # # # # # # # # # # # # # # # # # # # # # # # #
