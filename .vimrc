@@ -62,7 +62,7 @@ let g:ycm_show_diagnostics_ui = 0
 
 
 " error checking with pylint
-Plugin 'w0rp/ale'
+" Plugin 'w0rp/ale'
 
 
 " gdb
@@ -532,9 +532,15 @@ nnoremap <leader>mc :call SplitViewMethodClose()<cr>
 " checktime shortcut
 nnoremap <leader>ch :checktime<CR>
 " open a terminal
-nnoremap <leader>t :call OpenTerm()<CR>
+nnoremap <leader>te :call OpenTerm()<CR>
+" open a terminal
+nnoremap <leader>ta :TagbarToggle<CR>
 " save session
 nnoremap <leader>mk :mksession! .save.vim<CR>
+" run Make silent
+nnoremap <leader>ms :w<CR>:Make!<CR>
+" run Make
+nnoremap <leader>ma :w<CR>:Make<CR>
 " filter quickfix results to include only files in a buffer
 nnoremap <leader>qb :call QuickFixBufferListedOnly()<CR>
 " delete all terminal buffers
@@ -542,17 +548,23 @@ nnoremap <leader>kat :call KillTerminals()<cr>
 " toggle ale linting
 nnoremap <leader>l :ALEToggle <CR>
 " command for toggleing line numbers
-nnoremap  <leader>nu :set invnumber<CR>
+nnoremap <leader>nu :set invnumber<CR>
 " toggle line wrapping
-nnoremap <leader>w :set wrap! wrap?<CR>
+nnoremap <leader>W :set wrap! wrap?<CR>
+" toggle line wrapping
+nnoremap <leader>w :w<CR>
 " toggle semantic highlighting
-nnoremap <leader>c :SemanticHighlightToggle<cr>
+nnoremap <leader>j :SemanticHighlightToggle<cr>
 " set search to previously searched pattern
 nnoremap <leader>sp msHmt/<C-p><C-p><CR>`tzt`s
 " case insensitive search
 nnoremap <leader>ss /\c
-" case sensitive search
+" case insensitive search forward
+nnoremap <leader>sS ?\c
+" case sensitive search backward
 nnoremap <leader>S /
+" no highlight
+nnoremap <leader>nh :noh<CR>
 
 
 " # # # # # # # # # # # # # # # # # # # # # # # #

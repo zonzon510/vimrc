@@ -3,11 +3,11 @@ let &packpath = &runtimepath
 source ~/.vimrc
 
 " exit any window in any mode with alt key
-tnoremap <A-h> <C-\><C-N><C-w>h
-tnoremap <A-j> <C-\><C-N><C-w>j
-tnoremap <A-k> <C-\><C-N><C-w>k
-tnoremap <A-l> <C-\><C-N><C-w>l
-tnoremap <A-n> <C-\><C-N>
+" tnoremap <A-h> <C-\><C-N><C-w>h
+" tnoremap <A-j> <C-\><C-N><C-w>j
+" tnoremap <A-k> <C-\><C-N><C-w>k
+" tnoremap <A-l> <C-\><C-N><C-w>l
+" tnoremap <A-n> <C-\><C-N>
 
 " terminal
 " move to previous window
@@ -38,14 +38,14 @@ tnoremap <C-w><C-j> <C-\><C-N><C-w><C-j>
 tnoremap <C-w>N <C-\><C-N>
 
 
-inoremap <A-h> <C-\><C-N><C-w>h
-inoremap <A-j> <C-\><C-N><C-w>j
-inoremap <A-k> <C-\><C-N><C-w>k
-inoremap <A-l> <C-\><C-N><C-w>l
-nnoremap <A-h> <C-w>h
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-l> <C-w>l
+" inoremap <A-h> <C-\><C-N><C-w>h
+" inoremap <A-j> <C-\><C-N><C-w>j
+" inoremap <A-k> <C-\><C-N><C-w>k
+" inoremap <A-l> <C-\><C-N><C-w>l
+" nnoremap <A-h> <C-w>h
+" nnoremap <A-j> <C-w>j
+" nnoremap <A-k> <C-w>k
+" nnoremap <A-l> <C-w>l
 
 
 " quick ctrl+E / Y
@@ -143,25 +143,23 @@ fun! SetRunBuffer()
 endfun
 
 " rerun terminal command
-tnoremap <A-r> <ESC>k<CR><C-\><C-N> :call SetRunBuffer()<CR>a
+" tnoremap <A-r> <ESC>k<CR><C-\><C-N> :call SetRunBuffer()<CR>a
+" nnoremap <A-r> :call RunBuffer()<CR>
 
-nnoremap <A-r> :call RunBuffer()<CR>
+tnoremap <leader>rb <ESC>k<CR><C-\><C-N> :call SetRunBuffer()<CR>a
+nnoremap <leader>rb :call RunBuffer()<CR>
 nnoremap <leader>qq :call GetQFFromBuffer()<CR>
-nnoremap <A-w> :w<cr>
-" nnoremap <A-q> :bd!<CR>
-nnoremap <A-c> :SemanticHighlightToggle<cr>
+
 nnoremap <A-C-j> 5j
 nnoremap <A-C-k> 5k
 inoremap <A-o> <Esc>
-" run Make
-nnoremap <A-m> :w<CR>:Make<CR>
-" run Make silent
-nnoremap <A-C-m> :w<CR>:Make!<CR>
-nmap <A-t> :TagbarToggle<CR>
 
 " switch tabs
-nnoremap <A-C-g> gT
-nnoremap <A-g> gt
+nnoremap <A-C-h> gT
+nnoremap <A-C-l> gt
 
 " insert mode on enter terminal
 " autocmd bufenter * if &buftype == 'terminal' | :startinsert | endif
+"
+cmap <C-w> \<
+cmap <C-e> \>
