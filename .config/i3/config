@@ -167,8 +167,10 @@ bar {
 }
 
 # alt key: Mod1
-bindsym Mod1+Control+h workspace prev
-bindsym Mod1+Control+l workspace next
+# bindsym Mod1+Control+h workspace prev
+# bindsym Mod1+Control+l workspace next
+bindsym $mod+Control+h workspace prev
+bindsym $mod+Control+l workspace next
 
 # popup windows go to float
 # for_window [window_role="pop-up"]                       floating enable
