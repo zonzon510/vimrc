@@ -150,8 +150,8 @@ tnoremap <C-r> <ESC>k<CR><C-\><C-N> :call SetRunBuffer()<CR>a
 nnoremap <leader>rb :call RunBuffer()<CR>
 nnoremap <leader>qq :call GetQFFromBuffer()<CR>
 
-nnoremap <A-C-j> 5j
-nnoremap <A-C-k> 5k
+" nnoremap <A-C-j> 5j
+" nnoremap <A-C-k> 5k
 inoremap <A-o> <Esc>
 
 " switch tabs
@@ -161,5 +161,3 @@ nnoremap <A-C-l> gt
 " insert mode on enter terminal
 " autocmd bufenter * if &buftype == 'terminal' | :startinsert | endif
 "
-cmap <C-w> \<
-cmap <C-e> \>

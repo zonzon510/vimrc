@@ -513,6 +513,10 @@ nnoremap [Q :cfirst <CR>
 nnoremap ]Q :clast <CR>
 nnoremap <C-u> 5<C-y>
 nnoremap <C-d> 5<C-e>
+" fast movement
+nnoremap J 5j
+" fast movement
+nnoremap K 5k
 " open quickfix menu
 nnoremap gc :copen 
 " add a word to to search, searching for multiple words
@@ -557,6 +561,10 @@ nnoremap <leader>W :set wrap! wrap?<CR>
 nnoremap <leader>w :w<CR>
 " toggle semantic highlighting
 nnoremap <leader>j :SemanticHighlightToggle<cr>
+" move line to end of line above it
+nnoremap <leader>J J
+" open documentation
+nnoremap <leader>K K
 " set search to previously searched pattern
 nnoremap <leader>sp msHmt/<C-p><C-p><CR>`tzt`s
 " case insensitive search
@@ -620,6 +628,8 @@ inoremap <c-k> <c-c>
 cmap HH <left>
 cmap LL <right>
 
+cmap <C-w> \<
+cmap <C-e> \>
 
 
 
