@@ -151,5 +151,6 @@ export PATH=$PATH":/opt/Qt/Tools/QtCreator/bin"
 
 alias vi=nvim
 alias vim=nvim
+alias clear=''
 
 export RANGER_LOAD_DEFAULT_RC=false
