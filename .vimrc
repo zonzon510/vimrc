@@ -520,11 +520,13 @@ nnoremap K 5k
 " open quickfix menu
 nnoremap gc :copen 
 " add a word to to search, searching for multiple words
-nnoremap <leader>f viwyb/\<<C-R>"\><CR>
+nnoremap <leader>ff viwyb/\<<C-R>"\><CR>
 " space key doesnt do anything
-nnoremap <leader>af viwyb/<C-R>/\\|\<<C-R>"\><CR>
+nnoremap <leader>fa viwyb/<C-R>/\\|\<<C-R>"\><CR>
 " remove most recently added seach item
-nnoremap <leader>rf msHmt/<C-P><C-F>F\|hd$<CR>`tzt`s
+nnoremap <leader>fr msHmt/<C-P><C-F>F\|hd$<CR>`tzt`s
+" set search to previously searched pattern
+nnoremap <leader>fp msHmt/<C-p><C-p><CR>`tzt`s
 " grep
 nnoremap <leader>gg yiw:call MyGrep('-rIi', "<C-R>"")<cr>
 " grep
@@ -565,14 +567,12 @@ nnoremap <leader>j :SemanticHighlightToggle<cr>
 nnoremap <leader>J J
 " open documentation
 nnoremap <leader>K K
-" set search to previously searched pattern
-nnoremap <leader>sp msHmt/<C-p><C-p><CR>`tzt`s
 " case insensitive search
-nnoremap <leader>ss /\c
+nnoremap <leader>s /\c
 " case insensitive search forward
-nnoremap <leader>sS ?\c
+nnoremap <leader>S ?\c
 " case sensitive search backward
-nnoremap <leader>S /
+" nnoremap <leader>S /
 " no highlight
 nnoremap <leader>nh :noh<CR>
 
