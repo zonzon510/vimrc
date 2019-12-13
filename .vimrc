@@ -587,9 +587,9 @@ vnoremap <SPACE> <Nop>
 vnoremap < <gv
 vnoremap > >gv
 " search for highlighted string without regex
-vnoremap <leader>f yb/\V<C-r>"<Cr>
+vnoremap <leader>ff yb/\V<C-r>"<Cr>
 " add word to search pattern
-vnoremap <leader>af yb/<C-R>/\\|\V<C-r>"<CR>
+vnoremap <leader>fa yb/<C-R>/\\|\V<C-r>"<CR>
 " add key for copying to clipboard
 " remember to install : vim-gtk first or it wont work
 vnoremap <leader>y "+y
