@@ -46,7 +46,7 @@ Plugin 'gregsexton/MatchTag'
 
 Plugin 'Valloric/YouCompleteMe'
 let g:ycm_auto_trigger = 0
-let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 0
 let g:ycm_show_diagnostics_ui = 0
 
 " Plugin 'vim-scripts/OmniCppComplete'
@@ -575,6 +575,8 @@ nnoremap <leader>S ?\c
 " nnoremap <leader>S /
 " no highlight
 nnoremap <leader>nh :noh<CR>
+" close preview window
+nnoremap <C-Space> :pc<CR>
 
 
 " # # # # # # # # # # # # # # # # # # # # # # # #

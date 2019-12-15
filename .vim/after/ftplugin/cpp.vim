@@ -77,7 +77,7 @@ else
 endif
 
 " switch to header header file
-nnoremap <buffer> <leader>sh :call SwitchHeader()<CR>
+nnoremap <buffer> <leader>ph :call SwitchHeader()<CR>
 set formatoptions-=cro
 
 
