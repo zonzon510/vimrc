@@ -527,6 +527,8 @@ nnoremap <leader>fa viwyb/<C-R>/\\|\<<C-R>"\><CR>
 nnoremap <leader>fr msHmt/<C-P><C-F>F\|hd$<CR>`tzt`s
 " set search to previously searched pattern
 nnoremap <leader>fp msHmt/<C-p><C-p><CR>`tzt`s
+" search add another word to search pattern
+nnoremap <leader>fs /<C-p>\\|\c
 " grep
 nnoremap <leader>gg yiw:call MyGrep('-rIi', "<C-R>"")<cr>
 " grep
