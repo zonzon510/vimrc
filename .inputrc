@@ -1,4 +1,3 @@
 set editing-mode vi
 ";\"":"\"\ei""
-";(":"}\ei{"
-
+";(":")\ei("
