@@ -551,6 +551,8 @@ nnoremap <leader>mk :mksession! .save.vim<CR>
 nnoremap <leader>ms :w<CR>:Make!<CR>
 " run Make
 nnoremap <leader>ma :w<CR>:Make<CR>
+" run get quickfix results from Copen
+nnoremap <leader>mC :Copen<CR><C-w>p:cclo<CR>
 " filter quickfix results to include only files in a buffer
 nnoremap <leader>qb :call QuickFixBufferListedOnly()<CR>
 " delete all terminal buffers
