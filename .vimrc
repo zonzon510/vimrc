@@ -66,7 +66,7 @@ Plugin 'w0rp/ale'
 
 
 " gdb
-Plugin 'sakhnik/nvim-gdb'
+" Plugin 'sakhnik/nvim-gdb'
 
 " vim dispatch
 Plugin 'tpope/vim-dispatch'
@@ -513,6 +513,9 @@ nnoremap [Q :cfirst <CR>
 nnoremap ]Q :clast <CR>
 nnoremap <C-u> 5<C-y>
 nnoremap <C-d> 5<C-e>
+" half screen movement
+nnoremap <leader>d <C-d>
+nnoremap <leader>u <C-u>
 " fast movement
 nnoremap J 5j
 " fast movement
