@@ -623,7 +623,7 @@ inoremap ;{ {}<left>
 inoremap ;( ()<left>
 inoremap ;< <><left>
 " jump points
-inoremap <space><space> <Esc>:call JumptoNext("/", "")<cr>"_c4l
+inoremap <space><space> <Esc>:call JumptoNext("/", "<++>")<cr>"_c4l
 " set ctrl + c identica l to ctrl+[
 " inoremap <c-c> <Esc>
 " exit insert mode
