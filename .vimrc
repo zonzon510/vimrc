@@ -599,7 +599,7 @@ nnoremap <leader>nh :noh<CR>
 " close preview window
 nnoremap <C-Space> :pc<CR>
 " open in vscode
-nnoremap <leader>v :call OpenVSCode()<CR><CR>
+nnoremap <leader>v :w<CR>:call OpenVSCode()<CR><CR>
 
 
 " # # # # # # # # # # # # # # # # # # # # # # # #
