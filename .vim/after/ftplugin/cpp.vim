@@ -25,6 +25,7 @@ vnoremap <buffer> <leader>uc :call CppUnComment()<Cr>
 
 noremap <buffer> <leader>pp ^v$hxastd::cout << pa << std::endl;
 nnoremap <buffer> <leader>pv ^vg_xastd::cout << "<C-r>"" << " => " << <C-r>" << std::endl;<ESC>
+nnoremap <buffer> <leader>e oexit(0);<Esc>
 
 " for loop
 inoremap <buffer> ;for for(<++>;<++>;<++>){<cr><++><cr>}<ESC>:call JumptoNext("?", "for")<cr> :call JumptoNext("/", "<++>")<cr>"_c4l
@@ -33,6 +34,7 @@ inoremap <buffer> ;while while(<++>){<cr><++><cr>}<ESC> :call JumptoNext("?", "w
 " close bracket
 inoremap <buffer> ;; <Esc>A;<Esc>
 inoremap <buffer> ;def <Esc>maa<++> <++>(<++>){<cr><++><cr>}<ESC>`ac4l
+inoremap <buffer> ;e exit(0);<Esc>
 
 
 
