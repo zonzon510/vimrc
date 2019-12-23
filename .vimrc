@@ -309,6 +309,20 @@ fun! KillTerminals()
 
 endfun
 
+fun! OpenVSCode()
+	let full_file_path = expand("%")
+
+	" let current_dir = expand("%:p:h")
+	" let file_name = expand("%:t")
+
+	echo full_file_path
+	" get current line and column
+	let line_num = getcurpos()[1]
+	let line_col = getcurpos()[4]
+	:execute ":!code --goto ".full_file_path.":".line_num.":".line_col
+
+endfun
+
 "run 
 "PluginUpdate
 filetype plugin indent on
@@ -584,6 +598,8 @@ nnoremap <leader>S ?\c
 nnoremap <leader>nh :noh<CR>
 " close preview window
 nnoremap <C-Space> :pc<CR>
+" open in vscode
+nnoremap <leader>v :call OpenVSCode()<CR><CR>
 
 
 " # # # # # # # # # # # # # # # # # # # # # # # #
