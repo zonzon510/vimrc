@@ -160,6 +160,26 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+
+mode "vim_keys" {
+	bindsym --release k exec xdotool key Up
+	bindsym --release j exec xdotool key Down
+	bindsym --release l exec xdotool key Right
+	bindsym --release h exec xdotool key Left
+
+	bindsym --release Control+j exec xdotool key KP_Enter
+
+	bindsym --release w exec xdotool key ctrl+Right
+	bindsym --release e exec xdotool key ctrl+Right
+	bindsym --release b exec xdotool key ctrl+Left
+
+        bindsym Escape mode "default"
+        bindsym Control+braceleft mode "default"
+}
+
+bindsym $mod+n mode "vim_keys"
+
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
