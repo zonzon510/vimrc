@@ -8,9 +8,9 @@ autocmd BufEnter *.gd :compiler godot
 augroup my_gdscript
     au!
     au BufWinEnter <buffer> setlocal foldmethod=indent
-    au BufWinEnter <buffer> setlocal shiftwidth=4
-    au BufWinEnter <buffer> setlocal softtabstop=4
-    au BufWinEnter <buffer> setlocal expandtab
+    au BufWinEnter <buffer> setlocal shiftwidth=8
+    au BufWinEnter <buffer> setlocal softtabstop=8
+    " au BufWinEnter <buffer> setlocal expandtab
     au BufWinEnter <buffer> setlocal foldignore=
 augroup END
 
