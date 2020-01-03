@@ -149,8 +149,10 @@ export PATH=$PATH":$HOME/bin"
 export PATH=$HOME/nvim${PATH:+:${PATH}}
 export PATH=$PATH":/opt/Qt/Tools/QtCreator/bin"
 
-alias vi=nvim
-alias vim=nvim
+# alias vi=nvim
+# alias vim=nvim
 alias clear=''
 
 export RANGER_LOAD_DEFAULT_RC=false
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

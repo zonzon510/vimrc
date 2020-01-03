@@ -71,6 +71,10 @@ Plugin 'w0rp/ale'
 " vim dispatch
 Plugin 'tpope/vim-dispatch'
 
+" fzf
+set rtp+=~/.fzf
+Plugin 'junegunn/fzf.vim'
+
 
 call vundle#end()
 
