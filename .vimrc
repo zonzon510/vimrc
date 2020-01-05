@@ -604,6 +604,7 @@ nnoremap <leader>nh :noh<CR>
 nnoremap <C-Space> :pc<CR>
 " open in vscode
 nnoremap <leader>v :w<CR>:call OpenVSCode()<CR><CR>
+nnoremap <leader>ic :set ic! ic?<CR>
 
 
 " # # # # # # # # # # # # # # # # # # # # # # # #
