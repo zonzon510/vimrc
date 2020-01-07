@@ -1,82 +1,60 @@
 set nocompatible
 filetype off
+call plug#begin('~/.vim/plugged')
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
-
-" powerline
-Plugin 'Lokaltog/vim-powerline'
-set laststatus=2
-set encoding=utf-8
-
-Plugin 'majutsushi/tagbar'
-nmap <F8> :TagbarToggle<CR>
-" 
-" Plugin 'vim-airline/vim-airline'
-" nmap <F8> :TagbarToggle<CR>
-" VIM Fugutive
-Plugin 'tpope/vim-fugitive'
+Plug 'jaxbot/semantic-highlight.vim'
+" semantic highlighting
+let g:semanticTermColors = [1, 2, 3, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15]
 
 " vim surround
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
+
+" Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim'}
+Plug 'vim-airline/vim-airline'
+" let g:airline_section_a = ''
+let g:airline_section_x = ''
+let g:airline_section_b = ''
+let g:airline_section_warning = ''
+let g:airline_section_z = '%3p%% %3l/%L %4c c'
+
+Plug 'tpope/vim-fugitive'
+
+Plug 'airblade/vim-gitgutter'
+set updatetime=100
+
+Plug 'majutsushi/tagbar'
+nmap <F8> :TagbarToggle<CR>
 
 " vim indent guides
 " toggle indent guide: 
 " <leader>ig
-Plugin 'nathanaelkane/vim-indent-guides'
-
-" vim git gutter
-Plugin 'airblade/vim-gitgutter'
-" set update time for git tracking to render the symbols for hunk
-set updatetime=100
-" stage / unstage hunk: <leader>hs / <leader>hu
-"
-"                       next / previous
-" move between hunks      ]c / [c
-
-Plugin 'jaxbot/semantic-highlight.vim'
-" semantic highlighting
-let g:semanticTermColors = [1, 2, 3, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15]
+Plug 'nathanaelkane/vim-indent-guides'
 
 " HTML tag highlight
-Plugin 'gregsexton/MatchTag'
+Plug 'gregsexton/MatchTag'
 " HTML navigation (without plugin)
 
-Plugin 'Valloric/YouCompleteMe'
-let g:ycm_auto_trigger = 0
-let g:ycm_autoclose_preview_window_after_insertion = 0
-let g:ycm_show_diagnostics_ui = 0
-
-" Plugin 'vim-scripts/OmniCppComplete'
-" " OmniCppComplete
-" let OmniCpp_NamespaceSearch = 1
-" let OmniCpp_GlobalScopeSearch = 1
-" let OmniCpp_ShowAccess = 1
-" let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
-" let OmniCpp_MayCompleteDot = 1 " autocomplete after .
-" let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
-" let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
-" let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-
-
-" error checking with pylint
-Plugin 'w0rp/ale'
-
-
-" gdb
-" Plugin 'sakhnik/nvim-gdb'
 
 " vim dispatch
-Plugin 'tpope/vim-dispatch'
+Plug 'tpope/vim-dispatch'
+
+" Plug 'dense-analysis/ale'
+
+" Plug 'Valloric/YouCompleteMe'
+" let g:ycm_auto_trigger = 0
+" let g:ycm_autoclose_preview_window_after_insertion = 0
+" let g:ycm_show_diagnostics_ui = 0
+" error checking with pylint
 
 " fzf
 set rtp+=~/.fzf
-Plugin 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim'
 
+call plug#end()
 
-call vundle#end()
+set laststatus=2
+set encoding=utf-8
+
 
 " define functions
 fun! CheckEnableSemanticHighLight()
