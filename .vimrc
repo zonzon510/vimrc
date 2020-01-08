@@ -41,9 +41,9 @@ Plug 'tpope/vim-dispatch'
 Plug 'dense-analysis/ale'
 
 Plug 'Valloric/YouCompleteMe'
-" let g:ycm_auto_trigger = 0
-" let g:ycm_autoclose_preview_window_after_insertion = 0
-" let g:ycm_show_diagnostics_ui = 0
+let g:ycm_auto_trigger = 0
+let g:ycm_autoclose_preview_window_after_insertion = 0
+let g:ycm_show_diagnostics_ui = 0
 " error checking with pylint
 
 " fzf
