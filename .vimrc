@@ -376,7 +376,7 @@ call sign_define('qfsign', {"text" : "q>",})
 "colors:
 
 " indicate trailing white space
-highlight ExtraWhitespace ctermbg=red
+highlight ExtraWhitespace ctermbg=19
 match ExtraWhitespace / \+$/
 
 
