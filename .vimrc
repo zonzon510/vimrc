@@ -52,6 +52,8 @@ Plug 'junegunn/fzf.vim'
 
 " Plug 'neoclide/coc.nvim'
 
+Plug 'rking/ag.vim'
+
 call plug#end()
 
 set laststatus=2
@@ -590,6 +592,10 @@ nnoremap <leader>cd :cd %:p:h<CR>
 
 nnoremap <leader>pw :pwd<CR>
 
+" silver searching
+nnoremap <leader>aa yiw :Ag! -w <C-R>"<CR><C-w>p
+" type the search pattern
+nnoremap <leader>ag :Ag! 
 
 " # # # # # # # # # # # # # # # # # # # # # # # #
 " #   V I S U A L  M O D E  M A P P I N G S     #
