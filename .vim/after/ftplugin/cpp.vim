@@ -43,10 +43,14 @@ fun! ImplementFunction()
 	" go to bottom of file
 	:execute "normal! G"
 	:execute "normal! o\<C-r>\""
-	:execute "normal! 0W"
+
+	:execute "normal! G$"
+	:execute "normal! ?(\<CR>B"
+
+
 	:execute "normal! ?::\<CR>"
 	:execute "normal! Bye\<C-o>Pa::\<ESC>"
-	:execute "normal! o{\<CR>}\<ESC>k"
+	:execute "normal! Go{\<CR>}\<ESC>k"
 
 endfun
 
