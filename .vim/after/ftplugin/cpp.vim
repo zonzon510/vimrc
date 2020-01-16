@@ -18,6 +18,38 @@ fun! CppUnComment()
 	let @/ = old
 endfun
 
+fun! ImplementFunction()
+
+
+	" make sure not in a header file
+	let file_name = expand("%:t")
+	if split(file_name, '\.')[1] != 'h'
+		return
+	endif
+
+	normal! $
+	" get character under cursor
+	let lastchar = matchstr(getline('.'), '\%' . col('.') . 'c.')
+
+	if lastchar != ";"
+		echo "dont forget ;"
+		return
+	endif
+
+	" copy function to be implemented
+	:execute "normal! ?(\<CR>BBv/)\<CR>y"
+
+	:execute "normal! :call SwitchHeader()\<CR>"
+	" go to bottom of file
+	:execute "normal! G"
+	:execute "normal! o\<C-r>\""
+	:execute "normal! 0W"
+	:execute "normal! ?::\<CR>"
+	:execute "normal! Bye\<C-o>Pa::\<ESC>"
+	:execute "normal! o{\<CR>}\<ESC>k"
+
+endfun
+
 " comment
 vnoremap <buffer> <leader>c :call CppComment()<CR>
 " uncomment
@@ -35,6 +67,8 @@ inoremap <buffer> ;while while(<++>){<cr><++><cr>}<ESC> :call JumptoNext("?", "w
 inoremap <buffer> ;; <Esc>A;<Esc>
 inoremap <buffer> ;def <Esc>maa<++> <++>(<++>){<cr><++><cr>}<ESC>`ac4l
 inoremap <buffer> ;e exit(0);<Esc>
+
+nnoremap <buffer> <leader>pi :call ImplementFunction()<CR>
 
 
 
