@@ -32,6 +32,12 @@ fun! SetMatlabBreakPoint()
 
 endfun
 
+" matlab print commands
+noremap <buffer> <leader>pp Idisp(<ESC>A);<ESC>
+noremap <buffer> <leader>pv ^"idg_idisp('<C-r>i :');disp(<C-r>i);<ESC>
+noremap <buffer> <leader>ps ^"idg_idisp('size(<C-r>i) :');disp(size(<C-r>i));<ESC>
+
+
 " comment
 vnoremap <buffer> <leader>c :call MatlabComment()<CR>
 " uncomment
