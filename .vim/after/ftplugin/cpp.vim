@@ -47,9 +47,12 @@ fun! ImplementFunction()
 	:execute "normal! G$"
 	:execute "normal! ?(\<CR>B"
 
+	" mark position
+	:execute "normal! mi"
+	:execute "normal! ?}\<CR>%"
 
 	:execute "normal! ?::\<CR>"
-	:execute "normal! Bye\<C-o>Pa::\<ESC>"
+	:execute "normal! Bye`iPa::\<ESC>"
 	:execute "normal! Go{\<CR>}\<ESC>k"
 
 endfun
