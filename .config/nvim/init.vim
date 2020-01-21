@@ -61,18 +61,9 @@ fun! RunBuffer()
 
 	" echo stridx("term", bufname("%"))
 	if stridx(bufname("%"),"term") == -1 && exists("g:run_buffer_number")
-
-		" check if semantic highlighting is set
-		let s:set_semantic = 0
-		if exists('b:semanticOn')
-			if b:semanticOn == 1
-				let s:set_semantic = 1
-			endif
-		endif
-
 		" set marks for current screen position
 		:execute ":w"
-		:execute "normal! msHmt"
+		:execute ":split"
 
 		" switch to buffer
 		:execute ":b ".g:run_buffer_number
@@ -82,16 +73,9 @@ fun! RunBuffer()
 
 		" go to normal mode
 		call feedkeys("\<C-\>"."\<C-N>")
+		" close window
+		call feedkeys(":q"."\<CR>")
 
-		" return to original position
-		call feedkeys("\<C-o>")
-		call feedkeys("")
-		call feedkeys("`tzt`s")
-
-		if s:set_semantic == 1
-			" :execute ":SemanticHighlight"
-			call feedkeys(":SemanticHighlight\<CR>")
-		endif
 	endif
 
 
