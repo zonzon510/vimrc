@@ -346,7 +346,7 @@ autocmd bufenter *.h :call CheckEnableSemanticHighLight()
 autocmd BufEnter *.py :call CheckEnableSemanticHighLight()
 
 autocmd BufLeave * :call BufferSave()
-autocmd BufWrite * :mksession! .autosave.vim
+autocmd BufWrite * :mksession! ~/.autosave.vim
 
 autocmd QuickfixCmdPost make call ProcessQF()
 autocmd QuickfixCmdPost cgetfile call ProcessQF()
