@@ -36,6 +36,7 @@ tnoremap <C-w><C-j> <C-\><C-N><C-w><C-j>
 " terminal
 " switch to normal mode
 tnoremap <C-w>N <C-\><C-N>
+tnoremap <C-n> <C-\><C-N>
 
 
 " inoremap <A-h> <C-\><C-N><C-w>h
