@@ -596,6 +596,8 @@ nnoremap <leader>pw :pwd<CR>
 nnoremap <leader>aa yiw :Ag! -w <C-R>"<CR><C-w>p
 " type the search pattern
 nnoremap <leader>ag :Ag! 
+" yank filename
+nnoremap <leader>y :let @"=expand("%")<CR>
 
 " # # # # # # # # # # # # # # # # # # # # # # # #
 " #   V I S U A L  M O D E  M A P P I N G S     #
