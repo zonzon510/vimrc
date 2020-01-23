@@ -238,7 +238,7 @@ endfun
 fun! OpenTerm()
 	let current_dir = expand("%:p:h")
 	:execute ":term"
-	call feedkeys("acd ".current_dir."\<CR>")
+	call feedkeys("acd \"".current_dir."\"\<CR>")
 	call feedkeys("clear"."\<CR>")
 endfun
 fun! QuickFixBufferListedOnly()
