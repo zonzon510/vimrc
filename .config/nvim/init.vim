@@ -36,7 +36,6 @@ tnoremap <C-w><C-j> <C-\><C-N><C-w><C-j>
 " terminal
 " switch to normal mode
 tnoremap <C-w>N <C-\><C-N>
-tnoremap <C-n> <C-\><C-N>
 
 
 " inoremap <A-h> <C-\><C-N><C-w>h
@@ -73,8 +72,7 @@ fun! RunBuffer()
 		call feedkeys("\<ESC>"."k"."\<CR>")
 
 		" go to normal mode
-		" call feedkeys("\<C-\>"."\<C-N>")
-		call feedkeys("\<C-n>")
+		call feedkeys("\<C-\>"."\<C-N>")
 		" close window
 		call feedkeys(":q"."\<CR>")
 
