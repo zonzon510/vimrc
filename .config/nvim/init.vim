@@ -73,7 +73,8 @@ fun! RunBuffer()
 		call feedkeys("\<ESC>"."k"."\<CR>")
 
 		" go to normal mode
-		call feedkeys("\<C-\>"."\<C-N>")
+		" call feedkeys("\<C-\>"."\<C-N>")
+		call feedkeys("\<C-n>")
 		" close window
 		call feedkeys(":q"."\<CR>")
 
