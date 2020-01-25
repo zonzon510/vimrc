@@ -11,8 +11,9 @@ set cpo&vim
 " CompilerSet errorformat=%.%#\ %.%#\rrors:\ %f
 
 " CompilerSet errorformat=%.%#\CompilerResultsLog:\ %f\(%l\)\ %m
-CompilerSet errorformat=%.%#\CompilerResultsLog:\ %f\(%l\):\ %m
-CompilerSet errorformat=%.%#\CompilerResultsLog:\ %f\(%l\)%m
+" CompilerSet errorformat=%.%#\CompilerResultsLog:\ %f\(%l\):\ %m
+CompilerSet errorformat=\%.%#\CompilerResultsLog:\ Error:\ %f\(%l\)%m
+CompilerSet errorformat+=\%.%#\CompilerResultsLog:\ %f\(%l\)%m
 
 let &cpo = s:cpo_save
 unlet s:cpo_save
