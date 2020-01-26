@@ -49,6 +49,8 @@ let g:ycm_show_diagnostics_ui = 0
 " fzf
 set rtp+=~/.fzf
 Plug 'junegunn/fzf.vim'
+" change name so ag.vim doesnt overwrite this command
+:command -bang -nargs=* Agf call fzf#vim#ag(<q-args>, <bang>0)
 
 " Plug 'neoclide/coc.nvim'
 
@@ -596,6 +598,10 @@ nnoremap <leader>pw :pwd<CR>
 nnoremap <leader>aa yiw :Ag! -w <C-R>"<CR><C-w>p
 " type the search pattern
 nnoremap <leader>ag :Ag! 
+" ag fuzzy find search
+nnoremap <leader>af :Agf 
+
+
 " yank filename
 nnoremap <leader>y :let @"=expand("%")<CR>
 
