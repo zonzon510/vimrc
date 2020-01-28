@@ -503,7 +503,8 @@ nmap <c-p> :call UpByIndent()<cr>
 " find
 nnoremap <SPACE> <Nop>
 " buffer
-nnoremap gb :ls<CR>:b<Space>
+" nnoremap gb :ls<CR>:b<Space>
+nnoremap gb :Buffers<CR>
 " move to line with same indentation
 nnoremap <c-k> :call MoveBySameLevel("up")<cr>
 " move to line with same indentation
