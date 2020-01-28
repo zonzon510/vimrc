@@ -324,7 +324,7 @@ highlight ALEError ctermbg=NONE cterm=inverse
 " search / highlight settings 
 set hlsearch
 set cursorline
-set nowrap
+set wrap
 
 command! MakeTags !ctags -R .
 " command! MakeTags !ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .
