@@ -96,16 +96,30 @@ else
 		let current_dir = expand("%:p:h")
 		let file_name = expand("%:t")
 		if split(file_name, '\.')[1] == 'h'
+
+			" switching to cpp file
+			let w:header_switch_h_location = line(".")
 			let other_file_name = current_dir.'/'.split(file_name, '\.')[0].'.cpp'
+
+			" switch to the file
 			if filereadable(other_file_name)
 				:execute ":e ".other_file_name
 			else
 				let other_file_name = substitute(other_file_name, "Public", "Private", "")
 				:execute ":e ".other_file_name
 			endif
+			" move to correct location
+			if exists("w:header_switch_cpp_location")
+				:execute "normal! "+w:header_switch_cpp_location+"gg"
+				:execute "normal! zz"
+			endif
 
 		else
+			" switching to header file
+			let w:header_switch_cpp_location = line(".")
 			let other_file_name = current_dir.'/'.split(file_name, '\.')[0].'.h'
+
+			" switch to the file
 			if filereadable(other_file_name)
 				" command string
 				:execute ":e ".other_file_name
@@ -113,6 +127,11 @@ else
 				let other_file_name = substitute(other_file_name, "Private", "Public", "")
 				:execute ":e ".other_file_name
 
+			endif
+			" move to correct location
+			if exists("w:header_switch_h_location")
+				:execute "normal! "+w:header_switch_h_location+"gg"
+				:execute "normal! zz"
 			endif
 
 		endif
