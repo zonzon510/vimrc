@@ -578,9 +578,9 @@ nnoremap <leader>w :w<CR>
 " toggle semantic highlighting
 nnoremap <leader>jc :SemanticHighlightToggle<cr>
 " fuzzy finding things
-nnoremap <leader>j] :noh<cr>:Tags 
-nnoremap <leader>jl :noh<cr>:Lines 
-nnoremap <leader>jb :noh<cr>:BLines 
+nnoremap <leader>j] :Tags 
+nnoremap <leader>jl :Lines 
+nnoremap <leader>jb :BLines 
 " move line to end of line above it
 nnoremap <leader>J J
 " open documentation
@@ -592,7 +592,7 @@ nnoremap <leader>S ?\c
 " case sensitive search backward
 " nnoremap <leader>S /
 " no highlight
-nnoremap <leader>nh :set hlsearch!<cr>
+nnoremap <leader>nh :noh<cr>
 " close preview window
 nnoremap <C-Space> :pc<CR>
 " open in vscode
