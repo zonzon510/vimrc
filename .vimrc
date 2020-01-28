@@ -354,6 +354,10 @@ autocmd QuickfixCmdPost make call ProcessQF()
 autocmd QuickfixCmdPost cgetfile call ProcessQF()
 
 au InsertLeave * match ExtraWhitespace /\s\+$/
+au InsertLeave *.py :SemanticHighlight
+au InsertLeave *.cpp :SemanticHighlight
+au InsertLeave *.h :SemanticHighlight
+au InsertLeave *.js :SemanticHighlight
 
 " break indent level matching
 set breakindent
