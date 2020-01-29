@@ -331,6 +331,39 @@ fun! SwitchBuffer()
 
 endfun
 
+fun! SwitchFileWindow(reset)
+
+	if a:reset == 1
+		if exists("w:old_switch_filewindow_position")
+			unlet w:old_switch_filewindow_position
+		endif
+	endif
+
+	" remember current position
+	let w:new_switch_filewindow_position = line(".")
+	:execute "normal! H"
+	let w:new_switch_filewindow_position_top = line(".")
+	:execute "normal! \<C-o>"
+	let w:new_switch_filewindow_position_col = col(".") - 1
+
+	if exists("w:old_switch_filewindow_position")
+		" open folds here if they exist
+		:execute "normal! "+w:old_switch_filewindow_position+"gg"
+		:silent! execute "normal! zv"
+
+		:execute "normal! "+w:old_switch_filewindow_position_top+"gg"
+		:execute "normal! zt"
+		:execute "normal! "+w:old_switch_filewindow_position+"gg"
+		:execute "normal! 0"
+		:execute "normal! ".w:old_switch_filewindow_position_col."l"
+	endif
+
+	let w:old_switch_filewindow_position = w:new_switch_filewindow_position
+	let w:old_switch_filewindow_position_top = w:new_switch_filewindow_position_top
+	let w:old_switch_filewindow_position_col = w:new_switch_filewindow_position_col
+
+endfun
+
 "run 
 "PluginUpdate
 filetype plugin indent on
@@ -631,6 +664,8 @@ nnoremap <leader>ag :Ag!
 nnoremap <leader>af :Agf 
 " switch to previous buffer
 nmap <leader>ph :call SwitchBuffer()<CR>
+nmap <leader>b :call SwitchFileWindow(0)<CR>
+nmap <leader>B :call SwitchFileWindow(1)<CR>
 
 
 " yank filename
