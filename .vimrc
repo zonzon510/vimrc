@@ -345,10 +345,12 @@ fun! SwitchFileWindow(reset)
 	let new_filename = $HOME."/.vim_views/"."new_view_".current_win_number.".vim"
 	let old_filename = $HOME."/.vim_views/"."old_view_".current_win_number.".vim"
 	:execute "silent !mkdir ~/.vim_views/ > /dev/null 2>&1"
+	set vop=folds,cursor
 	:execute ":mkview! ".new_filename
 
 	if(filereadable(old_filename))
 		if exists("w:switch_file_window_set")
+			:execute "e blank"
 			:execute ":source ".old_filename
 		endif
 	endif
