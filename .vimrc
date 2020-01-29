@@ -334,34 +334,27 @@ endfun
 fun! SwitchFileWindow(reset)
 
 	if a:reset == 1
-		if exists("w:old_switch_filewindow_position")
-			unlet w:old_switch_filewindow_position
+		if exists("w:switch_file_window_set")
+			unlet w:switch_file_window_set
 		endif
 	endif
 
-	" remember current position
-	let w:new_switch_filewindow_position = line(".")
-	:execute "normal! mtH"
-	let w:new_switch_filewindow_position_top = line(".")
-	:execute "normal! `t"
-	let w:new_switch_filewindow_position_col = col(".") - 1
+	" save current view
+	:execute ":w"
+	let current_win_number = win_getid()
+	let new_filename = $HOME."/.vim_views/"."new_view_".current_win_number.".vim"
+	let old_filename = $HOME."/.vim_views/"."old_view_".current_win_number.".vim"
+	:execute "silent !mkdir ~/.vim_views/ > /dev/null 2>&1"
+	:execute ":mkview! ".new_filename
 
-	if exists("w:old_switch_filewindow_position")
-		" open folds here if they exist
-		:execute "normal! "+w:old_switch_filewindow_position+"gg"
-		:silent! execute "normal! zv"
-
-		:execute "normal! "+w:old_switch_filewindow_position_top+"gg"
-		:execute "normal! zt"
-		:execute "normal! "+w:old_switch_filewindow_position+"gg"
-		:execute "normal! 0"
-		:execute "normal! ".w:old_switch_filewindow_position_col."l"
+	if(filereadable(old_filename))
+		if exists("w:switch_file_window_set")
+			:execute ":source ".old_filename
+		endif
 	endif
+	:execute "silent !mv ".new_filename." ".old_filename
 
-	let w:old_switch_filewindow_position = w:new_switch_filewindow_position
-	let w:old_switch_filewindow_position_top = w:new_switch_filewindow_position_top
-	let w:old_switch_filewindow_position_col = w:new_switch_filewindow_position_col
-
+	let w:switch_file_window_set = 1
 endfun
 
 "run 
