@@ -311,6 +311,26 @@ fun! OpenVSCode()
 
 endfun
 
+fun! SwitchBuffer()
+
+	" remember screen location
+	let w:new_switch_buffer_position = line(".")
+	:execute "normal! H"
+	let w:new_switch_buffer_position_top = line(".")
+
+	" switch to buffer
+	:execute ":b#"
+	if exists("w:old_switch_buffer_position")
+		:execute "normal! "+w:old_switch_buffer_position_top+"gg"
+		:execute "normal! zt"
+		:execute "normal! "+w:old_switch_buffer_position+"gg"
+	endif
+
+	let w:old_switch_buffer_position = w:new_switch_buffer_position
+	let w:old_switch_buffer_position_top = w:new_switch_buffer_position_top
+
+endfun
+
 "run 
 "PluginUpdate
 filetype plugin indent on
@@ -578,7 +598,7 @@ nnoremap <leader>w :w<CR>
 " toggle semantic highlighting
 nnoremap <leader>jc :SemanticHighlightToggle<cr>
 " fuzzy finding things
-nnoremap <leader>j] :Tags 
+nnoremap <leader>ja  :Tags 
 nnoremap <leader>jl :Lines 
 nnoremap <leader>jb :BLines 
 " move line to end of line above it
@@ -609,6 +629,8 @@ nnoremap <leader>aa yiw :Ag! -w <C-R>"<CR><C-w>p
 nnoremap <leader>ag :Ag! 
 " ag fuzzy find search
 nnoremap <leader>af :Agf 
+" switch to previous buffer
+nmap <leader>ph :call SwitchBuffer()<CR>
 
 
 " yank filename
