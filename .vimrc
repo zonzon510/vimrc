@@ -341,9 +341,9 @@ fun! SwitchFileWindow(reset)
 
 	" remember current position
 	let w:new_switch_filewindow_position = line(".")
-	:execute "normal! H"
+	:execute "normal! mtH"
 	let w:new_switch_filewindow_position_top = line(".")
-	:execute "normal! \<C-o>"
+	:execute "normal! `t"
 	let w:new_switch_filewindow_position_col = col(".") - 1
 
 	if exists("w:old_switch_filewindow_position")
