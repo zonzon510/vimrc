@@ -359,6 +359,11 @@ fun! SwitchFileWindow(reset)
 	let w:switch_file_window_set = 1
 endfun
 
+fun! DiffThisF()
+	diffthis
+	setlocal wrap
+endfun
+
 "run 
 "PluginUpdate
 filetype plugin indent on
@@ -374,6 +379,7 @@ set hlsearch
 set cursorline
 set wrap
 
+command! Diffthis call DiffThisF()
 command! MakeTags !ctags -R .
 " command! MakeTags !ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .
 " set leader key to space
