@@ -364,6 +364,17 @@ fun! DiffThisF()
 	setlocal wrap
 endfun
 
+fun! AddToInterestingWords()
+	echo expand("<cword>")
+	let match_pattern = expand("<cword>")
+	echo match_pattern
+	let match_pattern_word = "\\<".match_pattern."\\>"
+	echo match_pattern_word
+	let cmdstr = ":call matchadd(\"InterestingWords\", '".match_pattern_word."', -1)"
+	echo cmdstr
+	:execute cmdstr
+endfun
+
 "run 
 "PluginUpdate
 filetype plugin indent on
@@ -440,6 +451,8 @@ call sign_define('qfsign', {"text" : "q>",})
 " indicate trailing white space
 highlight ExtraWhitespace ctermbg=19
 match ExtraWhitespace / \+$/
+
+highlight InterestingWords ctermfg=19
 
 
 hi Cursor ctermfg=235 ctermbg=231 cterm=NONE
@@ -671,6 +684,8 @@ nmap <leader>B :call SwitchFileWindow(1)<CR>
 
 " yank filename
 nnoremap <leader>y :let @"=expand("%")<CR>
+
+nnoremap <leader>h :call AddToInterestingWords()<CR>
 
 " # # # # # # # # # # # # # # # # # # # # # # # #
 " #   V I S U A L  M O D E  M A P P I N G S     #
