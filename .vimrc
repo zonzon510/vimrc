@@ -429,7 +429,7 @@ set sessionoptions-=options
 
 " close split without resizing windows
 set noea
-set foldlevelstart=20
+" set foldlevelstart=20
 
 " define quickfix signs
 call sign_define('qfsign', {"text" : "q>",})
