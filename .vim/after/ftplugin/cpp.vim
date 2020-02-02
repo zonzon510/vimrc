@@ -97,8 +97,8 @@ else
 		let file_name = expand("%:t")
 		if split(file_name, '\.')[1] == 'h'
 
-			" switching to cpp file
-			let w:header_switch_h_location = line(".")
+			let w:header_switch_h_line = line(".")
+			let w:header_switch_h_col = col(".")
 			:execute "normal! H"
 			let w:header_switch_h_location_top = line(".")
 			let other_file_name = current_dir.'/'.split(file_name, '\.')[0].'.cpp'
@@ -111,15 +111,16 @@ else
 				:execute ":e ".other_file_name
 			endif
 			" move to correct location
-			if exists("w:header_switch_cpp_location")
+			if exists("w:header_switch_cpp_line")
 				:execute "normal! "+w:header_switch_cpp_location_top+"gg"
 				:execute "normal! zt"
-				:execute "normal! "+w:header_switch_cpp_location+"gg"
+				call cursor(w:header_switch_cpp_line,w:header_switch_cpp_col)
 			endif
 
 		else
 			" switching to header file
-			let w:header_switch_cpp_location = line(".")
+			let w:header_switch_cpp_line = line(".")
+			let w:header_switch_cpp_col = col(".")
 			:execute "normal! H"
 			let w:header_switch_cpp_location_top = line(".")
 			let other_file_name = current_dir.'/'.split(file_name, '\.')[0].'.h'
@@ -134,10 +135,10 @@ else
 
 			endif
 			" move to correct location
-			if exists("w:header_switch_h_location")
+			if exists("w:header_switch_h_line")
 				:execute "normal! "+w:header_switch_h_location_top+"gg"
 				:execute "normal! zt"
-				:execute "normal! "+w:header_switch_h_location+"gg"
+				call cursor(w:header_switch_h_line,w:header_switch_h_col)
 			endif
 
 		endif
