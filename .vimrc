@@ -582,7 +582,7 @@ nnoremap J 5j
 " fast movement
 nnoremap K 5k
 " open quickfix menu
-nnoremap gc :copen <CR><C-w>J
+nnoremap gc :bo copen <CR>
 " add a word to to search, searching for multiple words
 nnoremap <leader>ff viwyb/\<<C-R>"\><CR>
 " space key doesnt do anything
