@@ -364,6 +364,30 @@ fun! DiffThisF()
 	setlocal wrap
 endfun
 
+fun! SwitchFileMarker(reset)
+
+	if a:reset == 1
+		unlet b:switch_file_window
+	endif
+
+	if exists("b:switch_file_window")
+
+		" echo last_marks
+		let cursor_location = getpos("'0")
+		let top_location = getpos("'9")
+		:execute "normal! m0Hm9`0"
+		call setpos('.', top_location)
+		:execute "normal! zt"
+		call setpos('.', cursor_location)
+		:execute "normal! zv"
+	else
+		" save the location
+		:execute "normal! m0Hm9`0"
+	endif
+
+	let b:switch_file_window = 1
+endfun
+
 "run 
 "PluginUpdate
 filetype plugin indent on
@@ -665,8 +689,8 @@ nnoremap <leader>ag :Ag!
 nnoremap <leader>af :Agf 
 " switch to previous buffer
 nmap <leader>ph :call SwitchBuffer()<CR>
-nmap <leader>b :call SwitchFileWindow(0)<CR>
-nmap <leader>B :call SwitchFileWindow(1)<CR>
+nmap <leader>b :call SwitchFileMarker(0)<CR>
+nmap <leader>B :call SwitchFileMarker(1)<CR>
 
 
 " yank filename
