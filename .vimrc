@@ -367,7 +367,9 @@ endfun
 fun! SwitchFileMarker(reset)
 
 	if a:reset == 1
-		unlet b:switch_file_window
+		if exists("b:switch_file_window")
+			unlet b:switch_file_window
+		endif
 	endif
 
 	if exists("b:switch_file_window")
