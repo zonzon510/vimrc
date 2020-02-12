@@ -660,8 +660,8 @@ nnoremap <leader>jc :SemanticHighlightToggle<cr>
 nnoremap <leader>ja  :Tags 
 nnoremap <leader>jl :Lines 
 nnoremap <leader>jb :BLines 
-nnoremap <leader>jb :TagbarOpen fjc<CR>
-nnoremap <leader>jB :TagbarToggle<CR>
+nnoremap <leader>jB :TagbarOpen fjc<CR>
+" nnoremap <leader>jB :TagbarToggle<CR>
 " move line to end of line above it
 nnoremap <leader>J J
 " open documentation
