@@ -24,6 +24,7 @@ set updatetime=100
 
 Plug 'majutsushi/tagbar'
 nmap <F8> :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
 
 " vim indent guides
 " toggle indent guide: 
@@ -633,8 +634,6 @@ nnoremap <leader>mc :call SplitViewMethodClose()<cr>
 nnoremap <leader>ch :checktime<CR>
 " open a terminal
 nnoremap <leader>te :call OpenTerm()<CR>
-" open a terminal
-nnoremap <leader>ta :TagbarToggle<CR>
 " save session
 nnoremap <leader>mk :mksession! .save.vim<CR>
 " run Make silent
@@ -661,6 +660,8 @@ nnoremap <leader>jc :SemanticHighlightToggle<cr>
 nnoremap <leader>ja  :Tags 
 nnoremap <leader>jl :Lines 
 nnoremap <leader>jb :BLines 
+nnoremap <leader>jb :TagbarOpen fjc<CR>
+nnoremap <leader>jB :TagbarToggle<CR>
 " move line to end of line above it
 nnoremap <leader>J J
 " open documentation
