@@ -381,7 +381,7 @@ fun! SwitchFileMarker(reset)
 		call setpos('.', top_location)
 		:execute "normal! zt"
 		call setpos('.', cursor_location)
-		:execute "normal! zv"
+		:execute "silent! normal! zO"
 	else
 		" save the location
 		:execute "normal! m0Hm9`0"
