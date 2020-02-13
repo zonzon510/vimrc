@@ -391,6 +391,28 @@ fun! SwitchFileMarker(reset)
 	let b:switch_file_window = 1
 endfun
 
+" Save current view settings on a per-window, per-buffer basis.
+function! AutoSaveWinView()
+    if !exists("w:SavedBufView")
+        let w:SavedBufView = {}
+    endif
+    let w:SavedBufView[bufnr("%")] = winsaveview()
+endfunction
+
+" Restore current view settings.
+function! AutoRestoreWinView()
+    let buf = bufnr("%")
+    if exists("w:SavedBufView") && has_key(w:SavedBufView, buf)
+        let v = winsaveview()
+        let atStartOfFile = v.lnum == 1 && v.col == 0
+        if atStartOfFile && !&diff
+            call winrestview(w:SavedBufView[buf])
+        endif
+        unlet w:SavedBufView[buf]
+    endif
+endfunction
+
+
 "run 
 "PluginUpdate
 filetype plugin indent on
@@ -430,6 +452,10 @@ autocmd BufEnter *.py :call CheckEnableSemanticHighLight()
 
 autocmd BufLeave * :call BufferSave()
 autocmd BufWrite * :mksession! ~/.autosave.vim
+
+" keep window view
+autocmd BufLeave * call AutoSaveWinView()
+autocmd BufEnter * call AutoRestoreWinView()
 
 autocmd QuickfixCmdPost make call ProcessQF()
 autocmd QuickfixCmdPost cgetfile call ProcessQF()
@@ -692,7 +718,8 @@ nnoremap <leader>ag :Ag!
 nnoremap <leader>af :Agf 
 " switch to previous buffer
 nmap <leader>ph :call SwitchBuffer()<CR>
-nmap <leader>b :call SwitchFileMarker(0)<CR>
+nmap <leader>bs :call SwitchFileMarker(0)<CR>
+nmap <leader>bp :b# <CR>
 nmap <leader>B :call SwitchFileMarker(1)<CR>
 
 
