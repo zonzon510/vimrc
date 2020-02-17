@@ -39,7 +39,7 @@ Plug 'gregsexton/MatchTag'
 " vim dispatch
 Plug 'tpope/vim-dispatch'
 
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 
 " Plug 'Valloric/YouCompleteMe'
 let g:ycm_auto_trigger = 0
@@ -679,7 +679,7 @@ nnoremap <leader>qb :call QuickFixBufferListedOnly()<CR>
 " delete all terminal buffers
 nnoremap <leader>kat :call KillTerminals()<cr>
 " toggle ale linting
-nnoremap <leader>l :ALEToggle <CR>
+nnoremap <leader>l :echo "assign me"<CR>
 " command for toggleing line numbers
 nnoremap <leader>nu :set invnumber<CR>
 " toggle line wrapping
