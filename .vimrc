@@ -41,11 +41,15 @@ Plug 'tpope/vim-dispatch'
 
 Plug 'dense-analysis/ale'
 
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
 let g:ycm_auto_trigger = 0
 let g:ycm_autoclose_preview_window_after_insertion = 0
 let g:ycm_show_diagnostics_ui = 0
 " error checking with pylint
+"
+Plug 'OmniSharp/omnisharp-vim'
+" let g:OmniSharp_server_use_mono = 1
+" let g:OmniSharp_server_use_mono = 1
 
 " fzf
 set rtp+=~/.fzf
@@ -449,6 +453,7 @@ autocmd bufenter *.cpp :call CheckEnableSemanticHighLight()
 autocmd bufenter *.c :call CheckEnableSemanticHighLight()
 autocmd bufenter *.h :call CheckEnableSemanticHighLight()
 autocmd BufEnter *.py :call CheckEnableSemanticHighLight()
+autocmd BufEnter *.cs :call CheckEnableSemanticHighLight()
 
 autocmd BufLeave * :call BufferSave()
 autocmd BufWrite * :mksession! ~/.autosave.vim
@@ -465,6 +470,7 @@ au InsertLeave *.py :SemanticHighlight
 au InsertLeave *.cpp :SemanticHighlight
 au InsertLeave *.h :SemanticHighlight
 au InsertLeave *.js :SemanticHighlight
+au InsertLeave *.cs :SemanticHighlight
 
 " break indent level matching
 set breakindent

@@ -154,5 +154,6 @@ export PATH=$PATH":/opt/Qt/Tools/QtCreator/bin"
 alias clear=''
 
 export RANGER_LOAD_DEFAULT_RC=false
+export FrameworkPathOverride=/usr/lib/mono/4.5
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
