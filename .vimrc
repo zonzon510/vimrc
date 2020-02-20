@@ -610,7 +610,7 @@ hi cssCommonAttr ctermfg=81 ctermbg=NONE cterm=NONE
 hi cssBraces ctermfg=NONE ctermbg=NONE cterm=NONE
 
 hi GitGutterAdd ctermfg=48
-hi GitGutterChange ctermfg=3
+hi GitGutterChange ctermfg=14
 hi GitGutterDelete ctermfg=1
 hi GitGutterChangeDelete ctermfg=4
 
