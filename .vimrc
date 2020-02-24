@@ -502,7 +502,7 @@ call sign_define('qfsign', {"text" : "q>",})
 highlight ExtraWhitespace ctermbg=19
 match ExtraWhitespace / \+$/
 
-
+hi TermCursorNC ctermfg=47 ctermbg=47 cterm=NONE
 hi Cursor ctermfg=235 ctermbg=231 cterm=NONE
 hi Visual ctermfg=NONE ctermbg=59 cterm=NONE
 hi CursorLine ctermfg=NONE ctermbg=236 cterm=NONE
