@@ -61,6 +61,8 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'rking/ag.vim'
 
+Plug 'SirVer/ultisnips'
+
 call plug#end()
 
 set laststatus=2
