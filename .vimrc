@@ -737,7 +737,8 @@ nmap <leader>B :call SwitchFileMarker(1)<CR>
 
 
 " yank filename
-nnoremap <leader>y :let @"=expand("%")<CR>
+nnoremap <leader>yy :let @"=expand("%")<CR>
+nnoremap <leader>ye yg_
 
 " # # # # # # # # # # # # # # # # # # # # # # # #
 " #   V I S U A L  M O D E  M A P P I N G S     #
