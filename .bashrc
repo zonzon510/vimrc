@@ -153,6 +153,8 @@ export PATH=$PATH":/opt/Qt/Tools/QtCreator/bin"
 # alias vim=nvim
 alias clear=''
 
+alias gitl="git log --oneline --graph --all"
+
 export RANGER_LOAD_DEFAULT_RC=false
 export FrameworkPathOverride=/usr/lib/mono/4.5
 
