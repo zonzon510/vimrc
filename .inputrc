@@ -2,3 +2,5 @@ set editing-mode vi
 ";\"":"\"\ei""
 ";(":")\ei("
 ";[":"]\ei["
+";t":" | tail -n5"
+";h":" | head -n5"
