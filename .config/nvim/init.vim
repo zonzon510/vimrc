@@ -132,7 +132,7 @@ endfun
 " tnoremap <A-r> <ESC>k<CR><C-\><C-N> :call SetRunBuffer()<CR>a
 " nnoremap <A-r> :call RunBuffer()<CR>
 
-tnoremap <C-r> <ESC>k<CR><C-\><C-N> :call SetRunBuffer()<CR>a
+" tnoremap <C-r> <ESC>k<CR><C-\><C-N> :call SetRunBuffer()<CR>a
 nnoremap <leader>rb :call RunBuffer()<CR>
 nnoremap <leader>qq :call GetQFFromBuffer()<CR>
 
