@@ -717,7 +717,8 @@ nnoremap <leader>nh :noh<cr>
 " close preview window
 nnoremap <C-Space> :pc<CR>
 " open in vscode
-nnoremap <leader>v :w<CR>:call OpenVSCode()<CR><CR>
+nnoremap <leader>vs :w<CR>:call OpenVSCode()<CR><CR>
+nnoremap <leader>vl ^vg_
 nnoremap <leader>ic :set ic! ic?<CR>
 " change to directory of currently open file
 nnoremap <leader>cd :cd %:p:h<CR>
