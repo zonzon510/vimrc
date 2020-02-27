@@ -457,6 +457,7 @@ autocmd bufenter *.c :call CheckEnableSemanticHighLight()
 autocmd bufenter *.h :call CheckEnableSemanticHighLight()
 autocmd BufEnter *.py :call CheckEnableSemanticHighLight()
 autocmd BufEnter *.cs :call CheckEnableSemanticHighLight()
+autocmd BufEnter *.cu :call CheckEnableSemanticHighLight()
 
 autocmd BufLeave * :call BufferSave()
 autocmd BufWrite * :mksession! ~/.autosave.vim
@@ -474,6 +475,7 @@ au InsertLeave *.cpp :SemanticHighlight
 au InsertLeave *.h :SemanticHighlight
 au InsertLeave *.js :SemanticHighlight
 au InsertLeave *.cs :SemanticHighlight
+au InsertLeave *.cu :SemanticHighlight
 
 " break indent level matching
 set breakindent
