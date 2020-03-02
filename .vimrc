@@ -637,10 +637,10 @@ nnoremap <c-k> :call MoveBySameLevel("up")<cr>
 " move to line with same indentation
 nnoremap  <c-j> :call MoveBySameLevel("down")<cr>
 " quickfix jump list
-nnoremap [q :cprev <CR>
-nnoremap ]q :cnext <CR>
-nnoremap [Q :cfirst <CR>
-nnoremap ]Q :clast <CR>
+nnoremap [q :cprev <CR>zv
+nnoremap ]q :cnext <CR>zv
+nnoremap [Q :cfirst <CR>zv
+nnoremap ]Q :clast <CR>zv
 nnoremap <C-u> 5<C-y>
 nnoremap <C-d> 5<C-e>
 " half screen movement
