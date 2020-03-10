@@ -419,6 +419,36 @@ function! AutoRestoreWinView()
     endif
 endfunction
 
+function! MoveMode(inputkey)
+	if a:inputkey == "J"
+		:execute "normal! 5j"
+	endif
+
+	if a:inputkey == "K"
+		:execute "normal! 5k"
+	endif
+
+	while 1
+		let cursor_line = getcurpos()[1]
+		let cursor_col =  getcurpos()[2]
+		:execute ':match ExtraCursor /\%'.cursor_line.'l\%'.cursor_col.'c/'
+		redraw
+		let c = getchar()
+		let c = nr2char(c)
+
+		if c == "J"
+			:execute "normal! 5j"
+		elseif c == "K"
+			:execute "normal! 5k"
+		else
+			call feedkeys(c)
+			break
+		endif
+	endwhile
+	:execute ':match ExtraCursor //'
+
+endfunction
+
 
 "run 
 "PluginUpdate
@@ -505,6 +535,7 @@ call sign_define('qfsign', {"text" : "q>",})
 highlight ExtraWhitespace ctermbg=19
 match ExtraWhitespace / \+$/
 
+highlight ExtraCursor ctermbg=15
 hi TermCursorNC ctermfg=47 ctermbg=47 cterm=NONE
 hi Cursor ctermfg=235 ctermbg=231 cterm=NONE
 hi Visual ctermfg=NONE ctermbg=59 cterm=NONE
@@ -647,9 +678,10 @@ nnoremap <C-d> 5<C-e>
 nnoremap <leader>d <C-d>
 nnoremap <leader>u <C-u>
 " fast movement
-nnoremap J 5j
-" fast movement
-nnoremap K 5k
+nnoremap J :call MoveMode("J")<CR>
+nnoremap K :call MoveMode("K")<CR>
+" nnoremap J 5j
+" nnoremap K 5k
 " open quickfix menu
 nnoremap gc :bo copen <CR>
 " add a word to to search, searching for multiple words
