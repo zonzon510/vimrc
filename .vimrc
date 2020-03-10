@@ -420,6 +420,7 @@ function! AutoRestoreWinView()
 endfunction
 
 function! MoveMode(inputkey)
+	:execute "normal! m`"
 	if a:inputkey == "J"
 		:execute "normal! 5j"
 	endif
@@ -535,7 +536,7 @@ call sign_define('qfsign', {"text" : "q>",})
 highlight ExtraWhitespace ctermbg=19
 match ExtraWhitespace / \+$/
 
-highlight ExtraCursor ctermbg=15
+highlight ExtraCursor cterm=inverse
 hi TermCursorNC ctermfg=47 ctermbg=47 cterm=NONE
 hi Cursor ctermfg=235 ctermbg=231 cterm=NONE
 hi Visual ctermfg=NONE ctermbg=59 cterm=NONE
