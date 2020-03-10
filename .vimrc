@@ -536,7 +536,7 @@ call sign_define('qfsign', {"text" : "q>",})
 highlight ExtraWhitespace ctermbg=19
 match ExtraWhitespace / \+$/
 
-highlight ExtraCursor cterm=inverse
+highlight ExtraCursor ctermbg=16 ctermfg=15
 hi TermCursorNC ctermfg=47 ctermbg=47 cterm=NONE
 hi Cursor ctermfg=235 ctermbg=231 cterm=NONE
 hi Visual ctermfg=NONE ctermbg=59 cterm=NONE
