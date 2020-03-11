@@ -421,11 +421,11 @@ endfunction
 
 function! MoveMode(inputkey)
 	:execute "normal! m`"
-	if a:inputkey == "J"
+	if a:inputkey ==# "J"
 		:execute "normal! 5j"
 	endif
 
-	if a:inputkey == "K"
+	if a:inputkey ==# "K"
 		:execute "normal! 5k"
 	endif
 
@@ -437,9 +437,9 @@ function! MoveMode(inputkey)
 		let c = getchar()
 		let c = nr2char(c)
 
-		if c == "J"
+		if c ==# "J"
 			:execute "normal! 5j"
-		elseif c == "K"
+		elseif c ==# "K"
 			:execute "normal! 5k"
 		else
 			call feedkeys(c)
@@ -536,7 +536,7 @@ call sign_define('qfsign', {"text" : "q>",})
 highlight ExtraWhitespace ctermbg=19
 match ExtraWhitespace / \+$/
 
-highlight ExtraCursor ctermbg=16 ctermfg=15
+highlight ExtraCursor ctermbg=15 ctermfg=16
 hi TermCursorNC ctermfg=47 ctermbg=47 cterm=NONE
 hi Cursor ctermfg=235 ctermbg=231 cterm=NONE
 hi Visual ctermfg=NONE ctermbg=59 cterm=NONE
