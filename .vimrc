@@ -717,6 +717,10 @@ nnoremap <leader>ms :w<CR>:Make!<CR>
 nnoremap <leader>ma :w<CR>:Make<CR>
 " run get quickfix results from Copen
 nnoremap <leader>mC :Copen<CR><C-w>p:cclo<CR>
+" do math (math do)
+nnoremap <leader>md ^vg_yA = <c-r>=<c-r>"<CR><ESC>
+" abort dispatch
+nnoremap <leader>mb :AbortDispatch<CR>
 " filter quickfix results to include only files in a buffer
 nnoremap <leader>qb :call QuickFixBufferListedOnly()<CR>
 " delete all terminal buffers
