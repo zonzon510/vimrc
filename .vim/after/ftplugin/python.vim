@@ -57,6 +57,7 @@ endfun
 
 nnoremap <buffer>  <leader>r :call RunPythonInSplit()<CR>
 
+let $PYTHONUNBUFFERED=1
 
 " set compiler
 autocmd BufEnter *.py :compiler python
