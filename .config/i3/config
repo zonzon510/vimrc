@@ -239,4 +239,5 @@ bindsym $mod+m exec xdotool mousemove_relative 0 3000
 
 # scsreenshot shortcut
 bindsym --release $mod+p exec scrot -s
+bindsym --release $mod+Shift+p exec scrot
 # bindsym $mod+p exec xdotool mousemove_relative 0 10
