@@ -147,3 +147,12 @@ nnoremap <A-C-l> gt
 " insert mode on enter terminal
 " autocmd bufenter * if &buftype == 'terminal' | :startinsert | endif
 "
+
+" mappings for normal mode of terminal
+function! Terminalthings()
+	nnoremap <buffer> r a<ESC>k<CR><C-\><C-N>
+endfunction
+augroup TerminalNormalModeMappings
+	autocmd!
+	autocmd TermOpen * call Terminalthings()
+augroup END
