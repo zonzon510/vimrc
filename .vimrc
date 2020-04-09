@@ -42,6 +42,8 @@ Plug 'tpope/vim-dispatch'
 
 " Plug 'dense-analysis/ale'
 
+let g:ycm_key_list_select_completion=[]
+let g:ycm_key_list_previous_completion=[]
 Plug 'Valloric/YouCompleteMe'
 let g:ycm_auto_trigger = 0
 let g:ycm_autoclose_preview_window_after_insertion = 0
