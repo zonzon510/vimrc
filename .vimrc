@@ -778,6 +778,8 @@ nmap <leader>bs :call SwitchFileMarker(0)<CR>
 nmap <leader>bp :b# <CR>
 nmap <leader>B :call SwitchFileMarker(1)<CR>
 
+nnoremap <leader><c-]> :YcmCompleter GoTo<CR>zv
+
 
 " yank filename
 nnoremap <leader>yy :let @"=expand("%")<CR>
