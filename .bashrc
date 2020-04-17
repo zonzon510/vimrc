@@ -151,7 +151,7 @@ export PATH=$PATH":/opt/Qt/Tools/QtCreator/bin"
 
 # alias vi=nvim
 # alias vim=nvim
-alias clear=''
+# alias clear='' i learned my lesson
 
 alias gitl="git log --oneline --graph --all"
 

@@ -253,6 +253,20 @@ fun! OpenTerm()
 	call feedkeys("acd \"".current_dir."\"\<CR>")
 	call feedkeys("clear"."\<CR>")
 endfun
+fun! OpenTermBottom()
+	let current_dir = expand("%:p:h")
+	:execute ":bo 7sp"
+	:execute ":term"
+	call feedkeys("acd \"".current_dir."\"\<CR>")
+	call feedkeys("clear"."\<CR>")
+endfun
+fun! OpenTermRight()
+	let current_dir = expand("%:p:h")
+	:execute ":bo 50vs"
+	:execute ":term"
+	call feedkeys("acd \"".current_dir."\"\<CR>")
+	call feedkeys("clear"."\<CR>")
+endfun
 fun! QuickFixBufferListedOnly()
 	let qfitems = getqflist()
 
@@ -724,6 +738,8 @@ nnoremap <leader>mc :call SplitViewMethodClose()<cr>
 nnoremap <leader>ch :checktime<CR>
 " open a terminal
 nnoremap <leader>te :call OpenTerm()<CR>
+nnoremap <leader>tr :call OpenTermRight()<CR>
+nnoremap <leader>tb :call OpenTermBottom()<CR>
 " save session
 nnoremap <leader>mk :mksession! .save.vim<CR>
 " run Make silent
