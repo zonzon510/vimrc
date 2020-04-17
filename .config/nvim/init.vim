@@ -156,3 +156,9 @@ augroup TerminalNormalModeMappings
 	autocmd!
 	autocmd TermOpen * call Terminalthings()
 augroup END
+
+" resizing windows
+nnoremap <A-k> 4<C-w>+
+nnoremap <A-j> 4<C-w>-
+nnoremap <A-l> 10<C-w>>
+nnoremap <A-h> 10<C-w><
