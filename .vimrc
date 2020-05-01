@@ -480,6 +480,11 @@ function! NextClosedFold(dir)
     endif
 endfunction
 
+function! SetFileTypeGNUPlot()
+	:execute ":set ft=gnuplot"
+	:execute ":setlocal omnifunc=syntaxcomplete#Complete"
+endfunction
+
 "run 
 "PluginUpdate
 filetype plugin indent on
@@ -536,6 +541,9 @@ au InsertLeave *.h :SemanticHighlight
 au InsertLeave *.js :SemanticHighlight
 au InsertLeave *.cs :SemanticHighlight
 au InsertLeave *.cu :SemanticHighlight
+
+" enter a gnu plot file
+autocmd BufEnter *.gnu :call SetFileTypeGNUPlot()
 
 " break indent level matching
 set breakindent
@@ -755,7 +763,7 @@ nnoremap <leader>mb :AbortDispatch<CR>
 " filter quickfix results to include only files in a buffer
 nnoremap <leader>qb :call QuickFixBufferListedOnly()<CR>
 " delete all terminal buffers
-nnoremap <leader>kat :call KillTerminals()<cr>
+nnoremap <leader>tka :call KillTerminals()<cr>
 " toggle ale linting
 nnoremap <leader>l :echo "assign me"<CR>
 " command for toggleing line numbers
@@ -808,6 +816,7 @@ nmap <leader>bp :b# <CR>
 nmap <leader>B :call SwitchFileMarker(1)<CR>
 
 nnoremap <leader><c-]> :YcmCompleter GoTo<CR>zv
+nnoremap <leader>k :YcmCompleter GoTo<CR>zv
 
 
 " yank filename
