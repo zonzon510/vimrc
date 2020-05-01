@@ -596,7 +596,7 @@ hi Search ctermfg=NONE ctermbg=16 cterm=inverse
 hi Directory ctermfg=141 ctermbg=NONE cterm=NONE
 hi Folded ctermfg=242 ctermbg=NONE cterm=NONE
 " column in vertical split
-hi SignColumn ctermfg=NONE ctermbg=red cterm=NONE
+hi SignColumn ctermfg=NONE ctermbg=NONE cterm=NONE
 " normal text
 hi Normal ctermfg=195 ctermbg=NONE cterm=NONE
 hi Boolean ctermfg=141 ctermbg=NONE cterm=NONE
