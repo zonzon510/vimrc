@@ -871,6 +871,7 @@ inoremap <space><space> <Esc>:call JumptoNext("/", "<++>")<cr>"_c4l
 " exit insert mode
 inoremap <c-k> <c-c>
 imap <c-x><c-m> <plug>(fzf-complete-line)
+inoremap <c-m> <Right>
 
 " # # # # # # # # # # # # # # # # # # # # # # # # #
 " #   C O M M A N D  M O D E  M A P P I N G S     #
