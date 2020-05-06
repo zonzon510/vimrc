@@ -547,7 +547,9 @@ autocmd BufEnter *.gnu :call SetFileTypeGNUPlot()
 
 " break indent level matching
 set breakindent
-set showbreak=>>
+set showbreak=--
+" break at word not character
+set linebreak
 set display +=lastline
 
 " set default latex filetype
@@ -617,7 +619,7 @@ hi Identifier ctermfg=81 ctermbg=NONE cterm=NONE
 hi Keyword ctermfg=197 ctermbg=NONE cterm=NONE
 hi Label ctermfg=186 ctermbg=NONE cterm=NONE
 " the area after the last line
-hi NonText ctermfg=NONE ctermbg=NONE cterm=NONE
+hi NonText ctermfg=21 ctermbg=NONE cterm=NONE
 hi Number ctermfg=141 ctermbg=NONE cterm=NONE
 hi Operator ctermfg=197 ctermbg=NONE cterm=NONE
 " python imports PreProc
