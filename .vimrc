@@ -66,6 +66,8 @@ Plug 'rking/ag.vim'
 
 Plug 'SirVer/ultisnips'
 
+Plug 'zonzon510/zgdb'
+
 call plug#end()
 
 set laststatus=2

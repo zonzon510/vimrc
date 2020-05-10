@@ -77,6 +77,8 @@ inoremap <buffer> ;e exit(0);<Esc>
 
 nnoremap <buffer> <leader>pi :call ImplementFunction()<CR>
 
+" start debugger
+nnoremap <buffer> <leader>db :call zgdb#start()<CR>
 
 
 " get type with ycm
