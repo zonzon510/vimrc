@@ -487,6 +487,10 @@ function! SetFileTypeGNUPlot()
 	:execute ":setlocal omnifunc=syntaxcomplete#Complete"
 endfunction
 
+function! SetSyntaxComplete()
+	:execute ":setlocal omnifunc=syntaxcomplete#Complete"
+endfunction
+
 "run 
 "PluginUpdate
 filetype plugin indent on
@@ -546,6 +550,9 @@ au InsertLeave *.cu :SemanticHighlight
 
 " enter a gnu plot file
 autocmd BufEnter *.gnu :call SetFileTypeGNUPlot()
+" enter a cmakelists file
+autocmd BufEnter CMakeLists.txt :call SetSyntaxComplete()
+
 
 " break indent level matching
 set breakindent
