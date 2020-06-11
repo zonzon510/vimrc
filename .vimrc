@@ -829,6 +829,9 @@ nmap <leader>B :call SwitchFileMarker(1)<CR>
 nnoremap <leader><c-]> :YcmCompleter GoTo<CR>zv
 nnoremap <leader>k :YcmCompleter GoTo<CR>zv
 
+" unmap this annoying thing
+nnoremap <C-w><C-o> nop
+nnoremap <C-w>o nop
 
 " yank filename
 nnoremap <leader>yy :let @"=expand("%")<CR>
