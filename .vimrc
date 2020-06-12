@@ -590,7 +590,7 @@ highlight ExtraWhitespace ctermbg=19
 match ExtraWhitespace / \+$/
 
 " sneak highlight colors
-highlight Sneak ctermfg=16 ctermbg=13 cterm=underline
+highlight Sneak ctermfg=9 ctermbg=11 cterm=bold
 highlight SneakScope ctermfg=red ctermbg=yellow
 
 highlight ExtraCursor ctermbg=15 ctermfg=16
