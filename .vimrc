@@ -68,6 +68,10 @@ Plug 'SirVer/ultisnips'
 
 Plug 'zonzon510/zgdb'
 
+Plug 'tpope/vim-repeat'
+
+Plug 'justinmk/vim-sneak'
+
 call plug#end()
 
 set laststatus=2
@@ -505,6 +509,7 @@ highlight ALEError ctermbg=NONE cterm=inverse
 set hlsearch
 set cursorline
 set wrap
+set ignorecase
 
 command! Diffthis call DiffThisF()
 command! MakeTags !ctags -R .
@@ -583,6 +588,10 @@ call sign_define('qfsign', {"text" : "q>",})
 " indicate trailing white space
 highlight ExtraWhitespace ctermbg=19
 match ExtraWhitespace / \+$/
+
+" sneak highlight colors
+highlight Sneak ctermfg=16 ctermbg=13 cterm=underline
+highlight SneakScope ctermfg=red ctermbg=yellow
 
 highlight ExtraCursor ctermbg=15 ctermfg=16
 hi TermCursorNC ctermfg=47 ctermbg=47 cterm=NONE
@@ -742,7 +751,7 @@ nnoremap <leader>fr msHmt/<C-P><C-F>F\|hd$<CR>`tzt`s
 " set search to previously searched pattern
 nnoremap <leader>fp msHmt/<C-p><C-p><CR>`tzt`s
 " search add another word to search pattern
-nnoremap <leader>fs /<C-p>\\|\c
+nnoremap <leader>fs /<C-p>\\|
 " grep
 nnoremap <leader>gg yiw:call MyGrep('-rIi', "<C-R>"")<cr>
 " grep
@@ -796,9 +805,9 @@ nnoremap <leader>J J
 " open documentation
 nnoremap <leader>K K
 " case insensitive search
-nnoremap <leader>s /\c
+nnoremap <leader>s /
 " case insensitive search forward
-nnoremap <leader>S ?\c
+nnoremap <leader>S ?
 " case sensitive search backward
 " nnoremap <leader>S /
 " no highlight
