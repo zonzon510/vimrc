@@ -70,7 +70,7 @@ Plug 'zonzon510/zgdb'
 
 Plug 'tpope/vim-repeat'
 
-Plug 'justinmk/vim-sneak'
+Plug 'easymotion/vim-easymotion'
 
 call plug#end()
 
@@ -589,9 +589,6 @@ call sign_define('qfsign', {"text" : "q>",})
 highlight ExtraWhitespace ctermbg=19
 match ExtraWhitespace / \+$/
 
-" sneak highlight colors
-highlight Sneak ctermfg=9 ctermbg=11 cterm=bold
-highlight SneakScope ctermfg=red ctermbg=yellow
 
 highlight ExtraCursor ctermbg=15 ctermfg=16
 hi TermCursorNC ctermfg=47 ctermbg=47 cterm=NONE
@@ -850,6 +847,23 @@ nnoremap <leader>ye yg_
 
 nnoremap <silent> zJ :call NextClosedFold('j')<cr>
 nnoremap <silent> zK :call NextClosedFold('k')<cr>
+
+" easymotion
+" <Leader>q{char} to move to {char}
+" map  <Leader>ef <Plug>(easymotion-bd-f)
+" nmap <Leader>ef <Plug>(easymotion-overwin-f)
+
+" s{char}{char} to move to {char}{char}
+" nmap s <Plug>(easymotion-overwin-f2)
+
+" Move to line
+" map <Leader>eL1 <Plug>(easymotion-bd-jk)
+" nmap <Leader>eL2 <Plug>(easymotion-overwin-line)
+
+" Move to word
+" map  <Leader>ew1 <Plug>(easymotion-bd-w)
+" nmap s <Plug>(easymotion-overwin-w)
+nmap s <Plug>(easymotion-overwin-f)
 
 " # # # # # # # # # # # # # # # # # # # # # # # #
 " #   V I S U A L  M O D E  M A P P I N G S     #
