@@ -863,7 +863,7 @@ nnoremap <silent> zK :call NextClosedFold('k')<cr>
 " Move to word
 " map  <Leader>ew1 <Plug>(easymotion-bd-w)
 nmap <c-s> <Plug>(easymotion-overwin-w)
-nmap s <Plug>(easymotion-overwin-f)
+nmap s <Plug>(easymotion-overwin-f2)
 
 " # # # # # # # # # # # # # # # # # # # # # # # #
 " #   V I S U A L  M O D E  M A P P I N G S     #
