@@ -495,6 +495,15 @@ function! SetSyntaxComplete()
 	:execute ":setlocal omnifunc=syntaxcomplete#Complete"
 endfunction
 
+function! DiffFileWhereThisLineWasLastEdited()
+	" with fugitive
+	:execute ":Gblame"
+	:execute "normal! ye"
+	:execute ":q"
+	call feedkeys(":Ghdiffsplit! \<C-r>\"~1")
+	" call feedkeys("\<CR>")
+
+endfunction
 "run 
 "PluginUpdate
 filetype plugin indent on
@@ -782,7 +791,8 @@ nnoremap <leader>qb :call QuickFixBufferListedOnly()<CR>
 " delete all terminal buffers
 nnoremap <leader>tka :call KillTerminals()<cr>
 " toggle ale linting
-nnoremap <leader>l :echo "assign me"<CR>
+nnoremap <leader>ll :echo "assign me"<CR>
+nnoremap <leader>le :call DiffFileWhereThisLineWasLastEdited()<CR>
 " command for toggleing line numbers
 nnoremap <leader>nu :set invnumber<CR>
 " toggle line wrapping
