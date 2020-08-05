@@ -159,3 +159,6 @@ export RANGER_LOAD_DEFAULT_RC=false
 export FrameworkPathOverride=/usr/lib/mono/4.5
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# for pudb
+export LC_ALL=C
