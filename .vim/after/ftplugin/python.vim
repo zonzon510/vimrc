@@ -37,6 +37,10 @@ noremap <buffer> <leader>pns Inp.shape(<Esc>A)<Esc>^v$hxaprint("<Esc>pa => ",<Es
 nnoremap <buffer> <leader>e oexit()<Esc>
 inoremap <buffer> ;e exit()<Esc>
 
+" linting
+nnoremap <buffer> <leader>pf :w<cr>:Dispatch -compiler=pyflakes pyflakes %<cr>
+nnoremap <buffer> <leader>pF :w<cr>:Dispatch -compiler=pyflakes_all pyflakes %<cr>
+
 set formatoptions-=cro
 set showbreak=->
 nnoremap <buffer> <F10> <Esc>:w<CR>:!clear;python %<CR>

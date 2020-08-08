@@ -770,6 +770,7 @@ nnoremap <leader>mo :call SplitViewMethodOpen()<cr>
 nnoremap <leader>mc :call SplitViewMethodClose()<cr>
 " checktime shortcut
 nnoremap <leader>ch :checktime<CR>
+nnoremap <leader>cl :cclo<CR>
 " open a terminal
 nnoremap <leader>te :call OpenTerm()<CR>
 nnoremap <leader>tr :call OpenTermRight()<CR>
