@@ -41,6 +41,8 @@ inoremap <buffer> ;e exit()<Esc>
 nnoremap <buffer> <leader>pf :w<cr>:Dispatch -compiler=pyflakes pyflakes %<cr>
 nnoremap <buffer> <leader>pF :w<cr>:Dispatch -compiler=pyflakes_all pyflakes %<cr>
 
+nnoremap <buffer> <leader>pl :w<cr>:Dispatch -compiler=Pylint pylint %<cr>
+
 set formatoptions-=cro
 set showbreak=->
 nnoremap <buffer> <F10> <Esc>:w<CR>:!clear;python %<CR>
