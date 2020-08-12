@@ -772,6 +772,7 @@ nnoremap <leader>fs /<C-p>\\|
 nnoremap <leader>gg yiw:call MyGrep('-rIi', "<C-R>"")<cr>
 " grep
 nnoremap <leader>gr yiw:call MyGrepSilent('-rIw', "<C-R>"")<cr>
+nnoremap <leader>gs :tabe<CR>:Gstatus<CR>
 " open file browser at folder of current file
 nnoremap <leader>cp :call OpenFileBrowser()<CR>
 " open method in single line split
