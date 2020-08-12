@@ -259,9 +259,16 @@ fun! OpenTerm()
 	call feedkeys("acd \"".current_dir."\"\<CR>")
 	call feedkeys("clear"."\<CR>")
 endfun
-fun! OpenTermBottom()
+fun! OpenTermTop()
 	let current_dir = expand("%:p:h")
-	:execute ":bo 7sp"
+	:execute ":to 7sp"
+	:execute ":term"
+	call feedkeys("acd \"".current_dir."\"\<CR>")
+	call feedkeys("clear"."\<CR>")
+endfun
+fun! OpenTermTab()
+	let current_dir = expand("%:p:h")
+	:execute ":tabe"
 	:execute ":term"
 	call feedkeys("acd \"".current_dir."\"\<CR>")
 	call feedkeys("clear"."\<CR>")
@@ -785,7 +792,8 @@ nnoremap <leader>cl :cclo<CR>
 " open a terminal
 nnoremap <leader>te :call OpenTerm()<CR>
 nnoremap <leader>tr :call OpenTermRight()<CR>
-nnoremap <leader>tb :call OpenTermBottom()<CR>
+nnoremap <leader>tb :call OpenTermTop()<CR>
+nnoremap <leader>tt :call OpenTermTab()<CR>
 " save session
 nnoremap <leader>mk :mksession! .save.vim<CR>
 " run Make silent
