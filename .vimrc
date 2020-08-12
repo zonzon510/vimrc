@@ -504,6 +504,16 @@ function! DiffFileWhereThisLineWasLastEdited()
 	" call feedkeys("\<CR>")
 
 endfunction
+function! WrapCmd()
+	if &diff && !&wrap
+		windo if &diff | set wrap | endif
+	elseif &diff && &wrap
+		windo if &diff | set nowrap | endif
+	else
+		set wrap! wrap?
+	endif
+
+endfunction
 "run 
 "PluginUpdate
 filetype plugin indent on
@@ -798,6 +808,7 @@ nnoremap <leader>le :call DiffFileWhereThisLineWasLastEdited()<CR>
 nnoremap <leader>nu :set invnumber<CR>
 " toggle line wrapping
 nnoremap <leader>W :set wrap! wrap?<CR>
+nnoremap <leader><c-w> :call WrapCmd()<CR>
 " toggle line wrapping
 nnoremap <leader>w :w<CR>
 " toggle semantic highlighting
