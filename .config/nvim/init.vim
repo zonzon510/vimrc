@@ -151,6 +151,7 @@ nnoremap <A-C-l> gt
 " mappings for normal mode of terminal
 function! Terminalthings()
 	nnoremap <buffer> r a<ESC>k<CR><C-\><C-N>
+	nnoremap <buffer> <leader>nn yiwa<ESC><ESC>VVn<C-\><C-N>pa<CR>
 endfunction
 augroup TerminalNormalModeMappings
 	autocmd!
