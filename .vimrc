@@ -952,6 +952,8 @@ cmap LL <right>
 
 cmap <C-w> \<
 cmap <C-e> \>
+" greedy regex nearest match
+cmap <C-s> .\{-}
 
 
 
