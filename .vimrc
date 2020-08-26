@@ -799,7 +799,7 @@ nnoremap <leader>mk :mksession! .save.vim<CR>
 " run Make silent
 nnoremap <leader>ms :w<CR>:Make!<CR>
 " run Make
-nnoremap <leader>ma :w<CR>:Make<CR>
+nnoremap <leader>ma :w<CR>:silent! AbortDispatch<CR>:Make<CR>
 " run get quickfix results from Copen
 nnoremap <leader>mC :Copen<CR><C-w>p:cclo<CR>
 " do math (math do)
@@ -847,6 +847,9 @@ nnoremap <C-Space> :pc<CR>
 nnoremap <leader>vs :w<CR>:call OpenVSCode()<CR><CR>
 nnoremap <leader>vl ^vg_
 nnoremap <leader>ic :set ic! ic?<CR>
+nnoremap <leader>io :diffoff<CR>
+nnoremap <leader>iO :diffoff!<CR>
+nnoremap <leader>it :diffthis<CR>
 " change to directory of currently open file
 nnoremap <leader>cd :cd %:p:h<CR>
 
