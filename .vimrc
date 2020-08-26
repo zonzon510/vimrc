@@ -521,6 +521,12 @@ function! WrapCmd()
 	endif
 
 endfunction
+function! TabCloseRight()
+	let cur = tabpagenr()
+	while cur < tabpagenr('$')
+		exe 'tabclose' . ' ' . (cur + 1)
+	endwhile
+endfunction
 "run 
 "PluginUpdate
 filetype plugin indent on
@@ -539,6 +545,7 @@ set ignorecase
 
 command! Diffthis call DiffThisF()
 command! MakeTags !ctags -R .
+command! -bang TabCloseRight call TabCloseRight('<bang>')
 " command! MakeTags !ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .
 " set leader key to space
 
@@ -794,6 +801,8 @@ nnoremap <leader>te :call OpenTerm()<CR>
 nnoremap <leader>tr :call OpenTermRight()<CR>
 nnoremap <leader>tb :call OpenTermTop()<CR>
 nnoremap <leader>tt :call OpenTermTab()<CR>
+nnoremap <leader>tc :tabclose<CR>
+nnoremap <leader>tC :call TabCloseRight()<CR>
 " save session
 nnoremap <leader>mk :mksession! .save.vim<CR>
 " run Make silent
