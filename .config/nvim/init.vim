@@ -163,3 +163,9 @@ nnoremap <A-k> 4<C-w>+
 nnoremap <A-j> 4<C-w>-
 nnoremap <A-l> 10<C-w>>
 nnoremap <A-h> 10<C-w><
+
+" horizontal scroll
+set virtualedit=all
+nnoremap <A-H> 5zh
+nnoremap <A-L> 5zl
+
