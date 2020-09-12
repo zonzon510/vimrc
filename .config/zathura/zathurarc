@@ -4,4 +4,5 @@ set scroll-step 80
 set selection-clipboard clipboard
 
 set incremental-search true
+set synctex true
 
