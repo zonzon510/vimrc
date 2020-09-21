@@ -72,6 +72,8 @@ Plug 'tpope/vim-repeat'
 
 Plug 'easymotion/vim-easymotion'
 
+Plug 'rickhowe/diffchar.vim'
+
 call plug#end()
 
 set laststatus=2
@@ -655,10 +657,12 @@ hi Comment ctermfg=lightblue ctermbg=NONE cterm=NONE
 hi Conditional ctermfg=226 ctermbg=NONE cterm=NONE
 hi Constant ctermfg=NONE ctermbg=NONE cterm=NONE
 hi Define ctermfg=197 ctermbg=NONE cterm=NONE
-hi DiffAdd ctermfg=231 ctermbg=64 cterm=bold
-hi DiffDelete ctermfg=88 ctermbg=NONE cterm=NONE
-hi DiffChange ctermfg=NONE ctermbg=NONE cterm=NONE
-hi DiffText ctermfg=231 ctermbg=24 cterm=bold
+
+hi DiffAdd ctermfg=16 ctermbg=10 cterm=bold
+hi DiffDelete ctermfg=16 ctermbg=9 cterm=bold
+hi DiffChange ctermfg=7 ctermbg=16 cterm=NONE
+hi DiffText ctermfg=16 ctermbg=14 cterm=bold
+
 hi ErrorMsg ctermfg=231 ctermbg=197 cterm=NONE
 hi WarningMsg ctermfg=231 ctermbg=197 cterm=NONE
 hi Float ctermfg=141 ctermbg=NONE cterm=NONE
