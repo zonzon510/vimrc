@@ -865,6 +865,7 @@ nnoremap <leader>iO :diffoff!<CR>
 nnoremap <leader>it :diffthis<CR>
 " change to directory of currently open file
 nnoremap <leader>cd :cd %:p:h<CR>
+nnoremap <leader>cu :set cursorline! cursorline?<CR>
 
 nnoremap <leader>pw :pwd<CR>
 
