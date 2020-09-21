@@ -514,6 +514,7 @@ function! DiffFileWhereThisLineWasLastEdited()
 
 endfunction
 function! WrapCmd()
+	let _wn = win_getid()
 	if &diff && !&wrap
 		windo if &diff | set wrap | endif
 	elseif &diff && &wrap
@@ -521,6 +522,17 @@ function! WrapCmd()
 	else
 		set wrap! wrap?
 	endif
+	:call win_gotoid(_wn)
+
+endfunction
+function! ToggleCursorLine()
+	let _wn = win_getid()
+	if &cursorline
+		windo set nocursorline
+	else
+		windo set cursorline
+	endif
+	:call win_gotoid(_wn)
 
 endfunction
 function! TabCloseRight()
@@ -865,7 +877,7 @@ nnoremap <leader>iO :diffoff!<CR>
 nnoremap <leader>it :diffthis<CR>
 " change to directory of currently open file
 nnoremap <leader>cd :cd %:p:h<CR>
-nnoremap <leader>cu :set cursorline! cursorline?<CR>
+nnoremap <leader>cu :call ToggleCursorLine()<CR>
 
 nnoremap <leader>pw :pwd<CR>
 
