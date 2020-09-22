@@ -72,7 +72,7 @@ Plug 'tpope/vim-repeat'
 
 Plug 'easymotion/vim-easymotion'
 
-Plug 'rickhowe/diffchar.vim'
+Plug 'zonzon510/diffchar.vim'
 
 call plug#end()
 
