@@ -670,10 +670,10 @@ hi Conditional ctermfg=226 ctermbg=NONE cterm=NONE
 hi Constant ctermfg=NONE ctermbg=NONE cterm=NONE
 hi Define ctermfg=197 ctermbg=NONE cterm=NONE
 
-hi DiffAdd ctermfg=15 ctermbg=28 cterm=bold
-hi DiffDelete ctermfg=15 ctermbg=124 cterm=bold
-hi DiffChange ctermfg=15 ctermbg=16 cterm=NONE
-hi DiffText ctermfg=15 ctermbg=26 cterm=bold
+hi DiffAdd ctermfg=NONE ctermbg=22 cterm=NONE
+hi DiffDelete ctermfg=NONE ctermbg=57 cterm=NONE
+hi DiffChange ctermfg=NONE ctermbg=16 cterm=NONE
+hi DiffText ctermfg=NONE ctermbg=19 cterm=NONE
 
 hi ErrorMsg ctermfg=231 ctermbg=197 cterm=NONE
 hi WarningMsg ctermfg=231 ctermbg=197 cterm=NONE
