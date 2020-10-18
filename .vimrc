@@ -6,6 +6,8 @@ Plug 'jaxbot/semantic-highlight.vim'
 " semantic highlighting
 let g:semanticTermColors = [1, 2, 3, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15]
 
+Plug 'mbbill/undotree'
+
 " vim surround
 Plug 'tpope/vim-surround'
 
@@ -281,6 +283,12 @@ fun! OpenTermRight()
 	:execute ":term"
 	call feedkeys("acd \"".current_dir."\"\<CR>")
 	call feedkeys("clear"."\<CR>")
+endfun
+fun! OpenMagit()
+	let current_dir = expand("%:p:h")
+	:execute ":tabe"
+	" terminal for magit
+	let s:jobid=termopen("emacs -nw --eval \"(magit-ediff)\"")
 endfun
 fun! QuickFixBufferListedOnly()
 	let qfitems = getqflist()
@@ -819,6 +827,11 @@ nnoremap <leader>tb :call OpenTermTop()<CR>
 nnoremap <leader>tt :call OpenTermTab()<CR>
 nnoremap <leader>tc :tabclose<CR>
 nnoremap <leader>tC :call TabCloseRight()<CR>
+" open undo tree
+" added this
+nnoremap <leader>tu :UndotreeToggle<CR>
+nnoremap <leader>ga :call OpenMagit()<CR>
+
 " save session
 nnoremap <leader>mk :mksession! .save.vim<CR>
 " run Make silent
