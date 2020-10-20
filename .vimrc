@@ -976,24 +976,29 @@ inoremap ;{ {}<left>
 inoremap ;( ()<left>
 inoremap ;< <><left>
 " jump points
-inoremap <space><space> <Esc>:call JumptoNext("/", "<++>")<cr>"_c4l
 " set ctrl + c identica l to ctrl+[
 " inoremap <c-c> <Esc>
 " exit insert mode
 inoremap <c-k> <c-c>
-imap <c-x><c-m> <plug>(fzf-complete-line)
-inoremap <c-m> <Right>
+" inoremap <silent> <c-l>=pumvisible() ? "\<C-y>" : "\<Esc>"<CR>
+" inoremap <c-l>=pumvisible() ? "<C-l>" : "<Left>"<CR>
+inoremap <A-f> <Right>
+inoremap <A-b> <Left>
+
+inoremap <c-x><c-m> <plug>(fzf-complete-line)
+inoremap <c-f> <Right>
+inoremap <c-b> <Left>
 
 " # # # # # # # # # # # # # # # # # # # # # # # # #
 " #   C O M M A N D  M O D E  M A P P I N G S     #
 " # # # # # # # # # # # # # # # # # # # # # # # # #
 
 " left and right keys in command mode
-cmap HH <left>
-cmap LL <right>
+cmap <A-f> <Right>
+cmap <A-b> <Left>
 
-cmap <C-w> \<
-cmap <C-e> \>
+cmap <A-w> \<
+cmap <A-e> \>
 " greedy regex nearest match
 cmap <C-s> .\{-}
 
