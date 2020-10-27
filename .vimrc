@@ -155,6 +155,8 @@ fun! MoveBySameLevel(direction)
 
 endfun
 fun! SearchWordsOnLine()
+	" get top of screen
+	let s:top=getwininfo(win_getid())[0]['topline']
 	let s:startpos = getcurpos()
 	normal! $
 	let s:startline = getcurpos()[1]
@@ -173,10 +175,13 @@ fun! SearchWordsOnLine()
 	endwhile
 	" normal! /pattern/e+1^M
 	call setpos('.',s:startpos)
-
-	let s:cmdstr=":call setpos('.',[".s:startpos[0].','.s:startpos[1].','.s:startpos[2].','.s:startpos[3].','.s:startpos[4].'])'
 	call feedkeys('/'.s:searchquery."\<CR>")
+	let s:cmdstr=":call setpos('.',[".s:startpos[0].','.s:startpos[1].','.s:startpos[2].','.s:startpos[3].','.s:startpos[4].'])'
 	call feedkeys(s:cmdstr."\<CR>")
+	let s:to_top=getcurpos()[1] - s:top
+	call feedkeys(s:to_top.'k')
+	call feedkeys('zt')
+	call feedkeys(s:to_top.'j')
 endfun
 fun! MyGrep(sargs, pattern)
 	" if ignore directories dont exist, create them
