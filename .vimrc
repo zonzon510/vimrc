@@ -154,6 +154,30 @@ fun! MoveBySameLevel(direction)
 
 
 endfun
+fun! SearchWordsOnLine()
+	let s:startpos = getcurpos()
+	normal! $
+	let s:startline = getcurpos()[1]
+	normal! ^
+	let s:searchquery=''
+	let s:lastsearchquery=''
+	let s:firstword=1
+	while getcurpos()[1] == s:startline
+		if expand("<cword>") != s:lastsearchquery
+			let s:ors=s:firstword?'':'\|'
+			let s:searchquery= s:searchquery. s:ors . '\<' . expand("<cword>"). '\>'
+		endif
+		let s:lastsearchquery=expand("<cword>")
+		let s:firstword=0
+		normal! w
+	endwhile
+	" normal! /pattern/e+1^M
+	call setpos('.',s:startpos)
+
+	let s:cmdstr=":call setpos('.',[".s:startpos[0].','.s:startpos[1].','.s:startpos[2].','.s:startpos[3].','.s:startpos[4].'])'
+	call feedkeys('/'.s:searchquery."\<CR>")
+	call feedkeys(s:cmdstr."\<CR>")
+endfun
 fun! MyGrep(sargs, pattern)
 	" if ignore directories dont exist, create them
 	:execute "silent !touch ./.grepignoredir > /dev/null 2>&1"
@@ -806,6 +830,7 @@ nnoremap <leader>fr msHmt/<C-P><C-F>F\|hd$<CR>`tzt`s
 nnoremap <leader>fp msHmt/<C-p><C-p><CR>`tzt`s
 " search add another word to search pattern
 nnoremap <leader>fs /<C-p>\\|
+nnoremap <leader>fl :call SearchWordsOnLine()<cr>
 " grep
 nnoremap <leader>gg yiw:call MyGrep('-rIi', "<C-R>"")<cr>
 " grep
