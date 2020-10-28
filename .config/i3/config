@@ -156,6 +156,7 @@ mode "resize" {
         # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
+        bindsym Control+braceleft mode "default"
 }
 
 bindsym $mod+r mode "resize"
@@ -205,6 +206,7 @@ bindsym $mod+Control+l workspace next
 for_window [title="Figure *"] floating enable
 for_window [title="ImageMagick *"] floating enable
 for_window [title="Gnuplot *"] floating enable
+for_window [class="Eog"] floating enable
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -242,3 +244,12 @@ bindsym $mod+m exec xdotool mousemove_relative 0 3000
 bindsym --release $mod+p exec scrot -s
 bindsym --release $mod+Shift+p exec scrot
 # bindsym $mod+p exec xdotool mousemove_relative 0 10
+#
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
+
+# # Show the sup-mail scratchpad window, if any.
+# bindsym mod4+s [title="^Sup ::"] scratchpad show
