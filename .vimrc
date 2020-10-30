@@ -620,7 +620,7 @@ autocmd BufEnter *.cs :call CheckEnableSemanticHighLight()
 autocmd BufEnter *.cu :call CheckEnableSemanticHighLight()
 
 autocmd BufLeave * :call BufferSave()
-autocmd BufWrite * :mksession! ~/.autosave.vim
+autocmd BufWrite * :mksession! .autosave.vim
 
 " keep window view
 autocmd BufLeave * call AutoSaveWinView()
