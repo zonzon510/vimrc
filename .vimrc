@@ -578,6 +578,20 @@ function! TabCloseRight()
 		exe 'tabclose' . ' ' . (cur + 1)
 	endwhile
 endfunction
+command! -bar DuplicateTabpane
+      \ let s:sessionoptions = &sessionoptions |
+      \ try |
+      \   let &sessionoptions = 'blank,help,folds,winsize,localoptions' |
+      \   let s:file = tempname() |
+      \   execute 'mksession ' . s:file |
+      \   tabnew |
+      \   execute 'source ' . s:file |
+      \ finally |
+      \   silent call delete(s:file) |
+      \   let &sessionoptions = s:sessionoptions |
+      \   unlet! s:file s:sessionoptions |
+      \ endtry
+
 "run 
 "PluginUpdate
 filetype plugin indent on
