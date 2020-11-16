@@ -606,18 +606,23 @@ function! BracketUpPreview(arg)
 				:execute ":normal \<c-p>"
 				let s:currentlevel=s:currentlevel-1
 			endwhile
+			while len(split(getline(line('.')), '[A-Za-z]\>', 1)) - 1 == 0
+				:execute ":normal k"
+			endwhile
+			let s:line=line('.')
 			:execute ":normal yy"
 			:execute ":q"
 			:execute ":normal \<c-w>k"
-			:execute ":normal ggP"
+			:execute ":normal ggP0i".s:line.": "
 			:execute ":normal \<c-w>+"
+			:set wfh
 
 			:call win_gotoid(_wn)
 			return
 		elseif(a:arg=='down')
 			let w:bracket_up_view=w:bracket_up_view-1
 			if w:bracket_up_view==0
-				:execute ":q"
+				:execute ":bd"
 				:call win_gotoid(_wn)
 				:call clearmatches()
 				return
@@ -633,7 +638,7 @@ function! BracketUpPreview(arg)
 
 	" the view is open but at the wrong line when function called
 	elseif exists('w:bracket_up_view')
-		:execute ":q"
+		:execute ":bd"
 		:call win_gotoid(_wn)
 		:call clearmatches()
 
@@ -645,12 +650,19 @@ function! BracketUpPreview(arg)
 		:call matchadd('CtrlP_Preview', '\%'.line('.').'l',-10)
 		:execute ":sp"
 		:execute ":normal \<c-p>"
+
+		" while there are no alphanumeric characters
+		while len(split(getline(line('.')), '[A-Za-z]\>', 1)) - 1 == 0
+			:execute ":normal k"
+		endwhile
+		let s:line=line('.')
 		:execute ":normal yy"
 		:execute ":q"
 
 		" if not already open
 		:execute ":1new"
-		:execute ":normal VP"
+		:set wfh
+		:execute ":normal VP0i".s:line.": "
 		" :execute 'match CtrlP_Preview /.*/'
 		:call matchadd('CtrlP_Preview', '.*',-10)
 		:setlocal buftype=nofile
