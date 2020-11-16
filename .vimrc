@@ -597,7 +597,7 @@ function! BracketUpPreview(arg)
 			let w:bracket_up_view=w:bracket_up_view+1
 			" if its already open
 			:call win_gotoid(_wn)
-			:execute 'match Search /\%'.line('.').'l/'
+			:execute 'match CtrlP_Preview /\%'.line('.').'l/'
 
 			" open split
 			:execute ":sp"
@@ -618,7 +618,7 @@ function! BracketUpPreview(arg)
 			if w:bracket_up_view==0
 				:execute ":q"
 				:call win_gotoid(_wn)
-				:execute 'match Search //'
+				:execute 'match CtrlP_Preview //'
 				return
 
 			endif
@@ -634,14 +634,13 @@ function! BracketUpPreview(arg)
 	elseif exists('w:bracket_up_view')
 		:execute ":q"
 		:call win_gotoid(_wn)
-		" :execute 'match Search /\%'.line('.').'l/'
-		:execute 'match Search //'
+		:execute 'match CtrlP_Preview //'
 
 	else
 		" if its not open
 		" get line up indent/bracket from current place
 		:call win_gotoid(_wn)
-		:execute 'match Search /\%'.line('.').'l/'
+		:execute 'match CtrlP_Preview /\%'.line('.').'l/'
 		:execute ":sp"
 		:execute ":normal \<c-p>"
 		:execute ":normal yy"
@@ -650,6 +649,7 @@ function! BracketUpPreview(arg)
 		" if not already open
 		:execute ":1new"
 		:execute ":normal VP"
+		:execute 'match CtrlP_Preview /.*/'
 		:setlocal buftype=nofile
 		:setlocal bufhidden=hide
 		:setlocal noswapfile
@@ -775,6 +775,7 @@ call sign_define('qfsign', {"text" : "q>",})
 
 " indicate trailing white space
 highlight ExtraWhitespace ctermbg=19
+highlight CtrlP_Preview ctermbg=53
 match ExtraWhitespace / \+$/
 
 
