@@ -606,11 +606,14 @@ function! BracketUpPreview(arg)
 				:execute ":normal \<c-p>"
 				let s:currentlevel=s:currentlevel-1
 			endwhile
+			let @"=getline('.')
 			while len(split(getline(line('.')), '[A-Za-z]\>', 1)) - 1 == 0
 				:execute ":normal k"
+				let @"=getline('.').@"
 			endwhile
+			let @"=@"."\n"
 			let s:line=line('.')
-			:execute ":normal yy"
+			" :execute ":normal yy"
 			:execute ":q"
 			:execute ":normal \<c-w>k"
 			:execute ":normal ggP0i".s:line.": "
@@ -652,11 +655,14 @@ function! BracketUpPreview(arg)
 		:execute ":normal \<c-p>"
 
 		" while there are no alphanumeric characters
+		let @"=getline('.')
 		while len(split(getline(line('.')), '[A-Za-z]\>', 1)) - 1 == 0
 			:execute ":normal k"
+			let @"=getline('.').@"
 		endwhile
+		let @"=@"."\n"
 		let s:line=line('.')
-		:execute ":normal yy"
+		" :execute ":normal yy"
 		:execute ":q"
 
 		" if not already open
