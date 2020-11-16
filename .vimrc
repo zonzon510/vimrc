@@ -597,7 +597,8 @@ function! BracketUpPreview(arg)
 			let w:bracket_up_view=w:bracket_up_view+1
 			" if its already open
 			:call win_gotoid(_wn)
-			:execute 'match CtrlP_Preview /\%'.line('.').'l/'
+			:call clearmatches()
+			:call matchadd('CtrlP_Preview', '\%'.line('.').'l',-10)
 
 			" open split
 			:execute ":sp"
@@ -618,7 +619,7 @@ function! BracketUpPreview(arg)
 			if w:bracket_up_view==0
 				:execute ":q"
 				:call win_gotoid(_wn)
-				:execute 'match CtrlP_Preview //'
+				:call clearmatches()
 				return
 
 			endif
@@ -634,13 +635,14 @@ function! BracketUpPreview(arg)
 	elseif exists('w:bracket_up_view')
 		:execute ":q"
 		:call win_gotoid(_wn)
-		:execute 'match CtrlP_Preview //'
+		:call clearmatches()
 
 	else
 		" if its not open
 		" get line up indent/bracket from current place
 		:call win_gotoid(_wn)
-		:execute 'match CtrlP_Preview /\%'.line('.').'l/'
+		:call clearmatches()
+		:call matchadd('CtrlP_Preview', '\%'.line('.').'l',-10)
 		:execute ":sp"
 		:execute ":normal \<c-p>"
 		:execute ":normal yy"
@@ -650,6 +652,7 @@ function! BracketUpPreview(arg)
 		:execute ":1new"
 		:execute ":normal VP"
 		" :execute 'match CtrlP_Preview /.*/'
+		:call matchadd('CtrlP_Preview', '.*',-10)
 		:setlocal buftype=nofile
 		:setlocal bufhidden=hide
 		:setlocal noswapfile
