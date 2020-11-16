@@ -578,6 +578,96 @@ function! TabCloseRight()
 		exe 'tabclose' . ' ' . (cur + 1)
 	endwhile
 endfunction
+function! BracketUpPreview(arg)
+	" open scratch buffer above if not already open
+	" get current window number
+
+	" get window num and filetype
+	let _wn = win_getid()
+	let s:ft=&filetype
+	let s:current_file=expand("%:p")
+	let s:current_line=line('.')
+
+
+	" move to window above and see if it is a bracketupview window
+	:execute ":normal \<c-w>k"
+	if exists('w:bracket_up_view') && w:bracket_up_view_file == s:current_file && w:bracket_up_view_line == s:current_line
+		if(a:arg=='up')
+			let s:currentlevel=w:bracket_up_view
+			let w:bracket_up_view=w:bracket_up_view+1
+			" if its already open
+			:call win_gotoid(_wn)
+			:execute 'match Search /\%'.line('.').'l/'
+
+			" open split
+			:execute ":sp"
+			while s:currentlevel>=0
+				:execute ":normal \<c-p>"
+				let s:currentlevel=s:currentlevel-1
+			endwhile
+			:execute ":normal yy"
+			:execute ":q"
+			:execute ":normal \<c-w>k"
+			:execute ":normal ggP"
+			:execute ":normal \<c-w>+"
+
+			:call win_gotoid(_wn)
+			return
+		elseif(a:arg=='down')
+			let w:bracket_up_view=w:bracket_up_view-1
+			if w:bracket_up_view==0
+				:execute ":q"
+				:call win_gotoid(_wn)
+				:execute 'match Search //'
+				return
+
+			endif
+			:execute ":normal ggdd"
+			:execute ":normal \<c-w>-"
+			:execute ":normal gg"
+			:call win_gotoid(_wn)
+			return
+		endif
+
+
+	" the view is open but at the wrong line when function called
+	elseif exists('w:bracket_up_view')
+		:execute ":q"
+		:call win_gotoid(_wn)
+		" :execute 'match Search /\%'.line('.').'l/'
+		:execute 'match Search //'
+
+	else
+		" if its not open
+		" get line up indent/bracket from current place
+		:call win_gotoid(_wn)
+		:execute 'match Search /\%'.line('.').'l/'
+		:execute ":sp"
+		:execute ":normal \<c-p>"
+		:execute ":normal yy"
+		:execute ":q"
+
+		" if not already open
+		:execute ":1new"
+		:execute ":normal VP"
+		:setlocal buftype=nofile
+		:setlocal bufhidden=hide
+		:setlocal noswapfile
+		:set nowrap
+		:execute ":set ft=".s:ft
+		:let w:bracket_up_view=1
+		" set the file and line
+		:let w:bracket_up_view_file=s:current_file
+		:let w:bracket_up_view_line=s:current_line
+
+		:call win_gotoid(_wn)
+
+	endif
+
+
+endfunction
+
+
 command! -bar DuplicateTabpane
       \ let s:sessionoptions = &sessionoptions |
       \ try |
@@ -861,6 +951,10 @@ nnoremap <leader>cp :call OpenFileBrowser()<CR>
 nnoremap <leader>mo :call SplitViewMethodOpen()<cr>
 " close method
 nnoremap <leader>mc :call SplitViewMethodClose()<cr>
+
+nnoremap <A-C-p> :call BracketUpPreview('up')<cr>
+nnoremap <A-C-n> :call BracketUpPreview('down')<cr>
+
 " checktime shortcut
 nnoremap <leader>ch :checktime<CR>
 nnoremap <leader>cl :cclo<CR>
