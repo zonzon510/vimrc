@@ -649,7 +649,7 @@ function! BracketUpPreview(arg)
 		" if not already open
 		:execute ":1new"
 		:execute ":normal VP"
-		:execute 'match CtrlP_Preview /.*/'
+		" :execute 'match CtrlP_Preview /.*/'
 		:setlocal buftype=nofile
 		:setlocal bufhidden=hide
 		:setlocal noswapfile
