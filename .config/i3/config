@@ -37,7 +37,7 @@ bindsym $mod+Control+j exec urxvt
 bindsym $mod+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+# bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -183,9 +183,6 @@ bindsym $mod+n mode "vim_keys"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command i3status
-}
 
 # alt key: Mod1
 # bindsym Mod1+Control+h workspace prev
@@ -253,3 +250,36 @@ bindsym $mod+minus scratchpad show
 
 # # Show the sup-mail scratchpad window, if any.
 # bindsym mod4+s [title="^Sup ::"] scratchpad show
+# bindsym $mod+d exec rofi -show run -lines 5 -eh 2 -width 100 -padding 500 -opacity "80" -font "System San Francisco Display 18" -hlfg "#9575cd"
+
+
+set $darkpurple #00aba2
+set $lightgreen #ffd500
+# set $darkpurple #71CB00
+
+# class                 border  backgr. text    indicator child_border
+client.focused          $darkpurple $darkpurple $lightgreen $lightgreen   $darkpurple
+client.focused_inactive #333333 #5f676a $lightgreen #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 $lightgreen #900000   #900000
+client.placeholder      #000000 #0c0c0c $lightgreen #000000   #0c0c0c
+
+client.background       $lightgreen
+bar {
+        status_command i3status
+		colors {
+		        background #000000
+			statusline #ffffff
+			separator #666666
+
+			focused_workspace  #000000 $darkpurple $lightgreen
+			active_workspace   #333333 #5f676a $lightgreen
+			inactive_workspace #333333 #222222 #888888
+			urgent_workspace   #2f343a #900000 $lightgreen
+			binding_mode       #2f343a #900000 $lightgreen
+
+		}
+}
+bindsym $mod+d exec dmenu_run -nb '$darkpurple' -sf '$darkpurple' -sb '#ffffff' -nf '#ffffff'
+
+exec compton -f
