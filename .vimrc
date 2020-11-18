@@ -1014,6 +1014,7 @@ nnoremap <leader>mc :call SplitViewMethodClose()<cr>
 
 nnoremap <A-C-p> :call BracketUpPreview('up')<cr>
 nnoremap <A-C-n> :call BracketUpPreview('down')<cr>
+nnoremap <A-C-u> :call UpdateBracketUpPreview()<cr>
 
 " checktime shortcut
 nnoremap <leader>ch :checktime<CR>
