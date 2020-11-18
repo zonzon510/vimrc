@@ -603,6 +603,7 @@ function! BracketUpPreview(arg)
 			" open split
 			:execute ":sp"
 			while s:currentlevel>=0
+				:execute ":normal 0"
 				:execute ":normal \<c-p>"
 				let s:currentlevel=s:currentlevel-1
 			endwhile
@@ -619,6 +620,7 @@ function! BracketUpPreview(arg)
 			:execute ":normal ggP0i".s:line.": "
 			:execute ":normal \<c-w>+"
 			:set wfh
+			call CheckEnableSemanticHighLight()
 
 			:call win_gotoid(_wn)
 			return
@@ -652,6 +654,7 @@ function! BracketUpPreview(arg)
 		:call clearmatches()
 		:call matchadd('CtrlP_Preview', '\%'.line('.').'l',-10)
 		:execute ":sp"
+		:execute ":normal 0"
 		:execute ":normal \<c-p>"
 
 		" while there are no alphanumeric characters
@@ -669,6 +672,7 @@ function! BracketUpPreview(arg)
 		:execute ":1new"
 		:set wfh
 		:execute ":normal VP0i".s:line.": "
+		call CheckEnableSemanticHighLight()
 		" :execute 'match CtrlP_Preview /.*/'
 		:call matchadd('CtrlP_Preview', '.*',-10)
 		:setlocal buftype=nofile
@@ -686,6 +690,40 @@ function! BracketUpPreview(arg)
 	endif
 
 
+endfunction
+
+function! UpdateBracketUpPreviewWin()
+	if exists('w:bracket_up_view')
+		let currentlevel=w:bracket_up_view
+		let current_file=w:bracket_up_view_file
+		let current_line=w:bracket_up_view_line
+		:execute ":normal \<c-w>j"
+		if exists('w:bracket_up_view') || expand("%:p")!=current_file
+			return
+		endif
+		" mark current position
+		:execute ":normal msHmt"
+		" go to line
+		:execute ":normal ".current_line."gg"
+
+		" delete the current scratch bufer above
+		let _wn = win_getid()
+		:execute ":normal \<c-w>k"
+		:execute ":bd"
+		:call win_gotoid(_wn)
+
+		while currentlevel>0
+			call BracketUpPreview('up')
+			let currentlevel=currentlevel-1
+			:redraw
+		endwhile
+		:execute ":normal `tzt`s"
+	endif
+endfunction
+function! UpdateBracketUpPreview()
+	let _wn = win_getid()
+	windo call UpdateBracketUpPreviewWin()
+	:call win_gotoid(_wn)
 endfunction
 
 
