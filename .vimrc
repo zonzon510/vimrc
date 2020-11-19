@@ -689,6 +689,11 @@ function! BracketUpPreview(arg)
 
 
 		call sign_define(bracketmarkerid, {"text" : letter,"texthl":hlgroup,"numhl":hlgroup})
+
+		if !exists('t:bracketupsigns')
+			let t:bracketupsigns={}
+		endif
+		let t:bracketupsigns[bracketmarkerid]={"text":letter,"texthl":hlgroup,"numhl":hlgroup,"buffer":s:current_buffer}
 		call sign_place(bracketmarkerid,'BracketPreviewMarkersGroup',bracketmarkerid,s:current_buffer,{'lnum':s:current_line,'priority':100})
 		" jump to sign
 		" call sign_jump(8758,'BracketPreviewMarkersGroup','')
@@ -726,6 +731,7 @@ function! BracketUpPreview(arg)
 		:set nowrap
 		" au BufWinLeave <buffer> echo "hello".w:bracket_up_view_id
 		au BufWinLeave <buffer> call sign_undefine(w:bracket_up_view_id)
+		au BufWinLeave <buffer> unlet t:bracketupsigns[w:bracket_up_view_id]
 
 		:execute ":set ft=".s:ft
 		:let w:bracket_up_view=1
@@ -779,6 +785,44 @@ function! UpdateBracketUpPreview()
 	windo call UpdateBracketUpPreviewWin()
 	:call win_gotoid(_wn)
 endfunction
+
+" for switching tabs
+function! HideBracketUpPreviewSigns()
+	if exists("t:bracketupsigns")
+		for key in keys(t:bracketupsigns)
+			let placed_sign=sign_getplaced(t:bracketupsigns[key]['buffer'],{'group':'BracketPreviewMarkersGroup','id':key})
+			let currentline=placed_sign[0]['signs'][0]['lnum']
+			call sign_unplace('BracketPreviewMarkersGroup',{'id':key,'buffer':t:bracketupsigns[key]['buffer']})
+			" re define the sign
+			call sign_define(key, {"text" : " ","texthl":"CtrlP_PreviewInactive","numhl":"CtrlP_PreviewInactive"})
+			" place in background
+			call sign_place(key,'BracketPreviewMarkersGroup',key,t:bracketupsigns[key]['buffer'],
+						\{'lnum':currentline,'priority':-10})
+		endfor
+		" echo "hide the signs"
+	endif
+
+endfunction
+function! ShowBracketUpPreviewSigns()
+	" echo "show the signs"
+	if exists("t:bracketupsigns")
+		" echo t:bracketupsigns
+		for key in keys(t:bracketupsigns)
+			" echo "show ".key."	buffer:".t:bracketupsigns[key]['buffer']
+			let placed_sign=sign_getplaced(t:bracketupsigns[key]['buffer'],{'group':'BracketPreviewMarkersGroup','id':key})
+			let currentline=placed_sign[0]['signs'][0]['lnum']
+			call sign_unplace('BracketPreviewMarkersGroup',{'id':key,'buffer':t:bracketupsigns[key]['buffer']})
+			call sign_define(key, {"text" : t:bracketupsigns[key]['text'],"texthl":t:bracketupsigns[key]['texthl'],"numhl":t:bracketupsigns[key]['numhl']})
+			" " place in background
+			call sign_place(key,'BracketPreviewMarkersGroup',key,t:bracketupsigns[key]['buffer'],
+			      		\{'lnum':currentline,'priority':100})
+		endfor
+		" echo "hide the signs"
+	endif
+endfunction
+au TabLeave * call HideBracketUpPreviewSigns()
+au TabEnter * call ShowBracketUpPreviewSigns()
+
 
 
 command! -bar DuplicateTabpane
@@ -889,7 +933,7 @@ call sign_define('qfsign', {"text" : "q>",})
 " indicate trailing white space
 highlight ExtraWhitespace ctermbg=19
 highlight CtrlP_Preview ctermbg=53
-
+highlight CtrlP_PreviewInactive ctermbg=16 ctermfg=15
 highlight CtrlP_Preview1 ctermbg=1 ctermfg=16
 highlight CtrlP_Preview2 ctermbg=2 ctermfg=16
 highlight CtrlP_Preview3 ctermbg=3 ctermfg=16
