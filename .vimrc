@@ -629,6 +629,7 @@ function! BracketUpPreview(arg)
 				:execute ":q"
 				:execute ":normal \<c-w>k"
 				:execute ":normal ggP0i".s:line.": "
+				call sign_place(w:bracket_up_view_id,'BracketPreviewMarkersGroup',w:bracket_up_view_id,bufnr("%"),{'lnum':line('.'),'priority':100})
 				:execute ":normal \<c-w>+"
 				:set wfh
 				call CheckEnableSemanticHighLight()
@@ -638,7 +639,8 @@ function! BracketUpPreview(arg)
 			elseif(a:arg=='down')
 				let w:bracket_up_view=w:bracket_up_view-1
 				if w:bracket_up_view==0
-					call sign_unplace('BracketPreviewMarkersGroup',{'id':w:bracket_up_view_id})
+					" call sign_unplace('BracketPreviewMarkersGroup',{'id':w:bracket_up_view_id})
+					call sign_undefine(w:bracket_up_view_id)
 					:execute ":bd"
 					:call win_gotoid(_wn)
 					return
@@ -652,7 +654,8 @@ function! BracketUpPreview(arg)
 			endif
 		else
 			" the view is open but at the wrong line when function called
-			call sign_unplace('BracketPreviewMarkersGroup',{'id':w:bracket_up_view_id})
+			" call sign_unplace('BracketPreviewMarkersGroup',{'id':w:bracket_up_view_id})
+			call sign_undefine(w:bracket_up_view_id)
 			:execute ":bd"
 			:call win_gotoid(_wn)
 			:call clearmatches()
@@ -667,7 +670,25 @@ function! BracketUpPreview(arg)
 		" put a mark here
 		let bracketmarkerid=Rand()
 		echo bracketmarkerid
-		call sign_define(bracketmarkerid, {"text" : "P",})
+		let letters=["A","B","C","D","E","F","G","H"]
+		let letter=letters[Rand()%8].letters[Rand()%8]
+		let hlgroups=["CtrlP_Preview1",
+					\"CtrlP_Preview2",
+					\"CtrlP_Preview3",
+					\"CtrlP_Preview4",
+					\"CtrlP_Preview5",
+					\"CtrlP_Preview6",
+					\"CtrlP_Preview7",
+					\"CtrlP_Preview8",
+					\"CtrlP_Preview9",
+					\]
+
+
+		let hlgroup=hlgroups[Rand()%9]
+
+
+
+		call sign_define(bracketmarkerid, {"text" : letter,"texthl":hlgroup,"numhl":hlgroup})
 		call sign_place(bracketmarkerid,'BracketPreviewMarkersGroup',bracketmarkerid,s:current_buffer,{'lnum':s:current_line,'priority':100})
 		" jump to sign
 		" call sign_jump(8758,'BracketPreviewMarkersGroup','')
@@ -695,7 +716,10 @@ function! BracketUpPreview(arg)
 		:execute ":normal VP0i".s:line.": "
 		call CheckEnableSemanticHighLight()
 		" :execute 'match CtrlP_Preview /.*/'
-		:call matchadd('CtrlP_Preview', '.*',-10)
+		" :call matchadd('CtrlP_Preview', '.*',-10)
+		" echo bracketmarkerid
+		" return
+		call sign_place(bracketmarkerid,'BracketPreviewMarkersGroup',bracketmarkerid,bufnr("%"),{'lnum':1,'priority':100})
 		:setlocal buftype=nofile
 		:setlocal bufhidden=hide
 		:setlocal noswapfile
@@ -734,7 +758,8 @@ function! UpdateBracketUpPreviewWin()
 		let _wn = win_getid()
 		:execute ":normal \<c-w>k"
 
-		call sign_unplace('BracketPreviewMarkersGroup',{'id':currentbracketupviewid})
+		" call sign_unplace('BracketPreviewMarkersGroup',{'id':currentbracketupviewid})
+		call sign_undefine(currentbracketupviewid)
 		:execute ":bd"
 		:call win_gotoid(_wn)
 
@@ -861,6 +886,19 @@ call sign_define('qfsign', {"text" : "q>",})
 " indicate trailing white space
 highlight ExtraWhitespace ctermbg=19
 highlight CtrlP_Preview ctermbg=53
+
+highlight CtrlP_Preview1 ctermbg=1 ctermfg=16
+highlight CtrlP_Preview2 ctermbg=2 ctermfg=16
+highlight CtrlP_Preview3 ctermbg=3 ctermfg=16
+highlight CtrlP_Preview4 ctermbg=4 ctermfg=16
+highlight CtrlP_Preview5 ctermbg=5 ctermfg=16
+highlight CtrlP_Preview6 ctermbg=6 ctermfg=16
+highlight CtrlP_Preview6 ctermbg=7 ctermfg=16
+highlight CtrlP_Preview7 ctermbg=9 ctermfg=16
+highlight CtrlP_Preview8 ctermbg=10 ctermfg=16
+highlight CtrlP_Preview9 ctermbg=11 ctermfg=16
+
+
 match ExtraWhitespace / \+$/
 
 
