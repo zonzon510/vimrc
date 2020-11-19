@@ -83,6 +83,9 @@ set encoding=utf-8
 
 
 " define functions
+function Rand()
+    return str2nr(matchstr(reltimestr(reltime()), '\v\.@<=\d+')[1:])
+endfunction
 fun! CheckEnableSemanticHighLight()
 
 	" first see if semantic color is already on
@@ -585,74 +588,92 @@ function! BracketUpPreview(arg)
 	" get window num and filetype
 	let _wn = win_getid()
 	let s:ft=&filetype
-	let s:current_file=expand("%:p")
+	let s:current_buffer=bufnr("%")
 	let s:current_line=line('.')
 
 
 	" move to window above and see if it is a bracketupview window
 	:execute ":normal \<c-w>k"
-	if exists('w:bracket_up_view') && w:bracket_up_view_file == s:current_file && w:bracket_up_view_line == s:current_line
-		if(a:arg=='up')
-			let s:currentlevel=w:bracket_up_view
-			let w:bracket_up_view=w:bracket_up_view+1
-			" if its already open
+	if exists('w:bracket_up_view') && w:bracket_up_view_buffer == s:current_buffer
+		" see the current line of the mark
+		let placed_sign=sign_getplaced(s:current_buffer,{'group':'BracketPreviewMarkersGroup','id':w:bracket_up_view_id})
+		" echo placed_sign[0]['signs'][0]['lnum']
+		" echo s:current_line
+		if placed_sign[0]['signs'][0]['lnum']==s:current_line
+			if(a:arg=='up')
+				let s:currentlevel=w:bracket_up_view
+				let w:bracket_up_view=w:bracket_up_view+1
+				" if its already open
+				"
+				"
+				"
+				:call win_gotoid(_wn)
+				" :call clearmatches()
+				" :call matchadd('CtrlP_Preview', '\%'.line('.').'l',-10)
+
+				" open split
+				:execute ":sp"
+				while s:currentlevel>=0
+					:execute ":normal 0"
+					:execute ":normal \<c-p>"
+					let s:currentlevel=s:currentlevel-1
+				endwhile
+				let @"=getline('.')
+				while len(split(getline(line('.')), '[A-Za-z]\>', 1)) - 1 == 0
+					:execute ":normal k"
+					let @"=getline('.').@"
+				endwhile
+				let @"=@"."\n"
+				let s:line=line('.')
+				" :execute ":normal yy"
+				:execute ":q"
+				:execute ":normal \<c-w>k"
+				:execute ":normal ggP0i".s:line.": "
+				:execute ":normal \<c-w>+"
+				:set wfh
+				call CheckEnableSemanticHighLight()
+
+				:call win_gotoid(_wn)
+				return
+			elseif(a:arg=='down')
+				let w:bracket_up_view=w:bracket_up_view-1
+				if w:bracket_up_view==0
+					call sign_unplace('BracketPreviewMarkersGroup',{'id':w:bracket_up_view_id})
+					:execute ":bd"
+					:call win_gotoid(_wn)
+					return
+
+				endif
+				:execute ":normal ggdd"
+				:execute ":normal \<c-w>-"
+				:execute ":normal gg"
+				:call win_gotoid(_wn)
+				return
+			endif
+		else
+			" the view is open but at the wrong line when function called
+			call sign_unplace('BracketPreviewMarkersGroup',{'id':w:bracket_up_view_id})
+			:execute ":bd"
 			:call win_gotoid(_wn)
 			:call clearmatches()
-			:call matchadd('CtrlP_Preview', '\%'.line('.').'l',-10)
 
-			" open split
-			:execute ":sp"
-			while s:currentlevel>=0
-				:execute ":normal 0"
-				:execute ":normal \<c-p>"
-				let s:currentlevel=s:currentlevel-1
-			endwhile
-			let @"=getline('.')
-			while len(split(getline(line('.')), '[A-Za-z]\>', 1)) - 1 == 0
-				:execute ":normal k"
-				let @"=getline('.').@"
-			endwhile
-			let @"=@"."\n"
-			let s:line=line('.')
-			" :execute ":normal yy"
-			:execute ":q"
-			:execute ":normal \<c-w>k"
-			:execute ":normal ggP0i".s:line.": "
-			:execute ":normal \<c-w>+"
-			:set wfh
-			call CheckEnableSemanticHighLight()
-
-			:call win_gotoid(_wn)
-			return
-		elseif(a:arg=='down')
-			let w:bracket_up_view=w:bracket_up_view-1
-			if w:bracket_up_view==0
-				:execute ":bd"
-				:call win_gotoid(_wn)
-				:call clearmatches()
-				return
-
-			endif
-			:execute ":normal ggdd"
-			:execute ":normal \<c-w>-"
-			:execute ":normal gg"
-			:call win_gotoid(_wn)
-			return
 		endif
-
-
-	" the view is open but at the wrong line when function called
-	elseif exists('w:bracket_up_view')
-		:execute ":bd"
-		:call win_gotoid(_wn)
-		:call clearmatches()
-
 	else
 		" if its not open
 		" get line up indent/bracket from current place
 		:call win_gotoid(_wn)
-		:call clearmatches()
-		:call matchadd('CtrlP_Preview', '\%'.line('.').'l',-10)
+		" :call clearmatches()
+		" :call matchadd('CtrlP_Preview', '\%'.line('.').'l',-10)
+		" put a mark here
+		let bracketmarkerid=Rand()
+		echo bracketmarkerid
+		call sign_define(bracketmarkerid, {"text" : "P",})
+		call sign_place(bracketmarkerid,'BracketPreviewMarkersGroup',bracketmarkerid,s:current_buffer,{'lnum':s:current_line,'priority':100})
+		" jump to sign
+		" call sign_jump(8758,'BracketPreviewMarkersGroup','')
+		" call sign_unplace('BracketPreviewMarkersGroup',{'id':8758})
+		" list which line the sign is currently on
+		" call sign_getplaced
 		:execute ":sp"
 		:execute ":normal 0"
 		:execute ":normal \<c-p>"
@@ -682,8 +703,8 @@ function! BracketUpPreview(arg)
 		:execute ":set ft=".s:ft
 		:let w:bracket_up_view=1
 		" set the file and line
-		:let w:bracket_up_view_file=s:current_file
-		:let w:bracket_up_view_line=s:current_line
+		:let w:bracket_up_view_buffer=s:current_buffer
+		:let w:bracket_up_view_id=bracketmarkerid
 
 		:call win_gotoid(_wn)
 
