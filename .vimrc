@@ -640,7 +640,7 @@ function! BracketUpPreview(arg)
 				let w:bracket_up_view=w:bracket_up_view-1
 				if w:bracket_up_view==0
 					" call sign_unplace('BracketPreviewMarkersGroup',{'id':w:bracket_up_view_id})
-					call sign_undefine(w:bracket_up_view_id)
+					" call sign_undefine(w:bracket_up_view_id)
 					:execute ":bd"
 					:call win_gotoid(_wn)
 					return
@@ -655,7 +655,7 @@ function! BracketUpPreview(arg)
 		else
 			" the view is open but at the wrong line when function called
 			" call sign_unplace('BracketPreviewMarkersGroup',{'id':w:bracket_up_view_id})
-			call sign_undefine(w:bracket_up_view_id)
+			" call sign_undefine(w:bracket_up_view_id)
 			:execute ":bd"
 			:call win_gotoid(_wn)
 			:call clearmatches()
@@ -724,6 +724,9 @@ function! BracketUpPreview(arg)
 		:setlocal bufhidden=hide
 		:setlocal noswapfile
 		:set nowrap
+		" au BufWinLeave <buffer> echo "hello".w:bracket_up_view_id
+		au BufWinLeave <buffer> call sign_undefine(w:bracket_up_view_id)
+
 		:execute ":set ft=".s:ft
 		:let w:bracket_up_view=1
 		" set the file and line
@@ -759,7 +762,7 @@ function! UpdateBracketUpPreviewWin()
 		:execute ":normal \<c-w>k"
 
 		" call sign_unplace('BracketPreviewMarkersGroup',{'id':currentbracketupviewid})
-		call sign_undefine(currentbracketupviewid)
+		" call sign_undefine(currentbracketupviewid)
 		:execute ":bd"
 		:call win_gotoid(_wn)
 
