@@ -716,10 +716,13 @@ endfunction
 function! UpdateBracketUpPreviewWin()
 	if exists('w:bracket_up_view')
 		let currentlevel=w:bracket_up_view
-		let current_file=w:bracket_up_view_file
-		let current_line=w:bracket_up_view_line
+		let currentbracketupviewid=w:bracket_up_view_id
+		let current_buffer=w:bracket_up_view_buffer
+
+		let placed_sign=sign_getplaced(w:bracket_up_view_buffer,{'group':'BracketPreviewMarkersGroup','id':currentbracketupviewid})
+		let current_line=placed_sign[0]['signs'][0]['lnum']
 		:execute ":normal \<c-w>j"
-		if exists('w:bracket_up_view') || expand("%:p")!=current_file
+		if exists('w:bracket_up_view') || bufnr("%") != current_buffer
 			return
 		endif
 		" mark current position
@@ -730,6 +733,8 @@ function! UpdateBracketUpPreviewWin()
 		" delete the current scratch bufer above
 		let _wn = win_getid()
 		:execute ":normal \<c-w>k"
+
+		call sign_unplace('BracketPreviewMarkersGroup',{'id':currentbracketupviewid})
 		:execute ":bd"
 		:call win_gotoid(_wn)
 
