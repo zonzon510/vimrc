@@ -581,6 +581,26 @@ function! TabCloseRight()
 		exe 'tabclose' . ' ' . (cur + 1)
 	endwhile
 endfunction
+
+function! DebugMsg(msg) abort
+    if !exists("g:DebugMessages")
+        let g:DebugMessages = []
+    endif
+    call add(g:DebugMessages, a:msg)
+endfunction
+
+function! PrintDebugMsgs() abort
+  if empty(get(g:, "DebugMessages", []))
+    echo "No debug messages."
+    return
+  endif
+  for ln in g:DebugMessages
+    echo "- " . ln
+  endfor
+endfunction
+
+command DebugStatus call PrintDebugMsgs()
+
 function! BracketUpPreview(arg)
 	" open scratch buffer above if not already open
 	" get current window number
@@ -629,7 +649,7 @@ function! BracketUpPreview(arg)
 				:execute ":q"
 				:execute ":normal \<c-w>k"
 				:execute ":normal ggP0i".s:line.": "
-				call sign_place(b:bracket_up_view_id,'BracketPreviewMarkersGroup',b:bracket_up_view_id,bufnr("%"),{'lnum':line('.'),'priority':100})
+				call sign_place(b:bracket_up_view_id,'BracketPreviewMarkersGroup',b:bracket_up_view_name,bufnr("%"),{'lnum':line('.'),'priority':100})
 				:execute ":normal \<c-w>+"
 				:set wfh
 				call CheckEnableSemanticHighLight()
@@ -669,7 +689,7 @@ function! BracketUpPreview(arg)
 		" :call matchadd('CtrlP_Preview', '\%'.line('.').'l',-10)
 		" put a mark here
 		let bracketmarkerid=Rand()
-		let bracketmarkerid='BracketUp_'.bracketmarkerid
+		let bracketmarkername='BracketUp_'.bracketmarkerid
 		let letters=["A","B","C","D","E","F","G","H"]
 		let letter=letters[Rand()%8].letters[Rand()%8]
 		let hlgroups=["CtrlP_Preview1",
@@ -688,13 +708,13 @@ function! BracketUpPreview(arg)
 
 
 
-		call sign_define(bracketmarkerid, {"text" : letter,"texthl":hlgroup,"numhl":hlgroup})
+		call sign_define(bracketmarkername, {"text" : letter,"texthl":hlgroup,"numhl":hlgroup})
 
 		if !exists('t:bracketupsigns')
 			let t:bracketupsigns={}
 		endif
-		let t:bracketupsigns[bracketmarkerid]={"text":letter,"texthl":hlgroup,"numhl":hlgroup,"buffer":s:current_buffer}
-		call sign_place(bracketmarkerid,'BracketPreviewMarkersGroup',bracketmarkerid,s:current_buffer,{'lnum':s:current_line,'priority':100})
+		let t:bracketupsigns[bracketmarkerid]={"text":letter,"texthl":hlgroup,"numhl":hlgroup,"buffer":s:current_buffer,"name":bracketmarkername}
+		call sign_place(bracketmarkerid,'BracketPreviewMarkersGroup',bracketmarkername,s:current_buffer,{'lnum':s:current_line,'priority':100})
 		" jump to sign
 		" call sign_jump(8758,'BracketPreviewMarkersGroup','')
 		" call sign_unplace('BracketPreviewMarkersGroup',{'id':8758})
@@ -724,13 +744,15 @@ function! BracketUpPreview(arg)
 		" :call matchadd('CtrlP_Preview', '.*',-10)
 		" echo bracketmarkerid
 		" return
-		call sign_place(bracketmarkerid,'BracketPreviewMarkersGroup',bracketmarkerid,bufnr("%"),{'lnum':1,'priority':100})
+		call sign_place(bracketmarkerid,'BracketPreviewMarkersGroup',bracketmarkername,bufnr("%"),{'lnum':1,'priority':100})
 		:setlocal buftype=nofile
 		:setlocal bufhidden=hide
 		:setlocal noswapfile
 		:set nowrap
 		" au BufWinLeave <buffer> echo "hello".b:bracket_up_view_id
-		au BufWinLeave <buffer> call sign_undefine(b:bracket_up_view_id)
+
+		au BufWinLeave <buffer> call sign_unplace('BracketPreviewMarkersGroup',{'id':b:bracket_up_view_id})
+		au BufWinLeave <buffer> call sign_undefine(b:bracket_up_view_name)
 		au BufWinLeave <buffer> unlet t:bracketupsigns[b:bracket_up_view_id]
 
 		:execute ":set ft=".s:ft
@@ -738,6 +760,7 @@ function! BracketUpPreview(arg)
 		" set the file and line
 		:let b:bracket_up_view_buffer=s:current_buffer
 		:let b:bracket_up_view_id=bracketmarkerid
+		:let b:bracket_up_view_name=bracketmarkername
 
 		:call win_gotoid(_wn)
 
@@ -794,9 +817,9 @@ function! HideBracketUpPreviewSigns()
 			let currentline=placed_sign[0]['signs'][0]['lnum']
 			call sign_unplace('BracketPreviewMarkersGroup',{'id':key,'buffer':t:bracketupsigns[key]['buffer']})
 			" re define the sign
-			call sign_define(key, {"text" : " ","texthl":"CtrlP_PreviewInactive","numhl":"CtrlP_PreviewInactive"})
+			call sign_define(t:bracketupsigns[key]['name'], {"text" : " ","texthl":"CtrlP_PreviewInactive","numhl":"CtrlP_PreviewInactive"})
 			" place in background
-			call sign_place(key,'BracketPreviewMarkersGroup',key,t:bracketupsigns[key]['buffer'],
+			call sign_place(key,'BracketPreviewMarkersGroup',t:bracketupsigns[key]['name'],t:bracketupsigns[key]['buffer'],
 						\{'lnum':currentline,'priority':-10})
 		endfor
 		" echo "hide the signs"
@@ -812,9 +835,9 @@ function! ShowBracketUpPreviewSigns()
 			let placed_sign=sign_getplaced(t:bracketupsigns[key]['buffer'],{'group':'BracketPreviewMarkersGroup','id':key})
 			let currentline=placed_sign[0]['signs'][0]['lnum']
 			call sign_unplace('BracketPreviewMarkersGroup',{'id':key,'buffer':t:bracketupsigns[key]['buffer']})
-			call sign_define(key, {"text" : t:bracketupsigns[key]['text'],"texthl":t:bracketupsigns[key]['texthl'],"numhl":t:bracketupsigns[key]['numhl']})
+			call sign_define(t:bracketupsigns[key]['name'], {"text" : t:bracketupsigns[key]['text'],"texthl":t:bracketupsigns[key]['texthl'],"numhl":t:bracketupsigns[key]['numhl']})
 			" " place in background
-			call sign_place(key,'BracketPreviewMarkersGroup',key,t:bracketupsigns[key]['buffer'],
+			call sign_place(key,'BracketPreviewMarkersGroup',t:bracketupsigns[key]['name'],t:bracketupsigns[key]['buffer'],
 			      		\{'lnum':currentline,'priority':100})
 		endfor
 		" echo "hide the signs"
