@@ -594,15 +594,15 @@ function! BracketUpPreview(arg)
 
 	" move to window above and see if it is a bracketupview window
 	:execute ":normal \<c-w>k"
-	if exists('w:bracket_up_view') && w:bracket_up_view_buffer == s:current_buffer
+	if exists('b:bracket_up_view') && b:bracket_up_view_buffer == s:current_buffer
 		" see the current line of the mark
-		let placed_sign=sign_getplaced(s:current_buffer,{'group':'BracketPreviewMarkersGroup','id':w:bracket_up_view_id})
+		let placed_sign=sign_getplaced(s:current_buffer,{'group':'BracketPreviewMarkersGroup','id':b:bracket_up_view_id})
 		" echo placed_sign[0]['signs'][0]['lnum']
 		" echo s:current_line
 		if placed_sign[0]['signs'][0]['lnum']==s:current_line
 			if(a:arg=='up')
-				let s:currentlevel=w:bracket_up_view
-				let w:bracket_up_view=w:bracket_up_view+1
+				let s:currentlevel=b:bracket_up_view
+				let b:bracket_up_view=b:bracket_up_view+1
 				" if its already open
 				"
 				"
@@ -629,7 +629,7 @@ function! BracketUpPreview(arg)
 				:execute ":q"
 				:execute ":normal \<c-w>k"
 				:execute ":normal ggP0i".s:line.": "
-				call sign_place(w:bracket_up_view_id,'BracketPreviewMarkersGroup',w:bracket_up_view_id,bufnr("%"),{'lnum':line('.'),'priority':100})
+				call sign_place(b:bracket_up_view_id,'BracketPreviewMarkersGroup',b:bracket_up_view_id,bufnr("%"),{'lnum':line('.'),'priority':100})
 				:execute ":normal \<c-w>+"
 				:set wfh
 				call CheckEnableSemanticHighLight()
@@ -637,10 +637,10 @@ function! BracketUpPreview(arg)
 				:call win_gotoid(_wn)
 				return
 			elseif(a:arg=='down')
-				let w:bracket_up_view=w:bracket_up_view-1
-				if w:bracket_up_view==0
-					" call sign_unplace('BracketPreviewMarkersGroup',{'id':w:bracket_up_view_id})
-					" call sign_undefine(w:bracket_up_view_id)
+				let b:bracket_up_view=b:bracket_up_view-1
+				if b:bracket_up_view==0
+					" call sign_unplace('BracketPreviewMarkersGroup',{'id':b:bracket_up_view_id})
+					" call sign_undefine(b:bracket_up_view_id)
 					:execute ":bd"
 					:call win_gotoid(_wn)
 					return
@@ -654,8 +654,8 @@ function! BracketUpPreview(arg)
 			endif
 		else
 			" the view is open but at the wrong line when function called
-			" call sign_unplace('BracketPreviewMarkersGroup',{'id':w:bracket_up_view_id})
-			" call sign_undefine(w:bracket_up_view_id)
+			" call sign_unplace('BracketPreviewMarkersGroup',{'id':b:bracket_up_view_id})
+			" call sign_undefine(b:bracket_up_view_id)
 			:execute ":bd"
 			:call win_gotoid(_wn)
 			:call clearmatches()
@@ -729,15 +729,15 @@ function! BracketUpPreview(arg)
 		:setlocal bufhidden=hide
 		:setlocal noswapfile
 		:set nowrap
-		" au BufWinLeave <buffer> echo "hello".w:bracket_up_view_id
-		au BufWinLeave <buffer> call sign_undefine(w:bracket_up_view_id)
-		au BufWinLeave <buffer> unlet t:bracketupsigns[w:bracket_up_view_id]
+		" au BufWinLeave <buffer> echo "hello".b:bracket_up_view_id
+		au BufWinLeave <buffer> call sign_undefine(b:bracket_up_view_id)
+		au BufWinLeave <buffer> unlet t:bracketupsigns[b:bracket_up_view_id]
 
 		:execute ":set ft=".s:ft
-		:let w:bracket_up_view=1
+		:let b:bracket_up_view=1
 		" set the file and line
-		:let w:bracket_up_view_buffer=s:current_buffer
-		:let w:bracket_up_view_id=bracketmarkerid
+		:let b:bracket_up_view_buffer=s:current_buffer
+		:let b:bracket_up_view_id=bracketmarkerid
 
 		:call win_gotoid(_wn)
 
@@ -747,15 +747,15 @@ function! BracketUpPreview(arg)
 endfunction
 
 function! UpdateBracketUpPreviewWin()
-	if exists('w:bracket_up_view')
-		let currentlevel=w:bracket_up_view
-		let currentbracketupviewid=w:bracket_up_view_id
-		let current_buffer=w:bracket_up_view_buffer
+	if exists('b:bracket_up_view')
+		let currentlevel=b:bracket_up_view
+		let currentbracketupviewid=b:bracket_up_view_id
+		let current_buffer=b:bracket_up_view_buffer
 
-		let placed_sign=sign_getplaced(w:bracket_up_view_buffer,{'group':'BracketPreviewMarkersGroup','id':currentbracketupviewid})
+		let placed_sign=sign_getplaced(b:bracket_up_view_buffer,{'group':'BracketPreviewMarkersGroup','id':currentbracketupviewid})
 		let current_line=placed_sign[0]['signs'][0]['lnum']
 		:execute ":normal \<c-w>j"
-		if exists('w:bracket_up_view') || bufnr("%") != current_buffer
+		if exists('b:bracket_up_view') || bufnr("%") != current_buffer
 			return
 		endif
 		" mark current position
@@ -821,7 +821,7 @@ function! ShowBracketUpPreviewSigns()
 	endif
 endfunction
 function! TabcloseAutoCmdWin()
-	if exists('w:bracket_up_view')
+	if exists('b:bracket_up_view')
 		:execute ":bd"
 	endif
 endfunction
