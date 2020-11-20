@@ -709,7 +709,7 @@ function! BracketUpPreview(arg)
 
 
 
-		call sign_define(bracketmarkername, {"text" : letter,"texthl":hlgroup,"numhl":hlgroup})
+		call sign_define(bracketmarkername, {"text" : letter,"texthl":hlgroup,"numhl":hlgroup,"linehl":"CtrlP_Preview_text"})
 		if !exists('g:bracketupsigns_defined')
 			let g:bracketupsigns_defined={}
 		endif
@@ -823,7 +823,7 @@ function! HideBracketUpPreviewSigns()
 			let currentline=placed_sign[0]['signs'][0]['lnum']
 			call sign_unplace('BracketPreviewMarkersGroup',{'id':key,'buffer':t:bracketupsigns[key]['buffer']})
 			" re define the sign
-			call sign_define(t:bracketupsigns[key]['name'], {"text" : " ","texthl":"CtrlP_PreviewInactive","numhl":"CtrlP_PreviewInactive"})
+			call sign_define(t:bracketupsigns[key]['name'], {"text" : " ","texthl":"","numhl":"","linehl":""})
 			" place in background
 			call sign_place(key,'BracketPreviewMarkersGroup',t:bracketupsigns[key]['name'],t:bracketupsigns[key]['buffer'],
 						\{'lnum':currentline,'priority':-10})
@@ -841,7 +841,7 @@ function! ShowBracketUpPreviewSigns()
 			let placed_sign=sign_getplaced(t:bracketupsigns[key]['buffer'],{'group':'BracketPreviewMarkersGroup','id':key})
 			let currentline=placed_sign[0]['signs'][0]['lnum']
 			call sign_unplace('BracketPreviewMarkersGroup',{'id':key,'buffer':t:bracketupsigns[key]['buffer']})
-			call sign_define(t:bracketupsigns[key]['name'], {"text" : t:bracketupsigns[key]['text'],"texthl":t:bracketupsigns[key]['texthl'],"numhl":t:bracketupsigns[key]['numhl']})
+			call sign_define(t:bracketupsigns[key]['name'], {"text" : t:bracketupsigns[key]['text'],"texthl":t:bracketupsigns[key]['texthl'],"numhl":t:bracketupsigns[key]['numhl'],"linehl":"CtrlP_Preview_text"})
 			" " place in background
 			call sign_place(key,'BracketPreviewMarkersGroup',t:bracketupsigns[key]['name'],t:bracketupsigns[key]['buffer'],
 			      		\{'lnum':currentline,'priority':100})
@@ -976,7 +976,7 @@ call sign_define('qfsign', {"text" : "q>",})
 
 " indicate trailing white space
 highlight ExtraWhitespace ctermbg=19
-highlight CtrlP_Preview ctermbg=53
+highlight CtrlP_Preview_text ctermbg=17
 highlight CtrlP_PreviewInactive ctermbg=16 ctermfg=15
 highlight CtrlP_Preview1 ctermbg=1 ctermfg=16
 highlight CtrlP_Preview2 ctermbg=2 ctermfg=16
