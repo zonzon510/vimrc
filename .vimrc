@@ -820,6 +820,14 @@ function! ShowBracketUpPreviewSigns()
 		" echo "hide the signs"
 	endif
 endfunction
+function! TabcloseAutoCmdWin()
+	if exists('w:bracket_up_view')
+		:execute ":bd"
+	endif
+endfunction
+function! TabcloseAutoCmd()
+	windo call TabcloseAutoCmdWin()
+endfunction
 au TabLeave * call HideBracketUpPreviewSigns()
 au TabEnter * call ShowBracketUpPreviewSigns()
 
@@ -1135,7 +1143,7 @@ nnoremap <leader>te :call OpenTerm()<CR>
 nnoremap <leader>tr :call OpenTermRight()<CR>
 nnoremap <leader>tb :call OpenTermTop()<CR>
 nnoremap <leader>tt :call OpenTermTab()<CR>
-nnoremap <leader>tc :tabclose<CR>
+nnoremap <leader>tc :call TabcloseAutoCmd()<CR> :tabclose<CR>
 nnoremap <leader>tC :call TabCloseRight()<CR>
 " open undo tree
 " added this
