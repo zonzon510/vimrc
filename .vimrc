@@ -669,7 +669,7 @@ function! BracketUpPreview(arg)
 		" :call matchadd('CtrlP_Preview', '\%'.line('.').'l',-10)
 		" put a mark here
 		let bracketmarkerid=Rand()
-		echo bracketmarkerid
+		let bracketmarkerid='BracketUp_'.bracketmarkerid
 		let letters=["A","B","C","D","E","F","G","H"]
 		let letter=letters[Rand()%8].letters[Rand()%8]
 		let hlgroups=["CtrlP_Preview1",
