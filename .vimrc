@@ -588,6 +588,7 @@ function! DebugMsg(msg) abort
     endif
     call add(g:DebugMessages, a:msg)
 endfunction
+" call DebugMsg("stuff")
 
 function! PrintDebugMsgs() abort
   if empty(get(g:, "DebugMessages", []))
@@ -709,6 +710,10 @@ function! BracketUpPreview(arg)
 
 
 		call sign_define(bracketmarkername, {"text" : letter,"texthl":hlgroup,"numhl":hlgroup})
+		if !exists('g:bracketupsigns_defined')
+			let g:bracketupsigns_defined={}
+		endif
+		let g:bracketupsigns_defined[bracketmarkerid]=bracketmarkername
 
 		if !exists('t:bracketupsigns')
 			let t:bracketupsigns={}
@@ -753,6 +758,7 @@ function! BracketUpPreview(arg)
 
 		au BufWinLeave <buffer> call sign_unplace('BracketPreviewMarkersGroup',{'id':b:bracket_up_view_id})
 		au BufWinLeave <buffer> call sign_undefine(b:bracket_up_view_name)
+		au BufWinLeave <buffer> unlet g:bracketupsigns_defined[b:bracket_up_view_id]
 		au BufWinLeave <buffer> unlet t:bracketupsigns[b:bracket_up_view_id]
 
 		:execute ":set ft=".s:ft
@@ -843,6 +849,13 @@ function! ShowBracketUpPreviewSigns()
 		" echo "hide the signs"
 	endif
 endfunction
+function! RemoveAllBracketUpPreviewSigns()
+	for theid in keys(g:bracketupsigns_defined)
+		" call DebugMsg("theid:".theid)
+		call sign_unplace('BracketPreviewMarkersGroup',{'id':theid})
+		call sign_undefine(g:bracketupsigns_defined[theid])
+	endfor
+endfun
 function! TabcloseAutoCmdWin()
 	if exists('b:bracket_up_view')
 		:execute ":bd"
