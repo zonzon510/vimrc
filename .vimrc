@@ -55,9 +55,9 @@ let g:ycm_show_diagnostics_ui = 0
 " Plug 'OmniSharp/omnisharp-vim'
 " let g:OmniSharp_server_use_mono = 1
 " let g:OmniSharp_server_use_mono = 1
-" Plug 'wellle/context.vim'
-" let g:context_enabled=0
-" let g:context_nvim_no_redraw=1
+Plug 'zonzon510/context.vim'
+let g:context_enabled=0
+let g:context_nvim_no_redraw=1
 
 " fzf
 set rtp+=~/.fzf
@@ -1173,7 +1173,7 @@ nnoremap <leader>mo :call SplitViewMethodOpen()<cr>
 nnoremap <leader>mc :call SplitViewMethodClose()<cr>
 
 nnoremap <A-C-p> :call BracketUpPreview('up')<cr>
-" nnoremap <A-C-p> :ContextToggleWindow<CR>
+nnoremap <A-C-k> :ContextToggleWindow<CR>
 nnoremap <A-C-n> :call BracketUpPreview('down')<cr>
 nnoremap <A-C-u> :call UpdateBracketUpPreview()<cr>
 
