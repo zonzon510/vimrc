@@ -55,9 +55,9 @@ let g:ycm_show_diagnostics_ui = 0
 " Plug 'OmniSharp/omnisharp-vim'
 " let g:OmniSharp_server_use_mono = 1
 " let g:OmniSharp_server_use_mono = 1
-Plug 'wellle/context.vim'
-let g:context_enabled=0
-let g:context_nvim_no_redraw=1
+" Plug 'wellle/context.vim'
+" let g:context_enabled=0
+" let g:context_nvim_no_redraw=1
 
 " fzf
 set rtp+=~/.fzf
@@ -99,6 +99,7 @@ fun! CheckEnableSemanticHighLight()
 		" check how many lines the file has
 		if line('$') < 4000
 			" enable semantic highlight
+			let b:semanticOn=1
 			:execute ":SemanticHighlight"
 		endif
 	endif
@@ -656,7 +657,7 @@ function! BracketUpPreview(arg)
 				call sign_place(b:bracket_up_view_id,'BracketPreviewMarkersGroup',b:bracket_up_view_name,bufnr("%"),{'lnum':line('.'),'priority':100})
 				:execute ":normal \<c-w>+"
 				:set wfh
-				call CheckEnableSemanticHighLight()
+				:execute ":SemanticHighlight"
 
 				:call win_gotoid(_wn)
 				return
@@ -747,7 +748,7 @@ function! BracketUpPreview(arg)
 		:execute ":1new"
 		:set wfh
 		:execute ":normal VP0i".s:line.": "
-		call CheckEnableSemanticHighLight()
+		" call CheckEnableSemanticHighLight()
 		" :execute 'match CtrlP_Preview /.*/'
 		" :call matchadd('CtrlP_Preview', '.*',-10)
 		" echo bracketmarkerid
@@ -765,6 +766,7 @@ function! BracketUpPreview(arg)
 		au BufWinLeave <buffer> unlet t:bracketupsigns[b:bracket_up_view_id]
 
 		:execute ":set ft=".s:ft
+		:execute ":SemanticHighlight"
 		:let b:bracket_up_view=1
 		" set the file and line
 		:let b:bracket_up_view_buffer=s:current_buffer
@@ -1170,10 +1172,10 @@ nnoremap <leader>mo :call SplitViewMethodOpen()<cr>
 " close method
 nnoremap <leader>mc :call SplitViewMethodClose()<cr>
 
-" nnoremap <A-C-p> :call BracketUpPreview('up')<cr>
-nnoremap <A-C-p> :ContextToggleWindow<CR>
-" nnoremap <A-C-n> :call BracketUpPreview('down')<cr>
-" nnoremap <A-C-u> :call UpdateBracketUpPreview()<cr>
+nnoremap <A-C-p> :call BracketUpPreview('up')<cr>
+" nnoremap <A-C-p> :ContextToggleWindow<CR>
+nnoremap <A-C-n> :call BracketUpPreview('down')<cr>
+nnoremap <A-C-u> :call UpdateBracketUpPreview()<cr>
 
 " checktime shortcut
 nnoremap <leader>ch :checktime<CR>
