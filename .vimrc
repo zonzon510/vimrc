@@ -959,6 +959,7 @@ autocmd BufEnter *.gnu :call SetFileTypeGNUPlot()
 " enter a cmakelists file
 autocmd BufEnter CMakeLists.txt :call SetSyntaxComplete()
 
+set undofile
 
 " break indent level matching
 set breakindent
@@ -1200,7 +1201,7 @@ nnoremap <leader>tu :UndotreeToggle<CR>
 nnoremap <leader>ga :call OpenMagit()<CR>
 
 " save session
-nnoremap <leader>mk :mksession! .save.vim<CR>
+nnoremap <leader>mk :ContextDisable<CR> :mksession! .save.vim<CR>
 " run Make silent
 nnoremap <leader>ms :w<CR>:Make!<CR>
 " run Make
