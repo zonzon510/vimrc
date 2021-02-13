@@ -26,8 +26,8 @@ vnoremap <buffer> <leader>uc :call PythonUnComment()<CR>
 " fold settings (foldignore fixes python folding)
 
 " set breakpoints
-inoremap <buffer> ;bR from pudb import set_trace; set_trace() # BREAKPOINT<CR>print("BREAKPOINT")<Esc>
-inoremap <buffer> ;br import ipdb; ipdb.set_trace() # BREAKPOINT<CR>print("BREAKPOINT")<Esc>
+inoremap <buffer> ;bR from pudb import set_trace;set_trace();print("BREAKPOINT")<Esc>
+inoremap <buffer> ;br import ipdb;ipdb.set_trace();print("BREAKPOINT")<Esc>
 inoremap <buffer> ;pf <ESC>:-1read ~/.vim/snippet/print_python_variables.py<CR>
 inoremap <buffer> ;de print_debug_variables(locals())<ESC>
 
