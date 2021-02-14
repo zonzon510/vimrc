@@ -7,3 +7,6 @@ find . -name "*.html" -type f -delete
 
 --- grep recursive -----
 grep -r --include "*.txt" "pattern" .
+
+# git clone a repo with limited depth
+git clone -b branchname --depth 1 repourl .
