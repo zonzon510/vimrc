@@ -158,7 +158,7 @@ export PATH=$PATH":/opt/Qt/Tools/QtCreator/bin"
 # alias vim=nvim
 # alias clear='' i learned my lesson
 
-alias gitl="git log --oneline --graph --all"
+alias gitl="git log --oneline --graph --all --date-order"
 alias delta="delta --navigate"
 
 export RANGER_LOAD_DEFAULT_RC=false
