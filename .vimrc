@@ -936,7 +936,7 @@ autocmd BufEnter *.py :call CheckEnableSemanticHighLight()
 autocmd BufEnter *.cs :call CheckEnableSemanticHighLight()
 autocmd BufEnter *.cu :call CheckEnableSemanticHighLight()
 
-autocmd BufLeave * :call BufferSave()
+" autocmd BufLeave * :call BufferSave()
 autocmd BufWrite * :mksession! .autosave.vim
 
 " keep window view
@@ -1234,6 +1234,7 @@ nnoremap <leader>jl :Lines
 nnoremap <leader>jb :BLines 
 nnoremap <leader>jB :TagbarOpen fjc<CR>
 nnoremap <leader>jf :Files
+nnoremap <leader>jh :History:<CR>
 " nnoremap <leader>jB :TagbarToggle<CR>
 " move line to end of line above it
 nnoremap <leader>J J
