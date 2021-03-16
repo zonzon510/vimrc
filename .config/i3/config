@@ -283,3 +283,4 @@ bar {
 bindsym $mod+d exec dmenu_run -nb '$darkpurple' -sf '$darkpurple' -sb '#ffffff' -nf '#ffffff'
 
 exec compton -f
+# exec "xrandr --dpi 100"
