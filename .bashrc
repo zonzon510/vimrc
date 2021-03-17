@@ -168,3 +168,4 @@ export FrameworkPathOverride=/usr/lib/mono/4.5
 
 # for pudb
 export LC_ALL=C
+source "$HOME/.cargo/env"
