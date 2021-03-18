@@ -480,6 +480,39 @@ fun! SwitchFileMarker(reset)
 	let b:switch_file_window = 1
 endfun
 
+" match positional arguments
+fun! MatchPositionalArguments()
+	" in visual mode
+	" get the current column / row
+	" \%10l\%<8v.\%>4v
+	" :call matchadd('PosArgs1', '\%'.line('.').'l\%<8v.\%>4v',-10)
+	" :match Search /\%12l\%<8v.\%>4v/
+	" norm! /(<CR>
+
+	" go to parenthesis
+	:execute "normal /(\<cr>"
+	" go to comma
+	:execute "normal /,\<cr>"
+	" mark position
+	let c1=getcurpos()
+	:execute "normal ?(\\|^\\|,\<cr>"
+	let c2=getcurpos()
+
+
+	" echo getcurpos()
+
+	" search only on this line
+
+
+
+	:execute "normal w"
+	" get the position
+
+
+	:call matchadd('PosArgs2','\%'.line('.').'l\%<8v.\%>4v',-10)
+	" :call matchadd('Search','\%'.line('.').'l',-10)
+endfun
+
 " Save current view settings on a per-window, per-buffer basis.
 function! AutoSaveWinView()
     if !exists("w:SavedBufView")
@@ -987,6 +1020,9 @@ call sign_define('qfsign', {"text" : "q>",})
 " let g:colors_name = "monokai"
 "colors:
 
+highlight PosArgs1 ctermbg=1
+highlight PosArgs2 ctermbg=2
+
 " indicate trailing white space
 highlight ExtraWhitespace ctermbg=19
 highlight CtrlP_Preview_text ctermbg=17
@@ -1290,6 +1326,9 @@ nnoremap <leader>ye yg_
 
 nnoremap <silent> zJ :call NextClosedFold('j')<cr>
 nnoremap <silent> zK :call NextClosedFold('k')<cr>
+
+" match positional arguments
+nnoremap <leader>po :call MatchPositionalArguments()
 
 " easymotion
 " <Leader>q{char} to move to {char}
