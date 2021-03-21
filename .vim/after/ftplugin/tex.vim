@@ -30,6 +30,9 @@ nnoremap <buffer> <leader><c-]> :call GotoInPDF()<CR>
 set makeprg=pdflatex\ %
 compiler tex
 
+" remove stupid highlights
+hi clear texItalStyle
+hi clear texItalBoldStyle
 
 augroup my_tex
     au!
