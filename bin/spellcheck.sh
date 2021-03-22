@@ -10,6 +10,6 @@
 # usage:
 # aspell -t -c file.tex
 filename=$1
-aspell -t -c $filename
+aspell --home-dir=. --personal=dictionary.txt -t -c $filename
 
 
