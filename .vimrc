@@ -25,17 +25,17 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 set updatetime=100
 
-Plug 'majutsushi/tagbar'
-nmap <F8> :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
+" Plug 'majutsushi/tagbar'
+" nmap <F8> :TagbarToggle<CR>
+" let g:tagbar_autofocus = 1
 
 " vim indent guides
 " toggle indent guide: 
 " <leader>ig
-Plug 'nathanaelkane/vim-indent-guides'
+" Plug 'nathanaelkane/vim-indent-guides'
 
 " HTML tag highlight
-Plug 'gregsexton/MatchTag'
+" Plug 'gregsexton/MatchTag'
 " HTML navigation (without plugin)
 
 
@@ -55,16 +55,16 @@ let g:ycm_show_diagnostics_ui = 0
 " Plug 'OmniSharp/omnisharp-vim'
 " let g:OmniSharp_server_use_mono = 1
 " let g:OmniSharp_server_use_mono = 1
-Plug 'zonzon510/context.vim'
-let g:context_enabled=0
-let g:context_nvim_no_redraw=1
-let g:context_add_mappings = 0
-nnoremap <silent> <expr> <C-Y> context#util#map('<C-Y>')
-nnoremap <silent> <expr> <C-E> context#util#map('<C-E>')
-nnoremap <silent> <expr> zz    context#util#map('zz')
-nnoremap <silent> <expr> zb    context#util#map('zb')
-nnoremap <silent> <expr> zt    context#util#map_zt()
-" nnoremap <silent> <expr> H     context#util#map_H()
+" Plug 'zonzon510/context.vim'
+" let g:context_enabled=0
+" let g:context_nvim_no_redraw=1
+" let g:context_add_mappings = 0
+" nnoremap <silent> <expr> <C-Y> context#util#map('<C-Y>')
+" nnoremap <silent> <expr> <C-E> context#util#map('<C-E>')
+" nnoremap <silent> <expr> zz    context#util#map('zz')
+" nnoremap <silent> <expr> zb    context#util#map('zb')
+" nnoremap <silent> <expr> zt    context#util#map_zt()
+" " nnoremap <silent> <expr> H     context#util#map_H()
 
 " fzf
 set rtp+=~/.fzf
@@ -84,7 +84,7 @@ Plug 'tpope/vim-repeat'
 
 Plug 'easymotion/vim-easymotion'
 
-Plug 'zonzon510/diffchar.vim'
+" Plug 'zonzon510/diffchar.vim'
 
 call plug#end()
 
