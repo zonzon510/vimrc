@@ -975,7 +975,7 @@ set incsearch
 set t_Co=256
 
 " when saving session, dont save options
-set sessionoptions-=options
+" set sessionoptions-=options
 
 " close split without resizing windows
 set noea
