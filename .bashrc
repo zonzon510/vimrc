@@ -160,6 +160,7 @@ export PATH=$PATH":/opt/Qt/Tools/QtCreator/bin"
 # alias clear='' i learned my lesson
 
 alias gitl="git log --oneline --graph --all --date-order"
+alias myglog="git log --date-order --author jonathon --graph --all"
 alias delta="delta --navigate"
 
 export RANGER_LOAD_DEFAULT_RC=false
