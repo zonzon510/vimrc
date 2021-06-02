@@ -84,7 +84,7 @@ Plug 'tpope/vim-repeat'
 
 Plug 'easymotion/vim-easymotion'
 
-" Plug 'zonzon510/diffchar.vim'
+Plug 'zonzon510/diffchar.vim'
 
 call plug#end()
 
@@ -1041,7 +1041,7 @@ hi Define ctermfg=197 ctermbg=NONE cterm=NONE
 
 hi DiffAdd ctermfg=NONE ctermbg=22 cterm=NONE
 hi DiffDelete ctermfg=57 ctermbg=NONE cterm=NONE
-hi DiffChange ctermfg=NONE ctermbg=NONE cterm=NONE
+hi DiffChange ctermfg=NONE ctermbg=16 cterm=NONE
 hi DiffText ctermfg=NONE ctermbg=18 cterm=NONE
 
 hi ErrorMsg ctermfg=231 ctermbg=197 cterm=NONE
