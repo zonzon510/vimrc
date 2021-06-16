@@ -1,15 +1,20 @@
+snippet co
+$1 ($2) {
+	$0
+}
+endsnippet
 snippet if
-if($1){
+if ($1) {
 	$0
 }
 endsnippet
 snippet for
-for(int $1=0; $1 < $2; $1++){
+for (int $1=0; $1 < $2; $1++) {
 	$0
 }
 endsnippet
 snippet def
-$1($2)
+$1 ($2)
 {
 	$0
 }
@@ -25,6 +30,7 @@ snippet alg
 #include<map>
 #include<climits>
 #include<algorithm>
+#include<set>
 using namespace std;
 
 int main()
