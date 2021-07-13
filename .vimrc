@@ -43,13 +43,18 @@ set updatetime=100
 Plug 'tpope/vim-dispatch'
 
 " Plug 'dense-analysis/ale'
+"
+Plug 'preservim/nerdtree'
 
-let g:ycm_key_list_select_completion=[]
-let g:ycm_key_list_previous_completion=[]
-Plug 'Valloric/YouCompleteMe'
-let g:ycm_auto_trigger = 0
-let g:ycm_autoclose_preview_window_after_insertion = 0
-let g:ycm_show_diagnostics_ui = 0
+
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" let g:ycm_key_list_select_completion=[]
+" let g:ycm_key_list_previous_completion=[]
+" Plug 'Valloric/YouCompleteMe'
+" let g:ycm_auto_trigger = 0
+" let g:ycm_autoclose_preview_window_after_insertion = 0
+" let g:ycm_show_diagnostics_ui = 0
 " error checking with pylint
 "
 " Plug 'OmniSharp/omnisharp-vim'
@@ -981,6 +986,10 @@ set sessionoptions-=options
 set noea
 set foldlevelstart=20
 
+" diff options
+set diffopt+=linematch:800
+set diffopt+=bad-divider:'{}\ '
+
 " define quickfix signs
 call sign_define('qfsign', {"text" : "q>",})
 
@@ -1124,6 +1133,20 @@ hi GitGutterDelete ctermfg=1
 hi GitGutterChangeDelete ctermfg=4
 
 let mapleader=" "
+
+" nerdtree
+function! NERDTreeYankCurrentNode()
+    let n = g:NERDTreeFileNode.GetSelected()
+    if n != {}
+        call setreg('"', n.path.str())
+    endif
+endfunction
+autocmd VimEnter * call NERDTreeAddKeyMap({
+        \ 'key': 'yy',
+        \ 'callback': 'NERDTreeYankCurrentNode',
+        \ 'quickhelpText': 'put full path of current node into the default register' })
+" autocmd VimEnter * call NERDTreeAddKeyMap()
+
 
 " # # # # # # # # # # # # # # # # # # # # # # # #
 " #   N O R M A L  M O D E  M A P P I N G S     #
