@@ -1286,6 +1286,10 @@ nnoremap <leader>cu :call ToggleCursorLine()<CR>
 
 nnoremap <leader>pw :pwd<CR>
 
+" nerdtre bindings
+nnoremap <leader>nf :NERDTreeFind<CR><C-w>p
+nnoremap <leader>nt :NERDTreeToggle<CR>
+
 " silver searching
 nnoremap <leader>aa yiw :Ag! -w <C-R>"<CR><C-w>p
 " type the search pattern
